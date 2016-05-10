@@ -8,11 +8,6 @@ namespace TerrariumScrum
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            CreeerRaster();
-            Console.ReadLine();
-        }
         static void CreeerRaster()
         {
             string[,] raster = new string[6, 6];
@@ -29,7 +24,7 @@ namespace TerrariumScrum
                 for (int rij = 0; rij < 6; rij++)
                 {
                     raster[rij, kolom] = ".";
-                    int ingevuld = rnd.Next(1, 6);      //dit geeft 1/5 kans dat het raster met een organisme wordt ingevuld.
+                    int ingevuld = rnd.Next(1, 6);      //dit geeft 1/5 kans dat het raster met een organisme wordt ingevuld
                     if (ingevuld < 2)
                     {
                         int organismeSoort = rnd.Next(1, 4);
@@ -50,6 +45,11 @@ namespace TerrariumScrum
                 }
                 Console.WriteLine();
             }
+        }
+        static void Main(string[] args)
+        {
+            CreeerRaster();
+            Console.ReadLine();
         }
     }
 }

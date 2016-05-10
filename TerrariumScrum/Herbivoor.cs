@@ -10,7 +10,6 @@ namespace TerrariumScrum
     {
         public bool Paren(int xPostitie, int yPositie) 
         {
-
         }
 
     }
