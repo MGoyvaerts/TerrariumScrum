@@ -6,19 +6,28 @@ using System.Threading.Tasks;
 
 namespace TerrariumScrum
 {
-    public abstract class Organisme
+    public abstract class Organisme : IOrganisme
     {
         public int Levenskracht { get; set; }
-        public int xPositie { get; set; }
-        public int yPositie { get; set; }
-        public string Letter { get; set; }
 
-        public Organisme(int levenskracht, int xPos, int yPos, string letter)
+        public Organisme(int rij, int kolom, int levenskracht = 0)
         {
-            Levenskracht = levenskracht;
-            xPositie = xPos;
-            yPositie = yPos;
-            Letter = letter;
+            Rij = rij;
+            Kolom = kolom;
+        }
+
+        public int Rij {get; set;}
+
+        public int Kolom { get; set; }
+
+        public int[,] DoeActie()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+ 	         return "P";
         }
         public Organisme()
         {
@@ -26,3 +35,4 @@ namespace TerrariumScrum
         }
     }
 }
+

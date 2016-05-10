@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace TerrariumScrum
 {
-    public class Carnivoor : Dier
+    public interface IOrganisme
     {
-        public Carnivoor(int rij, int kolom)
-            : base(rij, kolom)
-        {
+        int Rij { get; set; }
+        int Kolom { get; set; }
 
-        }
+        int[,] DoeActie();
+        string ToString();
     }
 }
