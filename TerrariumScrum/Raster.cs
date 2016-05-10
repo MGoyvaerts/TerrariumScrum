@@ -125,22 +125,10 @@ namespace TerrariumScrum
                 Console.WriteLine();
             } 
         }
-        public int ControleerHerbivoor(string[,] raster)
-        {
-            int aantal = 0;
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 6; j++)
-                {
-                    if (raster[i, j].ToString() == "H" && j < 5 && raster[i, j + 1].ToString() == "H")
-                    {
-                        Herbivoor nieuweHerbivoor = new Herbivoor();
-                        nieuweHerbivoor.Paren();
-                    }
-                }
-            }
-            return ;
-        }
 
+        public void VolgendeDag()
+        {
+
+        }
     }
 }
