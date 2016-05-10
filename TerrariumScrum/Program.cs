@@ -48,6 +48,8 @@ namespace TerrariumScrum
         }
         static void Main(string[] args)
         {
+            CreeerRaster();
+            Console.ReadLine();
         }
     }
 }

@@ -8,9 +8,10 @@ namespace TerrariumScrum
 {
     public class Herbivoor
     {
-        public bool Paren(int xPostitie, int yPositie) 
-        {
-        }
+        //public bool Paren(int xPostitie, int yPositie)
+        //{
+
+        //}
 
     }
 }
