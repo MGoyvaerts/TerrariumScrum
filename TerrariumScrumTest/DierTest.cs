@@ -16,6 +16,7 @@ namespace TerrariumScrumTest
         [TestMethod]
         public void ElkDierMetEenLegePositieAanZijnRechterzijdeDoetWillekeurigÉénstap()
         {
+            dier.Verplaatsen();
         }
     }
 }
