@@ -17,31 +17,31 @@ namespace TerrariumScrum
         {
 
         }
-        public Dier Verplaatsen(Dier dier)
+        public void Verplaatsen()
         {
-            //de rij & kolom van het dier worden aangepast en dat dier wordt dan terug gestuurd.
+            //de rij & kolom van het dier worden aangepast (en dat dier wordt dan terug gestuurd.)
             var random = new Random();
             int willGetal = random.Next(1, 4);
             switch (willGetal)
             {
                 case 1:
-                    dier.Rij += 1;
-                    dier.Kolom += 1;
+                    this.Rij += 1;
+                    this.Kolom += 1;
                     break;
                 case 2:
-                    dier.Rij -= 1;
-                    dier.Kolom += 1;
+                    this.Rij -= 1;
+                    this.Kolom += 1;
                     break;
                 case 3:
-                    dier.Rij += 1;
-                    dier.Kolom -= 1;
+                    this.Rij += 1;
+                    this.Kolom -= 1;
                     break;
                 case 4:
-                    dier.Rij -= 1;
-                    dier.Kolom -= 1;
+                    this.Rij -= 1;
+                    this.Kolom -= 1;
                     break;
             }
-            return dier;
+            //return this;
         }
         public Dier Eten(Dier dier, Organisme organisme)
         {
