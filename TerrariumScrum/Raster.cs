@@ -120,7 +120,7 @@ namespace TerrariumScrum
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    Console.Write(raster[rij, kolom].Tostring() + "  ");
+                    Console.Write(raster[rij, kolom].Tostring() + "  ");                  
                 }
                 Console.WriteLine();
             } 
@@ -175,6 +175,28 @@ namespace TerrariumScrum
                 grid[rndRij, rndKolom] = letter;
             }
             aantal--;
+        }
+
+        private GeenOrganisme Opgegeten(Organisme links, Organisme rechts)
+        {
+            GeenOrganisme legePlaats = new GeenOrganisme(rechts.Rij, rechts.Kolom);
+            return legePlaats;
+            //if ((links == typeof(Herbivoor)) && (rechts == typeof(Plant)))
+            //{
+            //    links.Levenskracht++;
+            //}
+            //else if((links == typeof(Carnivoor)) && (rechts == typeof(Herbivoor)))
+            //{
+            //    links.Levenskracht = links.Levenskracht + rechts.Levenskracht;
+            //}
+            //else if ((links == typeof(Carnivoor)) && (rechts == typeof(Carnivoor)))
+            //{
+            //   Carnivoor carnivoor = new Carnivoor();
+            //   Carnivoor cLinks = (Carnivoor)links;
+            //   Carnivoor cRechts = (Carnivoor)rechts;
+            //   carnivoor.Vechten(cLinks, cRechts);
+            //}
+            
         }
     }
 }
