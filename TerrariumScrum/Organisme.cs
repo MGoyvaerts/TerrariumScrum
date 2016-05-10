@@ -25,9 +25,9 @@ namespace TerrariumScrum
             throw new NotImplementedException();
         }
 
-        public override string ToString()
+        public virtual string Tostring()
         {
- 	         return "P";
+            return "";
         }
         public Organisme()
         {

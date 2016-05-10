@@ -35,5 +35,9 @@ namespace TerrariumScrum
             }
 
         }
+        public override string Tostring()
+        {
+            return "C";
+        }
     }
 }

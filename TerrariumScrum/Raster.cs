@@ -8,23 +8,20 @@ namespace TerrariumScrum
 {
     public class Raster
     {
-        public string[,] raster = new string[6, 6];
+        IOrganisme[,] raster = new IOrganisme[6, 6];
         int aantalCarnivoren = 0;
         int aantalHerbivoren = 0;
         int aantalPlanten = 0;
-        string plant = "P";
-        string carnivoor = "C";
-        string herbivoor = "H";
         
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
-            Random rnd = new Random();
+            Random rnd = new Random();      
             
             for (int rij = 0; rij < 6; rij++)
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    raster[rij, kolom] = ".";
+                    raster[rij, kolom] = new GeenOrganisme(rij, kolom);
                     int ingevuld = rnd.Next(1, 6);      //dit geeft 1/5 kans dat het raster met een organisme wordt ingevuld
                     if (ingevuld < 2)
                     {
@@ -32,15 +29,15 @@ namespace TerrariumScrum
                         switch (organismeSoort)
                         {
                             case 1:
-                                raster[rij, kolom] = plant;
+                                raster[rij, kolom] = new Plant(rij, kolom);
                                 aantalPlanten++;
                                 break;
                             case 2:
-                                raster[rij, kolom] = herbivoor;
+                                raster[rij, kolom] = new Herbivoor(rij, kolom);
                                 aantalHerbivoren++;
                                 break;
                             case 3:
-                                raster[rij, kolom] = carnivoor;
+                                raster[rij, kolom] = new Carnivoor(rij, kolom);
                                 aantalCarnivoren++;
                                 break;
                         }
@@ -61,9 +58,9 @@ namespace TerrariumScrum
                     {
                         for (int kolom = 0; kolom < 6; kolom++)
                         {
-                            if (raster[rij, kolom] == ".")
+                            if (raster[rij, kolom].GetType() == typeof(GeenOrganisme))
                             {
-                                raster[rij, kolom] = carnivoor;
+                                raster[rij, kolom] = new Carnivoor(rij, kolom);
                                 isIngevuld = true;
                                 break;
                             }
@@ -82,9 +79,9 @@ namespace TerrariumScrum
                     {
                         for (int kolom = 0; kolom < 6; kolom++)
                         {
-                            if (raster[rij, kolom] == ".")
+                            if (raster[rij, kolom].GetType() == typeof(GeenOrganisme))
                             {
-                                raster[rij, kolom] = herbivoor;
+                                raster[rij, kolom] = new Herbivoor(rij, kolom);
                                 isIngevuld = true;
                                 break;
                             }
@@ -103,9 +100,9 @@ namespace TerrariumScrum
                     {
                         for (int kolom = 0; kolom < 6; kolom++)
                         {
-                            if (raster[rij, kolom] == ".")
+                            if (raster[rij, kolom].GetType() == typeof(GeenOrganisme))
                             {
-                                raster[rij, kolom] = plant;
+                                raster[rij, kolom] = new Plant(rij, kolom);
                                 isIngevuld = true;
                                 break;
                             }
@@ -123,12 +120,37 @@ namespace TerrariumScrum
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    Console.Write(raster[rij, kolom] + "  ");
+                    Console.Write(raster[rij, kolom].Tostring() + "  ");
                 }
                 Console.WriteLine();
             } 
         }
 
+        public void VolgendeDag()
+        {
+            for (int rij = 0; rij < 6; rij++)
+            {
+                for (int kolom = 0; kolom < 6; kolom++)     //We gaan hier alle plaatsen af.
+                {
+                    if (raster[rij, kolom].GetType() == typeof(GeenOrganisme))
+                    {
+                        //Geef hier code in
+                    }
+                    else if (raster[rij, kolom].GetType() == typeof(Carnivoor))
+                    {
+                        //Geef hier code in
+                    }
+                    else if (raster[rij, kolom].GetType() == typeof(Herbivoor))
+                    {
+                        //Geef hier code in
+                    }
+                    else if (raster[rij, kolom].GetType() == typeof(Plant))
+                    {
+                        //Geef hier code in
+                    }
+                }
+            } 
+        }
         public void NieuwOrganisme(Organisme organisme, int aantalHerbivoren, string[,] grid)
         {
             Random rnd = new Random();
@@ -143,7 +165,7 @@ namespace TerrariumScrum
             }
         }
 
-        public void InvullenPlantenHerbivorenBijVolgendeDag(string[,] grid, string letter, int aantal)
+        private void InvullenPlantenHerbivorenBijVolgendeDag(string[,] grid, string letter, int aantal)
         {
             Random rnd = new Random();
             int rndRij = rnd.Next(0, 5);
