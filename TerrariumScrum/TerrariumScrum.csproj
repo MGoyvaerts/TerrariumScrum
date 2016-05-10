@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Herbivoor.cs" />
     <Compile Include="Organisme.cs" />
+    <Compile Include="Plant.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
