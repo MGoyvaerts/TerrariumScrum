@@ -17,8 +17,9 @@ namespace TerrariumScrum
         {
 
         }
-        public void Verplaatsen()
+        public void Verplaatsen(Dier dier)
         {
+           
 
         }
         public void Eten()
