@@ -6,17 +6,39 @@ using System.Threading.Tasks;
 
 namespace TerrariumScrum
 {
-    public class Herbivoor: Organisme
+    public class Herbivoor
     {
-        public Herbivoor(int _xPositie, int _yPositie, string _letter)
+        //public int Paren(string[,]raster)
+        //{
+        //    int aantal = 0;
+        //    for (int i = 0; i < 6; i++)
+        //    {
+        //        for (int j = 0; j < 6; j++)
+        //        {
+        //            if (raster[i, j] == "H" && j < 5)
+        //            {
+        //                if (raster[i, j + 1] == "H")
+        //                {
+        //                    aantal++;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return aantal;
+        //}
+        public int Paren(string[,] raster)
         {
-            this.xPositie = _xPositie;
-            this.yPositie = _yPositie;
-            this.Letter = _letter;
-        }
-        public bool Paren(int xPostitie, int yPositie) 
-        {
-            throw new NotImplementedException();
+            int aantal = 0;
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (raster[i, j] is Herbivoor && raster[i + 1, j] is Herbivoor && i < 5)
+                    {
+
+                    }
+                }
+            }
         }
 
     }

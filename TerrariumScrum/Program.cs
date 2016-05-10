@@ -8,7 +8,7 @@ namespace TerrariumScrum
 {
     class Program
     {
-        static void CreeerRaster()
+        static string[,] CreeerRaster()
         {
             string[,] raster = new string[6, 6];
             Random rnd = new Random();
@@ -45,9 +45,30 @@ namespace TerrariumScrum
                 }
                 Console.WriteLine();
             }
+            return raster;
+        }
+        static int Paren(string[,] raster)
+        {
+            int aantal = 0;
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (raster[i, j] == "H" && i < 5 && raster[i + 1, j] == "H")
+                    {
+                        aantal++;
+                    }
+                }
+            }
+            return aantal;
         }
         static void Main(string[] args)
         {
+            var terrarium = CreeerRaster();
+            int aantal = 0;
+            aantal = Paren(terrarium);
+            Console.WriteLine(aantal);
+            Console.ReadLine();
         }
     }
 }

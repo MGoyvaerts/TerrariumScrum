@@ -12,5 +12,13 @@ namespace TerrariumScrum
         public int xPositie { get; set; }
         public int yPositie { get; set; }
         public string Letter { get; set; }
+
+        public Organisme(int levenskracht, int xPos, int yPos, string letter)
+        {
+            Levenskracht = levenskracht;
+            xPositie = xPos;
+            yPositie = yPos;
+            Letter = letter;
+        }
     }
 }
