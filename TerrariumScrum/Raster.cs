@@ -33,8 +33,8 @@ namespace TerrariumScrum
                                 aantalPlanten++;
                                 break;
                             case 2:
-                                //raster[rij, kolom] = new Herbivoor(rij, kolom);
-                                //aantalHerbivoren++;
+                                raster[rij, kolom] = new Herbivoor(rij, kolom);
+                                aantalHerbivoren++;
                                 break;
                             case 3:
                                 raster[rij, kolom] = new Carnivoor(rij, kolom);
@@ -50,15 +50,15 @@ namespace TerrariumScrum
         {   
             if (aantalCarnivoren == 0)      
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(raster, new Carnivoor(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Carnivoor(0, 0), 1);
             }
             if (aantalHerbivoren == 0)
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(raster, new Herbivoor(0,0), 8);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Herbivoor(0, 0), 1);
             }
             if (aantalPlanten == 0)
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(raster, new Plant(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 1);
             }
         }
 
@@ -76,6 +76,8 @@ namespace TerrariumScrum
 
         public void VolgendeDag()
         {
+            Random rnd = new Random();
+            NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0,0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             Herbivoor nieuweHerbivoor = new Herbivoor();
             for (int rij = 0; rij < 6; rij++)
             {
@@ -124,21 +126,7 @@ namespace TerrariumScrum
             return waarden;
         }
 
-        public void NieuwOrganisme(Organisme organisme, int aantalHerbivoren, IOrganisme[,] grid)
-        {
-            Random rnd = new Random();
-            int aantalNieuwePlanten = rnd.Next(1, 4);  //Random aantal planten toevoegen
-            while (aantalNieuwePlanten != 0)
-            {
-                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme, aantalNieuwePlanten);
-            }
-            while (aantalHerbivoren != 0)
-            {
-                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme, aantalHerbivoren);
-            }
-        }
-
-        private void InvullenPlantenHerbivorenBijVolgendeDag(IOrganisme[,] grid, Organisme organisme, int aantal)   
+        private void NieuwOrganismeInvullenOpRandomPlaats(IOrganisme[,] grid, Organisme organisme, int aantal)
         {
             Random rnd = new Random();
             for (int i = 0; i < aantal; i++)
