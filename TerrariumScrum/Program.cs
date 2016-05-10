@@ -36,8 +36,9 @@ namespace TerrariumScrum
                 }
                 else
                 {
-                    Console.WriteLine("verkeerde invoer pipo!");
-
+                    Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
+                    Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
+                    input = Console.ReadLine();
                 }
             }
         }

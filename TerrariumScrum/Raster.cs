@@ -125,5 +125,10 @@ namespace TerrariumScrum
                 Console.WriteLine();
             } 
         }
+
+        public void VolgendeDag()
+        {
+
+        }
     }
 }
