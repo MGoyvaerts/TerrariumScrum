@@ -18,7 +18,7 @@ namespace TerrariumScrum
         
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
-            Random rnd = new Random();
+            Random rnd = new Random();      
             
             for (int rij = 0; rij < 6; rij++)
             {

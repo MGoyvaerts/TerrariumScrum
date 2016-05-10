@@ -10,10 +10,10 @@ namespace TerrariumScrum
     {
         static void Main(string[] args)
         {
-            Raster raster = new Raster();
-            raster.CreeerRaster();
-            raster.ControleerRaster();
-            raster.Afbeelden();
+            Raster terrarium = new Raster();
+            terrarium.CreeerRaster();
+            terrarium.ControleerRaster();
+            terrarium.Afbeelden();
             Console.ReadLine();
         }
     }
