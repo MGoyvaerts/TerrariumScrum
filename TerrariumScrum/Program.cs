@@ -41,11 +41,11 @@ namespace TerrariumScrum
             int aantalNieuwePlanten = rnd.Next(1, 4);  //Random aantal planten toevoegen
             while (aantalNieuwePlanten != 0)
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme.Letter, aantalNieuwePlanten);
+                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme.ToString(), aantalNieuwePlanten);
             }
             while (aantalHerbivoren != 0)
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme.Letter, aantalHerbivoren);
+                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme.ToString(), aantalHerbivoren);
             }
         }
 
