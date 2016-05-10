@@ -33,8 +33,8 @@ namespace TerrariumScrum
                                 aantalPlanten++;
                                 break;
                             case 2:
-                                //raster[rij, kolom] = new Herbivoor(rij, kolom);
-                                //aantalHerbivoren++;
+                                raster[rij, kolom] = new Herbivoor(rij, kolom);
+                                aantalHerbivoren++;
                                 break;
                             case 3:
                                 raster[rij, kolom] = new Carnivoor(rij, kolom);
@@ -50,15 +50,15 @@ namespace TerrariumScrum
         {   
             if (aantalCarnivoren == 0)      
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(raster, new Carnivoor(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Carnivoor(0, 0), 1);
             }
             if (aantalHerbivoren == 0)
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(raster, new Herbivoor(0,0), 8);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Herbivoor(0, 0), 1);
             }
             if (aantalPlanten == 0)
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(raster, new Plant(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 1);
             }
         }
 
@@ -76,8 +76,8 @@ namespace TerrariumScrum
 
         public void VolgendeDag()
         {
-            Random rnd = new Random()
-            NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0,0), rnd.Next(1,4));      //Bij elke volgende dag komen er 1-3 nieuwe planten bij.
+            Random rnd = new Random();
+            NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0,0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             Herbivoor nieuweHerbivoor = new Herbivoor();
             for (int rij = 0; rij < 6; rij++)
             {
