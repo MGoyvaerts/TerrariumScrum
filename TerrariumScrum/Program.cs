@@ -17,24 +17,29 @@ namespace TerrariumScrum
 
             // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
             // Dit kan eventueel nog in een aparte method geschreven worden
-            var antwoord = Console.ReadLine();
-            while (antwoord != "s")
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
+            Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
+            var input = Console.ReadLine();
+            while (input != "s")
             {
-                if (antwoord == "v")
+                if (input == "v")
                 {
-                    // Hier komt de method "volgende dag"
-                    Console.WriteLine("yeah bitchessss");
-                    antwoord = Console.ReadLine();
+                    raster.Afbeelden();
+                    //hier komt methode om de dagelijkse acties uit te voeren
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
+                    Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
+                    input = Console.ReadLine();
                 }
                 else
                 {
-                    Console.WriteLine(@"Druk v voor de volgende dag en s om te stoppen");
-                    antwoord = Console.ReadLine();
+                    Console.WriteLine("verkeerde invoer pipo!");
+
                 }
             }
-
-
-            Console.ReadLine();
         }
 
         //static int ControleerHerbivoor(Raster raster)
