@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TerrariumScrum
 {
-    abstract class Organisme
+    public abstract class Organisme
     {
         public int Levenskracht { get; set; }
         public int xPositie { get; set; }
