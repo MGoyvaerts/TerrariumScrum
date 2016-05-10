@@ -14,24 +14,29 @@ namespace TerrariumScrum
             raster.CreeerRaster();
             raster.ControleerRaster();
             raster.Afbeelden();
-            Console.ReadLine();
-        }
 
-        static int ControleerHerbivoor(Raster raster)
-        {
-            var terrarium = raster;
-            int aantal = 0;
-            for (int i = 0; i < 6; i++)
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
+            Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
+            var input = Console.ReadLine();
+            while (input != "s")
             {
-                for (int j = 0; j < 6; j++)
+                if (input == "v")
                 {
-                    if (terrarium[i, j] == "H" && i < 5 && raster[i + 1, j] == "H")
-                    {
-                        nieuweHerbivoor = new Herbivoor();
-                    }
+                    raster.Afbeelden();
+                    //hier komt methode om de dagelijkse acties uit te voeren
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
+                    Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
+                    input = Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine("verkeerde invoer pipo!");
                 }
             }
-            return aantal;
         }
     }
 }
