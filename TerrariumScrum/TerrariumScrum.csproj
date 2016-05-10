@@ -44,6 +44,7 @@
     <Compile Include="Carnivoor.cs" />
     <Compile Include="Dier.cs" />
     <Compile Include="Herbivoor.cs" />
+    <Compile Include="IOrganisme.cs" />
     <Compile Include="Organisme.cs" />
     <Compile Include="Plant.cs" />
     <Compile Include="Program.cs" />
