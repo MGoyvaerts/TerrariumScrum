@@ -17,7 +17,7 @@ namespace TerrariumScrum
         {
 
         }
-        public Herbivoor Paren()
+        public Herbivoor Vrijen()
         {
             Herbivoor nieuweHerbivoor = new Herbivoor();
             return nieuweHerbivoor;
