@@ -8,8 +8,9 @@ namespace TerrariumScrum
 {
     public interface IOrganisme
     {
-        public int Rij { get; set; }
-        public int Kolom { get; set; }
+        int Rij { get; set; }
+        int Kolom { get; set; }
+
         int[,] DoeActie();
         string ToString();
     }
