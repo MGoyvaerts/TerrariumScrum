@@ -40,7 +40,7 @@ namespace TerrariumScrum
             Herbivoor nieuweHerbivoor = new Herbivoor();
             return nieuweHerbivoor;
         }
-        public override string ToString()
+        public override string Tostring()
         {
             return "H";
         }

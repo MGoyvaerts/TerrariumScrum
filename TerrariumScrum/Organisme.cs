@@ -25,7 +25,7 @@ namespace TerrariumScrum
             throw new NotImplementedException();
         }
 
-        public string ToString()
+        public virtual string Tostring()
         {
             return "";
         }
