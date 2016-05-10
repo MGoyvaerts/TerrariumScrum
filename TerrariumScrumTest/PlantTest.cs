@@ -1,5 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using TerrariumScrum;
 
 namespace TerrariumScrumTest
 {
@@ -7,8 +8,10 @@ namespace TerrariumScrumTest
     public class PlantTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ToStringvanPlantGeeftPterug()
         {
+            var plant = new Plant(2,6);
+            Assert.AreEqual("P", plant.Tostring());
         }
     }
 }
