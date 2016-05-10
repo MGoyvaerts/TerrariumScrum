@@ -15,10 +15,7 @@ namespace TerrariumScrum
             Rij = rij;
             Kolom = kolom;
         }
-        public Organisme()
-        {
 
-        }
         public int Rij {get; set;}
 
         public int Kolom { get; set; }
@@ -26,6 +23,15 @@ namespace TerrariumScrum
         public int[,] DoeActie()
         {
             throw new NotImplementedException();
+        }
+
+        public virtual string Tostring()
+        {
+            return "";
+        }
+        public Organisme()
+        {
+
         }
     }
 }

@@ -8,17 +8,80 @@ namespace TerrariumScrum
 {
     class Program
     {
-        
         static void Main(string[] args)
         {
             Raster raster = new Raster();
-            string[,] terrarium = raster.CreeerRaster();
-            //raster.CreeerRaster();
+            raster.CreeerRaster();
             raster.ControleerRaster();
             raster.Afbeelden();
-            int aantal = ControleerHerbivoor(terrarium);
-            Console.WriteLine(aantal);
-            Console.ReadLine();
+
+            // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
+            // Dit kan eventueel nog in een aparte method geschreven worden
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
+            Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
+            var input = Console.ReadLine();
+            while (input != "s")
+            {
+                if (input == "v")
+                {
+                    raster.Afbeelden();
+                    //hier komt methode om de dagelijkse acties uit te voeren
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
+                    Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
+                    input = Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine("verkeerde invoer pipo!");
+                    input = Console.ReadLine();
+                }
+            }
+        }
+
+        //static int ControleerHerbivoor(Raster raster)
+        //{
+        //    var terrarium = raster;
+        //    int aantal = 0;
+        //    for (int i = 0; i < 6; i++)
+        //    {
+        //        for (int j = 0; j < 6; j++)
+        //        {
+        //            if (terrarium[i, j] == "H" && i < 5 && raster[i + 1, j] == "H")
+        //            {
+        //                Herbivoor nieuweHerbivoor = new Herbivoor();
+        //            }
+        //        }
+        //    }
+        //    return aantal;
+        //}
+        public void NieuwOrganisme(Organisme organisme, int aantalHerbivoren, string[,] grid)
+        {
+            Random rnd = new Random();
+            int aantalNieuwePlanten = rnd.Next(1, 4);  //Random aantal planten toevoegen
+            while (aantalNieuwePlanten != 0)
+            {
+                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme.ToString(), aantalNieuwePlanten);
+            }
+            while (aantalHerbivoren != 0)
+            {
+                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme.ToString(), aantalHerbivoren);
+            }
+        }
+
+        private void InvullenPlantenHerbivorenBijVolgendeDag(string[,] grid, string letter, int aantal)
+        {
+            Random rnd = new Random();
+            int rndRij = rnd.Next(0, 5);
+            int rndKolom = rnd.Next(0, 5);
+            if (grid[rndRij, rndKolom] == ".") //Willekeurige rij en kolom kiezen om na te gaan of deze positie leeg (.) is
+            {
+                grid[rndRij, rndKolom] = letter;
+            }
+            aantal--;
         }
     }
 }
