@@ -15,11 +15,11 @@ namespace TerrariumScrum
         string plant = "P";
         string carnivoor = "C";
         string herbivoor = "H";
-        
-        public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
+
+        public string[,] CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
             Random rnd = new Random();
-            
+
             for (int rij = 0; rij < 6; rij++)
             {
                 for (int kolom = 0; kolom < 6; kolom++)
@@ -47,12 +47,13 @@ namespace TerrariumScrum
                     }
                 }
             }
+            return raster;
         }
-        
+
         bool isIngevuld = false;            //Dit dient voor de controle ofdat een organisme is ingevuld
         public void ControleerRaster()      //Dit is een controle zodat elk organsisme minstens 1 maal wordt ingevuld.
-        {   
-            if (aantalCarnivoren == 0)      
+        {
+            if (aantalCarnivoren == 0)
             {
                 isIngevuld = false;
                 for (int rij = 0; rij < 6; rij++)
@@ -119,14 +120,14 @@ namespace TerrariumScrum
 
         public void Afbeelden()         //Het raster wordt hier afgebeeld.
         {
-            for (int rij = 0; rij < 6; rij++)       
+            for (int rij = 0; rij < 6; rij++)
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
                     Console.Write(raster[rij, kolom] + "  ");
                 }
                 Console.WriteLine();
-            } 
+            }
         }
     }
 }
