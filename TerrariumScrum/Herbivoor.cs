@@ -35,7 +35,7 @@ namespace TerrariumScrum
         //    }
         //    return aantal;
         //}
-        public Herbivoor Paren(string[,]raster)
+        public Herbivoor Paren(string[,] raster)
         {
             Herbivoor nieuweHerbivoor = new Herbivoor();
             return nieuweHerbivoor;

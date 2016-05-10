@@ -6,14 +6,23 @@ using System.Threading.Tasks;
 
 namespace TerrariumScrum
 {
-    public class Dier:Organisme
+    public abstract class Dier:Organisme
     {
+        
         public Dier(int levenskracht, int xPos, int yPos, string letter)
             : base(levenskracht, xPos, yPos, letter)
         {
 
         }
         public Dier()
+        {
+
+        }
+        public void Verplaatsen()
+        {
+
+        }
+        public void Eten()
         {
 
         }
