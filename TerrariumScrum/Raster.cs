@@ -50,15 +50,15 @@ namespace TerrariumScrum
         {   
             if (aantalCarnivoren == 0)      
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(raster, new Carnivoor(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Carnivoor(0, 0), 1);
             }
             if (aantalHerbivoren == 0)
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(raster, new Herbivoor(0,0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Herbivoor(0, 0), 1);
             }
             if (aantalPlanten == 0)
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(raster, new Plant(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 1);
             }
         }
 
@@ -75,7 +75,7 @@ namespace TerrariumScrum
         }
 
         public void VolgendeDag()
-        {
+        { 
             for (int rij = 0; rij < 6; rij++)
             {
                 for (int kolom = 0; kolom < 6; kolom++)     //We gaan hier alle plaatsen van het raster af en kijken wat voor soort organisme het is.
@@ -99,21 +99,8 @@ namespace TerrariumScrum
                 }
             } 
         }
-        public void NieuwOrganisme(Organisme organisme, int aantalHerbivoren, IOrganisme[,] grid)
-        {
-            Random rnd = new Random();
-            int aantalNieuwePlanten = rnd.Next(1, 4);  //Random aantal planten toevoegen
-            while (aantalNieuwePlanten != 0)
-            {
-                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme, aantalNieuwePlanten);
-            }
-            while (aantalHerbivoren != 0)
-            {
-                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme, aantalHerbivoren);
-            }
-        }
 
-        private void InvullenPlantenHerbivorenBijVolgendeDag(IOrganisme[,] grid, Organisme organisme, int aantal)   
+        private void NieuwOrganismeInvullenOpRandomPlaats(IOrganisme[,] grid, Organisme organisme, int aantal)   
         {
             Random rnd = new Random();
             for (int i = 0; i < aantal; i++)
