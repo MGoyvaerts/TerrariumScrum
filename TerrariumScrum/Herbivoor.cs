@@ -39,17 +39,10 @@ namespace TerrariumScrum
         {
             Herbivoor nieuweHerbivoor = new Herbivoor();
             return nieuweHerbivoor;
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 6; j++)
-                {
-                    if (raster[i, j] == "H" && i < 5 && raster[i + 1, j] == "H")
-                    {
-                        nieuweHerbivoor = new Herbivoor();
-                    }
-                }
-            }
         }
-
+        public override string ToString()
+        {
+            return "H";
+        }
     }
 }
