@@ -46,7 +46,6 @@
     <Compile Include="GeenOrganisme.cs" />
     <Compile Include="Herbivoor.cs" />
     <Compile Include="IOrganisme.cs" />
-    <Compile Include="Menu.cs" />
     <Compile Include="Organisme.cs" />
     <Compile Include="Plant.cs" />
     <Compile Include="Program.cs" />

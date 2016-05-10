@@ -125,5 +125,31 @@ namespace TerrariumScrum
                 Console.WriteLine();
             } 
         }
+
+        public void VolgendeDag()
+        {
+            for (int rij = 0; rij < 6; rij++)
+            {
+                for (int kolom = 0; kolom < 6; kolom++)     //We gaan hier alle plaatsen af.
+                {
+                    if (raster[rij, kolom].GetType() == typeof(GeenOrganisme))
+                    {
+                        //Geef hier code in
+                    }
+                    else if (raster[rij, kolom].GetType() == typeof(Carnivoor))
+                    {
+                        //Geef hier code in
+                    }
+                    else if (raster[rij, kolom].GetType() == typeof(Herbivoor))
+                    {
+                        //Geef hier code in
+                    }
+                    else if (raster[rij, kolom].GetType() == typeof(Plant))
+                    {
+                        //Geef hier code in
+                    }
+                }
+            } 
+        }
     }
 }
