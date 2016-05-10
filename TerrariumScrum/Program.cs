@@ -15,20 +15,6 @@ namespace TerrariumScrum
             raster.ControleerRaster();
             raster.Afbeelden();
 
-            // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
-            var antwoord = Console.ReadLine();
-            while (antwoord != "s")
-            {
-                if(antwoord == "v")
-                {
-                    // Hier komt de method "volgende dag"
-                }
-                else
-                {
-                    Console.WriteLine(@"Druk v voor de volgende dag en s om te stoppen");
-                    antwoord = Console.ReadLine();
-                }
-            }
 
             Console.ReadLine();
         }
