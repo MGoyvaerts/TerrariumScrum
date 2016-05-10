@@ -12,6 +12,6 @@ namespace TerrariumScrum
         int Kolom { get; set; }
 
         int[,] DoeActie();
-        string ToString();
+        string Tostring();
     }
 }
