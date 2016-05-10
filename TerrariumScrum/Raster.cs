@@ -33,8 +33,8 @@ namespace TerrariumScrum
                                 aantalPlanten++;
                                 break;
                             case 2:
-                                raster[rij, kolom] = new Herbivoor(rij, kolom);
-                                aantalHerbivoren++;
+                                //raster[rij, kolom] = new Herbivoor(rij, kolom);
+                                //aantalHerbivoren++;
                                 break;
                             case 3:
                                 raster[rij, kolom] = new Carnivoor(rij, kolom);
@@ -54,7 +54,7 @@ namespace TerrariumScrum
             }
             if (aantalHerbivoren == 0)
             {
-                InvullenPlantenHerbivorenBijVolgendeDag(raster, new Herbivoor(0,0), 1);
+                InvullenPlantenHerbivorenBijVolgendeDag(raster, new Herbivoor(0,0), 8);
             }
             if (aantalPlanten == 0)
             {
@@ -76,29 +76,54 @@ namespace TerrariumScrum
 
         public void VolgendeDag()
         {
+            Herbivoor nieuweHerbivoor = new Herbivoor();
             for (int rij = 0; rij < 6; rij++)
             {
-                for (int kolom = 0; kolom < 6; kolom++)     //We gaan hier alle plaatsen van het raster af en kijken wat voor soort organisme het is.
+                for (int kolom = 0; kolom < 6; kolom++)     //We gaan hier alle plaatsen af.
                 {
-                    if (raster[rij, kolom].GetType() == typeof(GeenOrganisme))
+                    //if (raster[rij, kolom].GetType() == typeof(GeenOrganisme))
+                    //{
+                    //    //Geef hier code in
+                    //}
+                    //else if (raster[rij, kolom].GetType() == typeof(Carnivoor))
+                    //{
+                    //    //Geef hier code in
+                    //}
+                    if (raster[rij, kolom].GetType() == typeof(Herbivoor) && kolom < 5)
                     {
-                        //Geef hier code in
+                        if (raster[rij, kolom + 1].GetType() == typeof(Herbivoor))
+                        {
+                            nieuweHerbivoor.Vrijen();
+                            int[] waarden = WillekeurigeLegePlaatsZoeken(raster);
+                            nieuweHerbivoor.Rij = waarden[0];
+                            nieuweHerbivoor.Kolom = waarden[1];
+                            nieuweHerbivoor.Levenskracht = 0;
+                            raster[waarden[0], waarden[1]] = nieuweHerbivoor;
+                        }
                     }
-                    else if (raster[rij, kolom].GetType() == typeof(Carnivoor))
-                    {
-                        //Geef hier code in
-                    }
-                    else if (raster[rij, kolom].GetType() == typeof(Herbivoor))
-                    {
-                        //Geef hier code in
-                    }
-                    else if (raster[rij, kolom].GetType() == typeof(Plant))
-                    {
-                        //Geef hier code in
-                    }
+                    //else if (raster[rij, kolom].GetType() == typeof(Plant))
+                    //{
+                    //    //Geef hier code in
+                    //}
                 }
-            } 
+            }
         }
+        public int[] WillekeurigeLegePlaatsZoeken(IOrganisme[,] grid)
+        {
+            Random rnd = new Random();
+            int rndRij = rnd.Next(0, 5);
+            int rndKolom = rnd.Next(0, 5);
+            while (grid[rndRij, rndKolom].GetType() != typeof(GeenOrganisme))
+            {
+                rndRij = rnd.Next(0, 5);
+                rndKolom = rnd.Next(0, 5);
+            }
+            int rij = rndRij;
+            int kolom = rndKolom;//Willekeurige rij en kolom kiezen om na te gaan of deze positie leeg (.) is
+            int[] waarden = { rij, kolom };
+            return waarden;
+        }
+
         public void NieuwOrganisme(Organisme organisme, int aantalHerbivoren, IOrganisme[,] grid)
         {
             Random rnd = new Random();
