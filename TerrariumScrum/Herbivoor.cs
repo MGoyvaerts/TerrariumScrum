@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace TerrariumScrum
 {
-    public class Herbivoor
+    public class Herbivoor : Dier
     {
+        public Herbivoor(int levenskracht, int xPos, int yPos, string letter)
+            : base(levenskracht, xPos, yPos, letter)
+        {
+
+        }
+        public Herbivoor()
+        {
+
+        }
         //public int Paren(string[,]raster)
         //{
         //    int aantal = 0;
@@ -26,16 +35,17 @@ namespace TerrariumScrum
         //    }
         //    return aantal;
         //}
-        public int Paren(string[,] raster)
+        public Herbivoor Paren(string[,]raster)
         {
-            int aantal = 0;
+            Herbivoor nieuweHerbivoor = new Herbivoor();
+            return nieuweHerbivoor;
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    if (raster[i, j] is Herbivoor && raster[i + 1, j] is Herbivoor && i < 5)
+                    if (raster[i, j] == "H" && i < 5 && raster[i + 1, j] == "H")
                     {
-
+                        nieuweHerbivoor = new Herbivoor();
                     }
                 }
             }

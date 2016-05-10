@@ -20,5 +20,9 @@ namespace TerrariumScrum
             yPositie = yPos;
             Letter = letter;
         }
+        public Organisme()
+        {
+
+        }
     }
 }

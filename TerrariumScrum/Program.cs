@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,13 +32,16 @@ namespace TerrariumScrum
                         switch (organismeSoort)
                         {
                             case 1:
-                                raster[rij, kolom] = Plant;
+                                Plant plant = new Plant(kolom, rij, 1, "P");
+                                raster[rij, kolom] = plant.Letter;
                                 break;
                             case 2:
-                                raster[rij, kolom] = Herbivoor;
+                                Herbivoor herbivoor=new Herbivoor(1, kolom, rij, "H");
+                                raster[rij, kolom] = herbivoor.Letter;
                                 break;
                             case 3:
-                                raster[rij, kolom] = Carnivoor;
+                                Carnivoor carnivoor = new Carnivoor(1, kolom, rij, "C");
+                                raster[rij, kolom] = carnivoor.Letter;
                                 break;
                         }
                     }
@@ -47,28 +51,24 @@ namespace TerrariumScrum
             }
             return raster;
         }
-        static int Paren(string[,] raster)
-        {
-            int aantal = 0;
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 6; j++)
-                {
-                    if (raster[i, j] == "H" && i < 5 && raster[i + 1, j] == "H")
-                    {
-                        aantal++;
-                    }
-                }
-            }
-            return aantal;
-        }
+
+        //static int Paren(string[,] raster)
+        //{
+        //    int aantal = 0;
+        //    for (int i = 0; i < 6; i++)
+        //    {
+        //        for (int j = 0; j < 6; j++)
+        //        {
+        //            if (raster[i, j] == "H" && i < 5 && raster[i + 1, j] == "H")
+        //            {
+        //                aantal++;
+        //            }
+        //        }
+        //    }
+        //    return aantal;
+        //}
         static void Main(string[] args)
         {
-            var terrarium = CreeerRaster();
-            int aantal = 0;
-            aantal = Paren(terrarium);
-            Console.WriteLine(aantal);
-            Console.ReadLine();
         }
     }
 }

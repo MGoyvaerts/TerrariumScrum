@@ -13,5 +13,9 @@ namespace TerrariumScrum
         {
 
         }
+        public Dier()
+        {
+
+        }
     }
 }
