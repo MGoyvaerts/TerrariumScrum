@@ -53,30 +53,5 @@ namespace TerrariumScrum
         //    }
         //    return aantal;
         //}
-        public void NieuwOrganisme(Organisme organisme, int aantalHerbivoren, string[,] grid)
-        {
-            Random rnd = new Random();
-            int aantalNieuwePlanten = rnd.Next(1, 4);  //Random aantal planten toevoegen
-            while (aantalNieuwePlanten != 0)
-            {
-                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme.ToString(), aantalNieuwePlanten);
-            }
-            while (aantalHerbivoren != 0)
-            {
-                InvullenPlantenHerbivorenBijVolgendeDag(grid, organisme.ToString(), aantalHerbivoren);
-            }
-        }
-
-        private void InvullenPlantenHerbivorenBijVolgendeDag(string[,] grid, string letter, int aantal)
-        {
-            Random rnd = new Random();
-            int rndRij = rnd.Next(0, 5);
-            int rndKolom = rnd.Next(0, 5);
-            if (grid[rndRij, rndKolom] == ".") //Willekeurige rij en kolom kiezen om na te gaan of deze positie leeg (.) is
-            {
-                grid[rndRij, rndKolom] = letter;
-            }
-            aantal--;
-        }
     }
 }
