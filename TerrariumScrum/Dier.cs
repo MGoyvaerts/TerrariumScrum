@@ -43,9 +43,11 @@ namespace TerrariumScrum
             }
             return dier;
         }
-        public void Eten()
+        public Dier Eten(Dier dier, Organisme organisme)
         {
-
+            //geeft het dier terug met de levenskracht van het organisme dat ie gaat opeten.
+            dier.Levenskracht += organisme.Levenskracht;
+            return dier;
         }
     }
 }
