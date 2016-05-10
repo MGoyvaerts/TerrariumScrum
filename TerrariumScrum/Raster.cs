@@ -132,26 +132,29 @@ namespace TerrariumScrum
             }
         }
 
-        private GeenOrganisme Opgegeten(Organisme links, Organisme rechts)
+        private IOrganisme Opgegeten(Organisme links, Organisme rechts)
         {
+            if ((links is Carnivoor) && (rechts is Carnivoor))
+            {
+                Carnivoor carnivoor = new Carnivoor();
+                Carnivoor cLinks = (Carnivoor)links;
+                Carnivoor cRechts = (Carnivoor)rechts;
+                carnivoor.Vechten(cLinks, cRechts);
+                if (carnivoor.Kolom == rechts.Kolom)
+                {
+                    GeenOrganisme legeplaats = new GeenOrganisme(links.Rij, links.Kolom);
+                }
+                else if (carnivoor.Kolom == links.Kolom)
+                {
+                    GeenOrganisme legeplaats = new GeenOrganisme(rechts.Rij, rechts.Kolom);
+                }
+                else
+                {
+                    return null;
+                }
+            }
             GeenOrganisme legePlaats = new GeenOrganisme(rechts.Rij, rechts.Kolom);
-            return legePlaats;
-            //if ((links == typeof(Herbivoor)) && (rechts == typeof(Plant)))
-            //{
-            //    links.Levenskracht++;
-            //}
-            //else if((links == typeof(Carnivoor)) && (rechts == typeof(Herbivoor)))
-            //{
-            //    links.Levenskracht = links.Levenskracht + rechts.Levenskracht;
-            //}
-            //else if ((links == typeof(Carnivoor)) && (rechts == typeof(Carnivoor)))
-            //{
-            //   Carnivoor carnivoor = new Carnivoor();
-            //   Carnivoor cLinks = (Carnivoor)links;
-            //   Carnivoor cRechts = (Carnivoor)rechts;
-            //   carnivoor.Vechten(cLinks, cRechts);
-            //}
-            
+            return legePlaats;            
         }
     }
 }
