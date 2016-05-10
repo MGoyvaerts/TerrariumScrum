@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TerrariumScrum
 {
-    class Plant: Organisme
+    public class Plant: Organisme
     {
         public Plant(int rij, int kolom)
             : base(rij, kolom) { }
