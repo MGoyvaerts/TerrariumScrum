@@ -10,7 +10,7 @@ namespace TerrariumScrum
     {
         public int Levenskracht { get; set; }
 
-        public Organisme(int rij, int kolom, int levenskracht = 0)
+        public Organisme(int rij, int kolom, int levenskracht = 0) // elk organisme ontstaat met levenskracht 0 tenzij specifiek anders vermeld
         {
             Rij = rij;
             Kolom = kolom;
@@ -28,6 +28,10 @@ namespace TerrariumScrum
         public string ToString()
         {
             return "";
+        }
+        public Organisme()
+        {
+
         }
     }
 }

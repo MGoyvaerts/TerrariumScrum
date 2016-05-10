@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace TerrariumScrum
 {
-    public class Herbivoor
+    public class Herbivoor : Dier
     {
+        public Herbivoor(int rij, int kolom)
+            : base(rij, kolom)
+        {
+
+        }
+        public Herbivoor()
+        {
+
+        }
         //public int Paren(string[,]raster)
         //{
         //    int aantal = 0;
@@ -26,10 +35,14 @@ namespace TerrariumScrum
         //    }
         //    return aantal;
         //}
-        public int Vrijen(string[,] raster)
+        public Herbivoor Paren(string[,] raster)
         {
-            throw new NotImplementedException();
+            Herbivoor nieuweHerbivoor = new Herbivoor();
+            return nieuweHerbivoor;
         }
-
+        public override string ToString()
+        {
+            return "H";
+        }
     }
 }
