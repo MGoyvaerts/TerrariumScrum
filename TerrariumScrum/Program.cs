@@ -37,7 +37,7 @@ namespace TerrariumScrum
                 else
                 {
                     Console.WriteLine("verkeerde invoer pipo!");
-
+                    input = Console.ReadLine();
                 }
             }
         }
