@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlantTest.cs" />
+    <Compile Include="DierTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TerrariumScrum\TerrariumScrum.csproj">
