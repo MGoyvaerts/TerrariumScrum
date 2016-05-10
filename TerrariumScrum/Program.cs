@@ -23,6 +23,8 @@ namespace TerrariumScrum
                 if (antwoord == "v")
                 {
                     // Hier komt de method "volgende dag"
+                    Console.WriteLine("yeah bitchessss");
+                    antwoord = Console.ReadLine();
                 }
                 else
                 {
