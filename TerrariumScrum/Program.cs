@@ -8,7 +8,7 @@ namespace TerrariumScrum
 {
     class Program
     {
-        public static List<IOrganisme> organismenLijst; 
+        public static List<IOrganisme> organismenLijst = new List<IOrganisme>();
         static void Main(string[] args)
         {
             Raster raster = new Raster();

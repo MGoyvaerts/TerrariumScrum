@@ -104,7 +104,6 @@ namespace TerrariumScrum
         {
             Random rnd = new Random();
             NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
-            Herbivoor nieuweHerbivoor = new Herbivoor();
             
 
 
