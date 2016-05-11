@@ -21,26 +21,24 @@ namespace TerrariumScrum
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    raster[rij, kolom] = new GeenOrganisme(rij, kolom);     //Het raster wordt eerst volledig ingevuld met een GeenOrganisme-objecten
-                    int ingevuld = rnd.Next(1, 6);      //dit geeft 1/5 kans dat het raster met een organisme wordt ingevuld
-                    if (ingevuld < 2)
+                    int willekeurigNummer = rnd.Next(1,15); // Hiermee wordt de kans bepaald van het invullen van een organisme
+                    switch (willekeurigNummer)
                     {
-                        int organismeSoort = rnd.Next(1, 4);
-                        switch (organismeSoort)
-                        {
-                            case 1:
-                                raster[rij, kolom] = new Plant(rij, kolom);
-                                aantalPlanten++;
-                                break;
-                            case 2:
-                                raster[rij, kolom] = new Herbivoor(rij, kolom);
-                                aantalHerbivoren++;
-                                break;
-                            case 3:
-                                raster[rij, kolom] = new Carnivoor(rij, kolom);
-                                aantalCarnivoren++;
-                                break;
-                        }
+                        case 1:
+                            raster[rij, kolom] = new Plant(rij, kolom);
+                            aantalPlanten++;
+                            break;
+                        case 2:
+                            raster[rij, kolom] = new Herbivoor(rij, kolom);
+                            aantalHerbivoren++;
+                            break;
+                        case 3:
+                            raster[rij, kolom] = new Carnivoor(rij, kolom);
+                            aantalCarnivoren++;
+                            break;
+                        default:
+                            raster[rij, kolom] = new GeenOrganisme(rij, kolom);
+                            break;
                     }
                 }
             }
