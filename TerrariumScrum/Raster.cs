@@ -110,9 +110,11 @@ namespace TerrariumScrum
                     //{
                     //    //Geef hier code in
                     //}
+                    
                 }
             }
         }
+        
         public int[] WillekeurigeLegePlaatsZoeken(IOrganisme[,] grid)       //Hebben we deze method nog nodig?
         {
             Random rnd = new Random();
