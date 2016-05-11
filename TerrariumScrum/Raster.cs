@@ -129,18 +129,31 @@ namespace TerrariumScrum
         private void NieuwOrganismeInvullenOpRandomPlaats(IOrganisme[,] grid, Organisme organisme, int aantal)
         {
             Random rnd = new Random();
+            double rasterplaats = 0;
+            List<Double> rasterplaatsLijst = new List<double>();
             for (int i = 0; i < aantal; i++)
             {
+                for (double rij = 0; rij < 6; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in een lijst.
+                {
+                    for (double kolom = 0; kolom < 6; kolom++)
+                    {
+                        if (raster[(int)rij,(int)kolom].GetType() == typeof(GeenOrganisme))
+                        {
+                            rasterplaats = rij + kolom / 10;
+                            rasterplaatsLijst.Add(rasterplaats);
+                        }
+                    }
+                }
                 bool randomIngevuld = false;
                 while (randomIngevuld == false)
                 {
-                    int rndRij = rnd.Next(0, 6);
-                    int rndKolom = rnd.Next(0, 6);
-                    if (grid[rndRij, rndKolom].GetType() == typeof(GeenOrganisme)) //Willekeurige rij en kolom kiezen om na te gaan of deze positie leeg (.) is
-                    {
-                        grid[rndRij, rndKolom] = organisme;
-                        randomIngevuld = true;
-                    }
+                    double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
+                    int rij = (int)(randomLegePlaats - randomLegePlaats % 1);
+                    int kolom = (int)((randomLegePlaats % 1.0)*10.0);
+                    grid[rij, kolom] = organisme;
+                    organisme.Rij = rij;
+                    organisme.Kolom = kolom;
+                    randomIngevuld = true;
                 }
             }
         }
