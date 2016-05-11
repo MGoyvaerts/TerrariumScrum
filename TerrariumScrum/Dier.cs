@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TerrariumScrum
 {
-    public abstract class Dier:Organisme
+    public class Dier:Organisme
     {
         public Dier(int rij, int kolom)
             : base(rij, kolom)
@@ -18,29 +18,41 @@ namespace TerrariumScrum
 
         }
 
-        bool IsVerplaatst = false;
-        public void Verplaatsen()
+        public bool IsVerplaatst = false;
+        public void Verplaatsen(List<IOrganisme> organismelijst)
         {
             //de rij & kolom van het dier worden aangepast (en dat dier wordt dan terug gestuurd.)
             var random = new Random();
-            int willGetal = random.Next(1, 4);
+            int willGetal = random.Next(1, 5);
             switch (willGetal)
             {
                 case 1:
-                    this.Rij += 1;
-                    this.Kolom += 1;
+                    if (this.Rij < 5)
+                    {
+                        this.Rij += 1;
+                    }
+                    
                     break;
                 case 2:
-                    this.Rij -= 1;
-                    this.Kolom += 1;
+                    if (this.Rij > 0)
+                    {
+                        this.Rij -= 1;
+                    }
+                    
                     break;
                 case 3:
-                    this.Rij += 1;
-                    this.Kolom -= 1;
+                    if (this.Kolom < 5)
+                    {
+                        this.Kolom += 1;
+                    }
+                   
                     break;
                 case 4:
-                    this.Rij -= 1;
-                    this.Kolom -= 1;
+                    if (this.Kolom > 0)
+                    {
+                        this.Kolom -= 1;
+                    }
+                    
                     break;
             }
             this.IsVerplaatst = true;
