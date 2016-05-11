@@ -21,7 +21,7 @@ namespace TerrariumScrum
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    int willekeurigNummer = rnd.Next(1,15); // Hiermee wordt de kans bepaald voor het invullen van een organisme
+                    int willekeurigNummer = rnd.Next(1,16); // Hiermee wordt de kans bepaald voor het invullen van een organisme
                     switch (willekeurigNummer)
                     {
                         case 1:

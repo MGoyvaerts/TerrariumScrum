@@ -23,7 +23,7 @@ namespace TerrariumScrum
         {
             //de rij & kolom van het dier worden aangepast (en dat dier wordt dan terug gestuurd.)
             var random = new Random();
-            int willGetal = random.Next(1, 4);
+            int willGetal = random.Next(1, 5);
             switch (willGetal)
             {
                 case 1:
