@@ -33,21 +33,21 @@ namespace TerrariumScrum
                     {
                                   this.Rij += 1;
                     }
-                    else { Verplaatsen(organismelijst); }
+                    
                     break;
                 case 2:
                     if (this.Rij > 0)
                     {
                         this.Rij -= 1;
                     }
-                    else { Verplaatsen(organismelijst); }
+                    
                     break;
                 case 3:
                     if (this.Kolom < 5)
                     {
                         this.Kolom += 1;
                     }
-                    else { Verplaatsen(organismelijst); }
+                    
                    
                     break;
                 case 4:
@@ -55,7 +55,7 @@ namespace TerrariumScrum
                     {
                         this.Kolom -= 1;
                     }
-                    else { Verplaatsen(organismelijst); }
+                    
                     break;                 
             }           
             this.IsVerplaatst = true;
