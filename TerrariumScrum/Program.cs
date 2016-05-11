@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace TerrariumScrum
 {
-    class Program
+    public class Program
     {
-        static List<IOrganisme> organismenLijst; 
+        public static List<IOrganisme> organismenLijst; 
         static void Main(string[] args)
         {
             Raster raster = new Raster();
+            organismenLijst = new List<IOrganisme>();
+
             raster.CreeerRaster();
-            raster.ControleerRaster();
-            organismenLijst = raster.Afbeelden();
+            raster.Afbeelden();
 
             // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
             // Dit kan eventueel nog in een aparte method geschreven worden
