@@ -10,6 +10,7 @@ namespace TerrariumScrum
     {
         public Plant(int rij, int kolom)
             : base(rij, kolom) { }
+        public Plant(){}
         public override string Tostring()
         {
             return "P";
