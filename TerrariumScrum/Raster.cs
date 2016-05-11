@@ -21,7 +21,7 @@ namespace TerrariumScrum
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    int willekeurigNummer = rnd.Next(1,16); // Hiermee wordt de kans bepaald voor het invullen van een organisme
+                    int willekeurigNummer = rnd.Next(1,15); // Hiermee wordt de kans bepaald voor het invullen van een organisme
                     switch (willekeurigNummer)
                     {
                         case 1:
@@ -75,7 +75,7 @@ namespace TerrariumScrum
         //    }
         //}
 
-        public void Afbeelden()         //Het raster wordt hier afgebeeld en gereturned.
+        public void Afbeelden()         //Het raster wordt hier afgebeeld
         {
             for (int rij = 0; rij < 6; rij++)       
             {
@@ -102,9 +102,10 @@ namespace TerrariumScrum
 
         public void VolgendeDag()
         {
-            Random rnd = new Random();
-            NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
-            Herbivoor nieuweHerbivoor = new Herbivoor();
+            // Random rnd = new Random();
+            //NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 6); //rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            // Herbivoor nieuweHerbivoor = new Herbivoor();
+            
 
 
 
@@ -133,6 +134,18 @@ namespace TerrariumScrum
 
             }
             ResetIsVerplaatstNaarFalse(organismeLijst);
+
+
+
+            Herbivoor nieuweHerbivoor = new Herbivoor();
+            nieuweHerbivoor = nieuweHerbivoor.Vrijen(organismeLijst);
+            for (int i = 0; i < organismeLijst.Count(); i++)
+            {
+                if (organismeLijst[i].Rij == nieuweHerbivoor.Rij && organismeLijst[i].Kolom == nieuweHerbivoor.Kolom)
+                {
+                    organismeLijst[i] = nieuweHerbivoor;
+                }
+            }
         }
         private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
         {
@@ -175,6 +188,8 @@ namespace TerrariumScrum
                 while (Program.organismenLijst[r] is Organisme);
 
                 Program.organismenLijst[r] = organisme;
+                organisme.Rij = Program.organismenLijst[r].Rij;
+                organisme.Kolom = Program.organismenLijst[r].Kolom;
                 raster[Program.organismenLijst[r].Rij, Program.organismenLijst[r].Kolom] = organisme;
             }
 
