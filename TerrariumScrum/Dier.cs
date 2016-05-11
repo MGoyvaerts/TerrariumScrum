@@ -17,6 +17,8 @@ namespace TerrariumScrum
         {
 
         }
+
+        bool IsVerplaatst = false;
         public void Verplaatsen()
         {
             //de rij & kolom van het dier worden aangepast (en dat dier wordt dan terug gestuurd.)
@@ -41,6 +43,7 @@ namespace TerrariumScrum
                     this.Kolom -= 1;
                     break;
             }
+            this.IsVerplaatst = true;
             //return this;
         }
         public Dier Eten(Dier dier, Organisme organisme)
