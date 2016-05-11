@@ -80,7 +80,7 @@ namespace TerrariumScrum
         public void VolgendeDag()
         {
             Random rnd = new Random();
-            NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 6); //rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             Herbivoor nieuweHerbivoor = new Herbivoor();
             for (int rij = 0; rij < 6; rij++)
             {
@@ -99,11 +99,12 @@ namespace TerrariumScrum
                         if (raster[rij, kolom + 1].GetType() == typeof(Herbivoor))
                         {
                             nieuweHerbivoor.Vrijen();
-                            int[] waarden = WillekeurigeLegePlaatsZoeken(raster);
-                            nieuweHerbivoor.Rij = waarden[0];
-                            nieuweHerbivoor.Kolom = waarden[1];
-                            nieuweHerbivoor.Levenskracht = 0;
-                            raster[waarden[0], waarden[1]] = nieuweHerbivoor;
+                            NieuwOrganismeInvullenOpRandomPlaats(raster, nieuweHerbivoor, 1);
+                            //int[] waarden = WillekeurigeLegePlaatsZoeken(raster);
+                            //nieuweHerbivoor.Rij = waarden[0];
+                            //nieuweHerbivoor.Kolom = waarden[1];
+                            //nieuweHerbivoor.Levenskracht = 0;
+                            //raster[waarden[0], waarden[1]] = nieuweHerbivoor;
                         }
                     }
                     //else if (raster[rij, kolom].GetType() == typeof(Plant))
@@ -134,31 +135,38 @@ namespace TerrariumScrum
             Random rnd = new Random();
             double rasterplaats = 0;
             List<Double> rasterplaatsLijst = new List<double>();
+            
             for (int i = 0; i < aantal; i++)
             {
                 for (double rij = 0; rij < 6; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in een lijst.
                 {
                     for (double kolom = 0; kolom < 6; kolom++)
                     {
-                        if (raster[(int)rij,(int)kolom].GetType() == typeof(GeenOrganisme))
+                        if (raster[(int)rij, (int)kolom].GetType() == typeof(GeenOrganisme))
                         {
-                            rasterplaats = rij + kolom / 10;
+                            rasterplaats = rij + kolom / 10.0;
                             rasterplaatsLijst.Add(rasterplaats);
                         }
                     }
                 }
-                bool randomIngevuld = false;
-                while (randomIngevuld == false)
+
+                if (rasterplaatsLijst.Count > 0)
                 {
                     double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
-                    int rij = (int)(randomLegePlaats - randomLegePlaats % 1);
-                    int kolom = (int)((randomLegePlaats % 1.0)*10.0);
-                    grid[rij, kolom] = organisme;
-                    organisme.Rij = rij;
-                    organisme.Kolom = kolom;
-                    randomIngevuld = true;
+                    int _rij = (int)(randomLegePlaats - randomLegePlaats % 1.0);
+                    int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 10.0);
+                    grid[_rij, _kolom] = organisme;
+                    organisme.Rij = _rij;
+                    organisme.Kolom = _kolom;
+                    rasterplaatsLijst.Clear();
+                }
+                else
+                {
+                    Console.WriteLine("\nHET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD.");
+                    break;
                 }
             }
+            
         }
 
         private IOrganisme Opgegeten(Organisme links, Organisme rechts)
