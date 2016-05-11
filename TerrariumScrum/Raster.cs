@@ -105,6 +105,7 @@ namespace TerrariumScrum
             // Random rnd = new Random();
             //NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 6); //rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             // Herbivoor nieuweHerbivoor = new Herbivoor();
+            
 
 
 
@@ -133,6 +134,18 @@ namespace TerrariumScrum
 
             }
             ResetIsVerplaatstNaarFalse(organismeLijst);
+
+
+
+            Herbivoor nieuweHerbivoor = new Herbivoor();
+            nieuweHerbivoor = nieuweHerbivoor.Vrijen(organismeLijst);
+            for (int i = 0; i < organismeLijst.Count(); i++)
+            {
+                if (organismeLijst[i].Rij == nieuweHerbivoor.Rij && organismeLijst[i].Kolom == nieuweHerbivoor.Kolom)
+                {
+                    organismeLijst[i] = nieuweHerbivoor;
+                }
+            }
         }
         private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
         {
