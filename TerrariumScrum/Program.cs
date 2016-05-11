@@ -27,7 +27,7 @@ namespace TerrariumScrum
             {
                 if (input == "v")
                 {
-                    raster.VolgendeDag();
+                    raster.VolgendeDag(organismenLijst);
                     raster.Afbeelden();
                     //hier komt methode om de dagelijkse acties uit te voeren
                     Console.WriteLine();
