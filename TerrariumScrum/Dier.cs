@@ -28,18 +28,14 @@ namespace TerrariumScrum
             {
                 case 1:
                     this.Rij += 1;
-                    this.Kolom += 1;
                     break;
                 case 2:
                     this.Rij -= 1;
-                    this.Kolom += 1;
                     break;
                 case 3:
-                    this.Rij += 1;
-                    this.Kolom -= 1;
+                    this.Kolom += 1;
                     break;
                 case 4:
-                    this.Rij -= 1;
                     this.Kolom -= 1;
                     break;
             }
