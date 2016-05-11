@@ -13,8 +13,7 @@ namespace TerrariumScrum
         {
             Raster raster = new Raster();
             raster.CreeerRaster();
-            raster.ControleerRaster();
-            organismenLijst = raster.Afbeelden();
+            raster.Afbeelden();
 
             // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
             // Dit kan eventueel nog in een aparte method geschreven worden
