@@ -17,34 +17,37 @@ namespace TerrariumScrum
         {
 
         }
-
+        
         public bool IsVerplaatst = false;
         public void Verplaatsen(List<IOrganisme> organismelijst)
         {
             //de rij & kolom van het dier worden aangepast (en dat dier wordt dan terug gestuurd.)
-            var random = new Random();
-            int willGetal = random.Next(1, 4);
+            Random random = new Random();
+            
+            int willGetal = 0 ;
+            willGetal = random.Next(1, 5);
             switch (willGetal)
             {
                 case 1:
                     if (this.Rij < 5)
                     {
-                        this.Rij += 1;
+                                  this.Rij += 1;
                     }
-                    
+                    else { Verplaatsen(organismelijst); }
                     break;
                 case 2:
                     if (this.Rij > 0)
                     {
                         this.Rij -= 1;
                     }
-                    
+                    else { Verplaatsen(organismelijst); }
                     break;
                 case 3:
                     if (this.Kolom < 5)
                     {
                         this.Kolom += 1;
                     }
+                    else { Verplaatsen(organismelijst); }
                    
                     break;
                 case 4:
@@ -52,10 +55,11 @@ namespace TerrariumScrum
                     {
                         this.Kolom -= 1;
                     }
-                    
-                    break;
-            }
+                    else { Verplaatsen(organismelijst); }
+                    break;                 
+            }           
             this.IsVerplaatst = true;
+            //Console.WriteLine(willGetal);
             //return this;
         }
         public Dier Eten(Dier dier, Organisme organisme)
