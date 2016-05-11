@@ -75,7 +75,7 @@ namespace TerrariumScrum
         //    }
         //}
 
-        public void Afbeelden()         //Het raster wordt hier afgebeeld en gereturned.
+        public void Afbeelden()         //Het raster wordt hier afgebeeld
         {
             for (int rij = 0; rij < 6; rij++)       
             {
@@ -175,6 +175,8 @@ namespace TerrariumScrum
                 while (Program.organismenLijst[r] is Organisme);
 
                 Program.organismenLijst[r] = organisme;
+                organisme.Rij = Program.organismenLijst[r].Rij;
+                organisme.Kolom = Program.organismenLijst[r].Kolom;
                 raster[Program.organismenLijst[r].Rij, Program.organismenLijst[r].Kolom] = organisme;
             }
 
