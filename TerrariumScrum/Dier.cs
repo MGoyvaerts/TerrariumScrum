@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TerrariumScrum
 {
-    public abstract class Dier:Organisme
+    public class Dier:Organisme
     {
         public Dier(int rij, int kolom)
             : base(rij, kolom)
