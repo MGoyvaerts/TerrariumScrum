@@ -15,8 +15,8 @@ namespace TerrariumScrum
         
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
-            Random rnd = new Random();
-
+            Random rnd = new Random();      
+            
             for (int rij = 0; rij < 6; rij++)
             {
                 for (int kolom = 0; kolom < 6; kolom++)
@@ -40,141 +40,84 @@ namespace TerrariumScrum
                             raster[rij, kolom] = new GeenOrganisme(rij, kolom);
                             break;
                     }
-                    Program.organismenLijst.Add(raster[rij, kolom]);
                 }
             }
-            if (aantalCarnivoren == 0)
+        }
+        
+        public void ControleerRaster()      //Dit is een controle zodat elk organsisme minstens 1 maal wordt ingevuld.
+        {   
+            if (aantalCarnivoren == 0)      
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Carnivoor(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Carnivoor(0, 0), 1);
             }
             if (aantalHerbivoren == 0)
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Herbivoor(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Herbivoor(0, 0), 1);
             }
             if (aantalPlanten == 0)
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 1);
             }
         }
 
-        private void NieuwOrganismeInvullenOpRandomPlaats(Organisme organisme, int aantal)
+        public List<IOrganisme> Afbeelden()         //Het raster wordt hier afgebeeld en gereturned.
         {
-            Random rnd = new Random();
-
-            for (int i = 0; i < aantal; i++)
-            {
-                int r;
-                do
-                {
-                    r = rnd.Next(Program.organismenLijst.Count - 1);
-                }
-                while (Program.organismenLijst[r] is Organisme);
-
-                Program.organismenLijst[r] = organisme;
-                raster[Program.organismenLijst[r].Rij, Program.organismenLijst[r].Kolom] = organisme;
-
-                
-                // Lijst met vrije plaatsen aanmaken
-                //vrijePlaatsen = new List<IOrganisme>();
-                //foreach (var org in Program.organismenLijst)
-                //{
-                //    if (org is GeenOrganisme)
-                //        vrijePlaatsen.Add(org);
-                //}
-
-
-                //// willekeurige lege plaats opvullen met organisme
-                //int r = rnd.Next(vrijePlaatsen.Count - 1);
-                //IOrganisme willekeurig = vrijePlaatsen[r];
-                //grid[willekeurig.Rij, willekeurig.Kolom] = organisme;
-            }
-
-
-
-            //double rasterplaats = 0;
-            //List<Double> rasterplaatsLijst = new List<double>();
-            //for (int i = 0; i < aantal; i++)
-            //{
-            //    for (double rij = 0; rij < 6; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in een lijst.
-            //    {
-            //        for (double kolom = 0; kolom < 6; kolom++)
-            //        {
-            //            if (raster[(int)rij,(int)kolom].GetType() == typeof(GeenOrganisme))
-            //            {
-            //                rasterplaats = rij + kolom / 10;
-            //                rasterplaatsLijst.Add(rasterplaats);
-            //            }
-            //        }
-            //    }
-            //    bool randomIngevuld = false;
-            //    while (randomIngevuld == false)
-            //    {
-            //        double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
-            //        int rij = (int)(randomLegePlaats - randomLegePlaats % 1);
-            //        int kolom = (int)((randomLegePlaats % 1.0)*10.0);
-            //        grid[rij, kolom] = organisme;
-            //        organisme.Rij = rij;
-            //        organisme.Kolom = kolom;
-            //        randomIngevuld = true;
-            //    }
-            //}
-        }
-
-        public void Afbeelden()         //Het raster wordt hier afgebeeld en gereturned.
-        {
+            List<IOrganisme> organismenLijst = new List<IOrganisme>(); 
             for (int rij = 0; rij < 6; rij++)       
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
+                    organismenLijst.Add(raster[rij, kolom]);
                     Console.Write(raster[rij, kolom].Tostring() + "  ");                  
                 }
                 Console.WriteLine();
             }
+            return organismenLijst;
         }
 
         public void VolgendeDag()
         {
-            Random rnd = new Random();
-            NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), 6); //rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
-            Herbivoor nieuweHerbivoor = new Herbivoor();
-            for (int rij = 0; rij < 6; rij++)
+            // Random rnd = new Random();
+            //NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 6); //rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            // Herbivoor nieuweHerbivoor = new Herbivoor();
+
+
+
+
+
+            List<IOrganisme> organismeLijst = Program.organismenLijst;
+            
+            List<Organisme> organismeVerplaatstlijst = new List<Organisme>();
+            
+          //  ResetIsVerplaatstNaarFalse(organismeLijst);
+            foreach (var organisme in organismeLijst)
             {
-                for (int kolom = 0; kolom < 6; kolom++)     //We gaan hier alle plaatsen af.
+                if (organisme is Dier)
                 {
-                    //if (raster[rij, kolom].GetType() == typeof(GeenOrganisme))
-                    //{
-                    //    //Geef hier code in
-                    //}
-                    //else if (raster[rij, kolom].GetType() == typeof(Carnivoor))
-                    //{
-                    //    //Geef hier code in
-                    //}
-                    if (raster[rij, kolom].GetType() == typeof(Herbivoor) && kolom < 5)
+                    if (!((Dier)organisme).IsVerplaatst)
                     {
-                        if (raster[rij, kolom + 1].GetType() == typeof(Herbivoor))
-                        {
-                            nieuweHerbivoor.Vrijen();
-                            int[] waarden = WillekeurigeLegePlaatsZoeken(raster);
-                            nieuweHerbivoor.Rij = waarden[0];
-                            nieuweHerbivoor.Kolom = waarden[1];
-                            nieuweHerbivoor.Levenskracht = 0;
-                            raster[waarden[0], waarden[1]] = nieuweHerbivoor;
-                        }
+                    raster[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
+
+                        ((Dier)organisme).Verplaatsen(organismeLijst);
+                        raster[organisme.Rij, organisme.Kolom] = organisme;
+
+                        
                     }
-                    //else if (raster[rij, kolom].GetType() == typeof(Plant))
-                    //{
-                    //    //Geef hier code in
-                    //}
-                    ResetIsVerplaatstNaarFalse();
+
                 }
+
             }
+            ResetIsVerplaatstNaarFalse(organismeLijst);
         }
-        private void ResetIsVerplaatstNaarFalse()
+        private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
         {
-            List<IOrganisme> organismenLijst = new List<IOrganisme>();
-            foreach (Dier dier in organismenLijst)
+            
+            foreach (var dier in organismenLijst)
             {
-                dier.IsVerplaatst = false;
+                if (dier is Dier)
+                {
+                    ((Dier)dier).IsVerplaatst = false;
+                }
             }
         }
         public int[] WillekeurigeLegePlaatsZoeken(IOrganisme[,] grid)       //Hebben we deze method nog nodig?
@@ -191,6 +134,44 @@ namespace TerrariumScrum
             int kolom = rndKolom;//Willekeurige rij en kolom kiezen om na te gaan of deze positie leeg (.) is
             int[] waarden = { rij, kolom };
             return waarden;
+        }
+
+        private void NieuwOrganismeInvullenOpRandomPlaats(IOrganisme[,] grid, Organisme organisme, int aantal)
+        {
+            Random rnd = new Random();
+            double rasterplaats = 0;
+            List<Double> rasterplaatsLijst = new List<double>();
+
+            for (int i = 0; i < aantal; i++)
+            {
+                for (double rij = 0; rij < 6; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in een lijst.
+                {
+                    for (double kolom = 0; kolom < 6; kolom++)
+                    {
+                        if (raster[(int)rij, (int)kolom].GetType() == typeof(GeenOrganisme))
+                        {
+                            rasterplaats = rij + kolom / 10.0;
+                            rasterplaatsLijst.Add(rasterplaats);
+                        }
+                    }
+                }
+
+                if (rasterplaatsLijst.Count > 0)
+                {
+                    double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
+                    int _rij = (int)(randomLegePlaats - randomLegePlaats % 1.0);
+                    int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 10.0);
+                    grid[_rij, _kolom] = organisme;
+                    organisme.Rij = _rij;
+                    organisme.Kolom = _kolom;
+                    rasterplaatsLijst.Clear();
+                }
+                else
+                {
+                    Console.WriteLine("\nHET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD.");
+                    break;
+                }
+            }
         }
 
 

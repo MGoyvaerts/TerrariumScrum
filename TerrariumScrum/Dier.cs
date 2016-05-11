@@ -19,7 +19,7 @@ namespace TerrariumScrum
         }
 
         public bool IsVerplaatst = false;
-        public void Verplaatsen()
+        public void Verplaatsen(List<IOrganisme> organismelijst)
         {
             //de rij & kolom van het dier worden aangepast (en dat dier wordt dan terug gestuurd.)
             var random = new Random();
@@ -27,16 +27,32 @@ namespace TerrariumScrum
             switch (willGetal)
             {
                 case 1:
-                    this.Rij += 1;
+                    if (this.Rij < 5)
+                    {
+                        this.Rij += 1;
+                    }
+                    
                     break;
                 case 2:
-                    this.Rij -= 1;
+                    if (this.Rij > 0)
+                    {
+                        this.Rij -= 1;
+                    }
+                    
                     break;
                 case 3:
-                    this.Kolom += 1;
+                    if (this.Kolom < 5)
+                    {
+                        this.Kolom += 1;
+                    }
+                   
                     break;
                 case 4:
-                    this.Kolom -= 1;
+                    if (this.Kolom > 0)
+                    {
+                        this.Kolom -= 1;
+                    }
+                    
                     break;
             }
             this.IsVerplaatst = true;
