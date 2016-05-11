@@ -108,11 +108,18 @@ namespace TerrariumScrum
                     //{
                     //    //Geef hier code in
                     //}
-                    
+                    ResetIsVerplaatstNaarFalse();
                 }
             }
         }
-        
+        private void ResetIsVerplaatstNaarFalse()
+        {
+            List<IOrganisme> organismenLijst = new List<IOrganisme>();
+            foreach (Dier dier in organismenLijst)
+            {
+                dier.IsVerplaatst = false;
+            }
+        }
         public int[] WillekeurigeLegePlaatsZoeken(IOrganisme[,] grid)       //Hebben we deze method nog nodig?
         {
             Random rnd = new Random();

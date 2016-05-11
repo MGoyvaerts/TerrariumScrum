@@ -18,7 +18,7 @@ namespace TerrariumScrum
 
         }
 
-        bool IsVerplaatst = false;
+        public bool IsVerplaatst = false;
         public void Verplaatsen()
         {
             //de rij & kolom van het dier worden aangepast (en dat dier wordt dan terug gestuurd.)
