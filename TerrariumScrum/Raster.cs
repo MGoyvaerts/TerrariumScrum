@@ -62,22 +62,25 @@ namespace TerrariumScrum
             }
         }
 
-        public void Afbeelden()         //Het raster wordt hier afgebeeld.
+        public List<IOrganisme> Afbeelden()         //Het raster wordt hier afgebeeld en gereturned.
         {
+            List<IOrganisme> organismenLijst = new List<IOrganisme>(); 
             for (int rij = 0; rij < 6; rij++)       
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
+                    organismenLijst.Add(raster[rij, kolom]);
                     Console.Write(raster[rij, kolom].Tostring() + "  ");                  
                 }
                 Console.WriteLine();
-            } 
+            }
+            return organismenLijst;
         }
 
         public void VolgendeDag()
         {
             Random rnd = new Random();
-            NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 6); //rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             Herbivoor nieuweHerbivoor = new Herbivoor();
             for (int rij = 0; rij < 6; rij++)
             {
@@ -96,12 +99,11 @@ namespace TerrariumScrum
                         if (raster[rij, kolom + 1].GetType() == typeof(Herbivoor))
                         {
                             nieuweHerbivoor.Vrijen();
-                            NieuwOrganismeInvullenOpRandomPlaats(raster, nieuweHerbivoor, 1);
-                            //int[] waarden = WillekeurigeLegePlaatsZoeken(raster);
-                            //nieuweHerbivoor.Rij = waarden[0];
-                            //nieuweHerbivoor.Kolom = waarden[1];
-                            //nieuweHerbivoor.Levenskracht = 0;
-                            //raster[waarden[0], waarden[1]] = nieuweHerbivoor;
+                            int[] waarden = WillekeurigeLegePlaatsZoeken(raster);
+                            nieuweHerbivoor.Rij = waarden[0];
+                            nieuweHerbivoor.Kolom = waarden[1];
+                            nieuweHerbivoor.Levenskracht = 0;
+                            raster[waarden[0], waarden[1]] = nieuweHerbivoor;
                         }
                     }
                     //else if (raster[rij, kolom].GetType() == typeof(Plant))
@@ -111,7 +113,7 @@ namespace TerrariumScrum
                 }
             }
         }
-        public int[] WillekeurigeLegePlaatsZoeken(IOrganisme[,] grid)
+        public int[] WillekeurigeLegePlaatsZoeken(IOrganisme[,] grid)       //Hebben we deze method nog nodig?
         {
             Random rnd = new Random();
             int rndRij = rnd.Next(0, 5);
@@ -138,7 +140,7 @@ namespace TerrariumScrum
                 {
                     for (double kolom = 0; kolom < 6; kolom++)
                     {
-                        if (raster[(int)rij, (int)kolom].GetType() == typeof(GeenOrganisme))
+                        if (raster[(int)rij,(int)kolom].GetType() == typeof(GeenOrganisme))
                         {
                             rasterplaats = rij + kolom / 10;
                             rasterplaatsLijst.Add(rasterplaats);
@@ -150,7 +152,7 @@ namespace TerrariumScrum
                 {
                     double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
                     int rij = (int)(randomLegePlaats - randomLegePlaats % 1);
-                    int kolom = (int)((randomLegePlaats % 1.0) * 10.0);
+                    int kolom = (int)((randomLegePlaats % 1.0)*10.0);
                     grid[rij, kolom] = organisme;
                     organisme.Rij = rij;
                     organisme.Kolom = kolom;
