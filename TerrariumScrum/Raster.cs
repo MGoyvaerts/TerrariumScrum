@@ -62,22 +62,25 @@ namespace TerrariumScrum
             }
         }
 
-        public void Afbeelden()         //Het raster wordt hier afgebeeld.
+        public List<IOrganisme> Afbeelden()         //Het raster wordt hier afgebeeld en gereturned.
         {
+            List<IOrganisme> organismenLijst = new List<IOrganisme>(); 
             for (int rij = 0; rij < 6; rij++)       
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
+                    organismenLijst.Add(raster[rij, kolom]);
                     Console.Write(raster[rij, kolom].Tostring() + "  ");                  
                 }
                 Console.WriteLine();
-            } 
+            }
+            return organismenLijst;
         }
 
         public void VolgendeDag()
         {
             Random rnd = new Random();
-            NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0,0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 6); //rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             Herbivoor nieuweHerbivoor = new Herbivoor();
             for (int rij = 0; rij < 6; rij++)
             {
@@ -110,7 +113,7 @@ namespace TerrariumScrum
                 }
             }
         }
-        public int[] WillekeurigeLegePlaatsZoeken(IOrganisme[,] grid)
+        public int[] WillekeurigeLegePlaatsZoeken(IOrganisme[,] grid)       //Hebben we deze method nog nodig?
         {
             Random rnd = new Random();
             int rndRij = rnd.Next(0, 5);
