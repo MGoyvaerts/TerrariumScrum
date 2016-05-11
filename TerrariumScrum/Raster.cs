@@ -77,47 +77,47 @@ namespace TerrariumScrum
 
         public void VolgendeDag()
         {
-            Random rnd = new Random();
-            NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 6); //rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
-            Herbivoor nieuweHerbivoor = new Herbivoor();
-            for (int rij = 0; rij < 6; rij++)
+            // Random rnd = new Random();
+            //NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 6); //rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            // Herbivoor nieuweHerbivoor = new Herbivoor();
+
+
+
+
+
+            List<IOrganisme> organismeLijst = Program.organismenLijst;
+            
+            List<Organisme> organismeVerplaatstlijst = new List<Organisme>();
+            
+          //  ResetIsVerplaatstNaarFalse(organismeLijst);
+            foreach (var organisme in organismeLijst)
             {
-                for (int kolom = 0; kolom < 6; kolom++)     //We gaan hier alle plaatsen af.
+                if (organisme is Dier)
                 {
-                    //if (raster[rij, kolom].GetType() == typeof(GeenOrganisme))
-                    //{
-                    //    //Geef hier code in
-                    //}
-                    //else if (raster[rij, kolom].GetType() == typeof(Carnivoor))
-                    //{
-                    //    //Geef hier code in
-                    //}
-                    if (raster[rij, kolom].GetType() == typeof(Herbivoor) && kolom < 5)
+                    if (!((Dier)organisme).IsVerplaatst)
                     {
-                        if (raster[rij, kolom + 1].GetType() == typeof(Herbivoor))
-                        {
-                            nieuweHerbivoor.Vrijen();
-                            int[] waarden = WillekeurigeLegePlaatsZoeken(raster);
-                            nieuweHerbivoor.Rij = waarden[0];
-                            nieuweHerbivoor.Kolom = waarden[1];
-                            nieuweHerbivoor.Levenskracht = 0;
-                            raster[waarden[0], waarden[1]] = nieuweHerbivoor;
-                        }
+                    raster[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
+
+                        ((Dier)organisme).Verplaatsen(organismeLijst);
+                        raster[organisme.Rij, organisme.Kolom] = organisme;
+
+                        
                     }
-                    //else if (raster[rij, kolom].GetType() == typeof(Plant))
-                    //{
-                    //    //Geef hier code in
-                    //}
-                    ResetIsVerplaatstNaarFalse();
+
                 }
+
             }
+            ResetIsVerplaatstNaarFalse(organismeLijst);
         }
-        private void ResetIsVerplaatstNaarFalse()
+        private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
         {
-            List<IOrganisme> organismenLijst = new List<IOrganisme>();
-            foreach (Dier dier in organismenLijst)
+            
+            foreach (var dier in organismenLijst)
             {
-                dier.IsVerplaatst = false;
+                if (dier is Dier)
+                {
+                    ((Dier)dier).IsVerplaatst = false;
+                }
             }
         }
         public int[] WillekeurigeLegePlaatsZoeken(IOrganisme[,] grid)       //Hebben we deze method nog nodig?
