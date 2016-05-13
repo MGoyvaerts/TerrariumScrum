@@ -19,7 +19,7 @@ namespace TerrariumScrum
         }
         
         public bool IsVerplaatst = false;
-        public void Verplaatsen(List<IOrganisme> organismelijst)
+        public IOrganisme[,] Verplaatsen(IOrganisme[,] grid)
         {
             //de rij & kolom van het dier worden aangepast (en dat dier wordt dan terug gestuurd.)
             Random random = new Random();
@@ -60,7 +60,7 @@ namespace TerrariumScrum
             }           
             this.IsVerplaatst = true;
             //Console.WriteLine(willGetal);
-            //return this;
+            return grid;
         }
         public Dier Eten(Dier dier, Organisme organisme)
         {

@@ -20,50 +20,50 @@ namespace TerrariumScrum
 
         public int Kolom { get; set; }
 
-        bool HeeftActieGedaan = false;
+        //bool HeeftActieGedaan = false;
 
         public Raster DoeActie(Raster grid)
         {
-            IOrganisme rechterplaats;
-            Organisme linkerplaats;
-            linkerplaats = this;
-            rechterplaats.Rij = this.Rij;
-            rechterplaats.Kolom = this.Kolom + 1;
+            //IOrganisme rechterplaats;
+            //Organisme linkerplaats;
+            //linkerplaats = this;
+            ////rechterplaats.Rij = this.Rij;
+            ////rechterplaats.Kolom = this.Kolom + 1;
             
-            if (rechterplaats is Organisme)
-            {
-                if (linkerplaats is Plant ) // this is plant
-                {
+            //if (rechterplaats is Organisme)
+            //{
+            //    if (linkerplaats is Plant ) // this is plant
+            //    {
                     
-                }
-                else if (linkerplaats is Herbivoor) //this is Herbivoor
-                {
-                    if (rechterplaats is Herbivoor)
-                    {
-                        Vrijen();
-                    }
-                    else if (rechterplaats is Plant)
-                    {
-                        Eten();
-                    }
-                }
-                else if (linkerplaats is Carnivoor)
-                {
-                    if (rechterplaats is Herbivoor)
-	                {
-                        Eten(); 
-	                }
-                    else if (rechterplaats is Carnivoor)
-	                {
-		                Vechten();
-	                }
-                }
-            }
-            else
-            {
-                Verplaatsen();
-            }
-            linkerplaats.HeeftActieGedaan = true;
+            //    }
+            //    else if (linkerplaats is Herbivoor) //this is Herbivoor
+            //    {
+            //        if (rechterplaats is Herbivoor)
+            //        {
+            //            //Vrijen();
+            //        }
+            //        else if (rechterplaats is Plant)
+            //        {
+            //            //Eten();
+            //        }
+            //    }
+            //    else if (linkerplaats is Carnivoor)
+            //    {
+            //        if (rechterplaats is Herbivoor)
+            //        {
+            //            //Eten(); 
+            //        }
+            //        else if (rechterplaats is Carnivoor)
+            //        {
+            //            //Vechten();
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    //Verplaatsen();
+            //}
+            //linkerplaats.HeeftActieGedaan = true;
             return grid;
         }
 

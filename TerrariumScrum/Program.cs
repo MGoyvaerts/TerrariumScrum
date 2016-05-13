@@ -12,7 +12,8 @@ namespace TerrariumScrum
         static void Main(string[] args)
         {
             Raster raster = new Raster();
-            IOrganisme[,] grid = raster.CreeerRaster();
+            IOrganisme[,] grid = new IOrganisme[6,6];
+            grid = raster.CreeerRaster();
             raster.Afbeelden(grid);
 
             // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
