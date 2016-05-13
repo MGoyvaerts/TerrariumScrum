@@ -17,10 +17,10 @@ namespace TerrariumScrum
 
         public int Kolom{get; set;}
 
-        public int[,] DoeActie()
-        {
-            throw new NotImplementedException();
-        }
+        //public int[,] DoeActie()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public string Tostring()
         {
