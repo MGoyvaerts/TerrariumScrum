@@ -20,6 +20,8 @@ namespace TerrariumScrum
 
         public int Kolom { get; set; }
 
+        bool HeeftActieGedaan = false;
+
         public int[,] DoeActie()
         {
             throw new NotImplementedException();

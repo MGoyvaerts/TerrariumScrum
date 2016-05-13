@@ -113,12 +113,17 @@ namespace TerrariumScrum
                 if (org is Organisme && org.HeeftActiegedaan == false)
                 {
                     (Organisme)org.DoeActie();
-                    org.HeeftActieGedaan == true;
+                    (Organisme)org.HeeftActieGedaan == true;
                 }
                 //if (HeeftActieGedaan == false)
                 //{
                 //    org.DoeActie();
                 //}
+            }
+            foreach(var org in this.grid)
+            {
+                if (org is Organisme)
+                    (Organisme)org.HeeftActieGedaan == false;
             }
 
 
