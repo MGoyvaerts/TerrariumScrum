@@ -63,6 +63,7 @@ namespace TerrariumScrum
             {
                 Verplaatsen();
             }
+            linkerplaats.HeeftActieGedaan = true;
             return grid;
         }
 
