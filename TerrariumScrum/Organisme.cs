@@ -57,7 +57,7 @@ namespace TerrariumScrum
                         }
                         else if (grid[rechterplaatsRij, rechterplaatsKolom] is Carnivoor)
                         {
-                            huidigeCarnivoor.Vechten(huidigeCarnivoor, grid[rechterplaatsRij, rechterplaatsKolom], grid);
+                            //huidigeCarnivoor.Vechten(huidigeCarnivoor, grid[rechterplaatsRij, rechterplaatsKolom], grid);
                         }
                     }
                 }
@@ -67,7 +67,7 @@ namespace TerrariumScrum
                 if (!(grid[huidigeRij, huidigeKolom] is Plant))
                 {
                     Dier huidigDier = (Dier)grid[huidigeRij, huidigeKolom];
-                    huidigDier.Verplaatsen(grid)
+                    //huidigDier.Verplaatsen(grid);
                 }  
             }
             

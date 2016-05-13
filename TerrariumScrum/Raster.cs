@@ -30,8 +30,8 @@ namespace TerrariumScrum
                             aantalPlanten++;
                             break;
                         case 2:
-                            grid[rij, kolom] = new Herbivoor(rij, kolom);
-                            aantalHerbivoren++;
+                            //grid[rij, kolom] = new Herbivoor(rij, kolom);
+                            //aantalHerbivoren++;
                             break;
                         case 3:
                             grid[rij, kolom] = new Carnivoor(rij, kolom);
@@ -49,7 +49,7 @@ namespace TerrariumScrum
             }
             if (aantalHerbivoren == 0)
             {
-                grid = NieuwOrganisme(grid, new Herbivoor(0, 0), 1);
+                grid = NieuwOrganisme(grid, new Herbivoor(0, 0), 8);
             }
             if (aantalPlanten == 0)
             {
@@ -75,12 +75,28 @@ namespace TerrariumScrum
             grid = NieuwOrganisme(grid, new Plant(0, 0), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
 
 
-            foreach (Organisme org in this.grid)
+            for (int rij = 0; rij < 6; rij++)
             {
-                if (org.HeeftActieGedaan == false)
+                for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    org.DoeActie(this.grid);
-                    org.HeeftActieGedaan = true;
+                    if (this.grid[rij, kolom] is Organisme)
+                    {
+                        Organisme organisme = (Organisme)this.grid[rij, kolom];
+                        organisme.DoeActie(this.grid);
+                        organisme.HeeftActieGedaan = true;
+                    }
+                }
+            }
+
+            for (int rij = 0; rij < 6; rij++)
+            {
+                for (int kolom = 0; kolom < 6; kolom++)
+                {
+                    if (this.grid[rij, kolom] is Organisme)
+                    {
+                        Organisme organisme = (Organisme)this.grid[rij, kolom];
+                        organisme.HeeftActieGedaan = false;
+                    }
                 }
             }
             
