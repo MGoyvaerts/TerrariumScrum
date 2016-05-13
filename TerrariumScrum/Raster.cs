@@ -14,18 +14,18 @@ namespace TerrariumScrum
         int aantalPlanten = 0;
 
         // Zijn beide manieren mogelijk ???
-        private IOrganisme[,] gridValue;
-        public IOrganisme[,] grid
-        {
-            get
-            {
-                return gridValue;
-            }
-            set
-            {
-                gridValue = new IOrganisme[6, 6];
-            }
-        }
+        //private IOrganisme[,] gridValue;
+        //public IOrganisme[,] grid
+        //{
+        //    get
+        //    {
+        //        return gridValue;
+        //    }
+        //    set
+        //    {
+        //        gridValue = new IOrganisme[6, 6];
+        //    }
+        //}
 
         public IOrganisme[,] grid = new IOrganisme[6, 6];
 
@@ -92,29 +92,16 @@ namespace TerrariumScrum
         //    }
         //}
 
-        public void Afbeelden(IOrganisme[,] grid)         //Het raster wordt hier afgebeeld
+        public void Afbeelden()         //Het raster wordt hier afgebeeld
         {
             for (int rij = 0; rij < 6; rij++)       
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    Console.Write(grid[rij, kolom].Tostring() + "  ");                  
+                    Console.Write(this.grid[rij, kolom].Tostring() + "  ");                  
                 }
                 Console.WriteLine();
-            }
-
-    
-            //List<IOrganisme> organismenLijst = new List<IOrganisme>(); 
-            //for (int rij = 0; rij < 6; rij++)       
-            //{
-            //    for (int kolom = 0; kolom < 6; kolom++)
-            //    {
-            //        organismenLijst.Add(raster[rij, kolom]);
-            //        Console.Write(raster[rij, kolom].Tostring() + "  ");                  
-            //    }
-            //    Console.WriteLine();
-            //}
-            //return organismenLijst;
+            }    
         }
 
         public void VolgendeDag()
