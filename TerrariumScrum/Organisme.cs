@@ -24,51 +24,53 @@ namespace TerrariumScrum
 
         public IOrganisme[,] DoeActie(IOrganisme[,] grid)
         {
-            Organisme linkerplaats;
-            Organisme orgRechterplaats;
-            GeenOrganisme GeenOrgRechterplaats;
-            linkerplaats = this;
+            int huidigeRij = this.Rij;
+            int huidigeKolom = this.Kolom;
             int rechterplaatsRij = this.Rij;
             int rechterplaatsKolom = this.Kolom + 1;
-            if (grid[rechterplaatsRij,rechterplaatsKolom] is Organisme)
+            if (rechterplaatsKolom < 6)
             {
-                orgRechterplaats.Rij = rechterplaatsRij;
-                orgRechterplaats.Kolom = rechterplaatsKolom;
-                if (linkerplaats is Plant ) 
+                if (grid[huidigeRij, huidigeKolom] is Organisme)
                 {
-                    
-                }
-                else if (linkerplaats is Herbivoor) 
-                {
-                    Herbivoor herbLinks = (Herbivoor)linkerplaats;
-                    //if (orgRechterplaats is Herbivoor)
-                    //{
-                    //    herbLinks.Vrijen(grid);
-                    //}
-                    /*else*/ if (orgRechterplaats is Plant)
-                    {  
-                    herbLinks.Eten((Organisme)orgRechterplaats, grid);
-                    }
-                }
-                else if (linkerplaats is Carnivoor)
-                {
-                    Carnivoor carnLinks = (Carnivoor)linkerplaats;
-                    if (orgRechterplaats is Herbivoor)
+                    if (grid[huidigeRij, huidigeKolom] is Plant)
                     {
-                        carnLinks.Eten((Herbivoor)orgRechterplaats, grid);
+
                     }
-                    //else if (orgRechterplaats is Carnivoor)
-                    //{
-                    //    carnLinks.Vechten((Carnivoor)linkerplaats, (Carnivoor)orgRechterplaats, grid);
-                    //}
+                    else if (grid[huidigeRij, huidigeKolom] is Herbivoor)
+                    {
+                        Herbivoor huidigeHerbivoor = (Herbivoor)grid[huidigeRij, huidigeKolom];
+                        if (grid[rechterplaatsRij, rechterplaatsKolom] is Herbivoor)
+                        {
+                            huidigeHerbivoor.Vrijen(grid);
+                        }
+                        else if (grid[rechterplaatsRij, rechterplaatsKolom] is Plant)
+                        {
+                            huidigeHerbivoor.Eten((Organisme)grid[rechterplaatsRij, rechterplaatsKolom], grid);
+                        }
+                    }
+                    else if (grid[huidigeRij, huidigeKolom] is Carnivoor)
+                    {
+                        Carnivoor huidigeCarnivoor = (Carnivoor)grid[huidigeRij, huidigeKolom];
+                        if (grid[rechterplaatsRij, rechterplaatsKolom] is Herbivoor)
+                        {
+                            huidigeCarnivoor.Eten((Herbivoor)grid[rechterplaatsRij, rechterplaatsKolom], grid);
+                        }
+                        else if (grid[rechterplaatsRij, rechterplaatsKolom] is Carnivoor)
+                        {
+                            huidigeCarnivoor.Vechten(huidigeCarnivoor, grid[rechterplaatsRij, rechterplaatsKolom], grid);
+                        }
+                    }
                 }
             }
-            //else
-            //{
-            //    Dier dierLinks = (Dier)linkerplaats;
-            //    dierLinks.Verplaatsen(grid);
-            //}
-            linkerplaats.HeeftActieGedaan = true;
+            else
+            {
+                if (!(grid[huidigeRij, huidigeKolom] is Plant))
+                {
+                    Dier huidigDier = (Dier)grid[huidigeRij, huidigeKolom];
+                    huidigDier.Verplaatsen(grid)
+                }  
+            }
+            
             return grid;
         }
 
