@@ -32,36 +32,39 @@ namespace TerrariumScrum
             
             if (rechterplaats is Organisme)
             {
-                if (linkerplaats is Plant ) // this is plant
+                if (linkerplaats is Plant ) 
                 {
                     
                 }
-                else if (linkerplaats is Herbivoor) //this is Herbivoor
+                else if (linkerplaats is Herbivoor) 
                 {
+                    Herbivoor herbLinks = (Herbivoor)linkerplaats;
                     if (rechterplaats is Herbivoor)
                     {
-                        Vrijen(grid);
+                        herbLinks.Vrijen(grid);
                     }
                     else if (rechterplaats is Plant)
                     {  
-                        Eten((Plant)rechterplaats, grid);
+                        herbLinks.Eten((Plant)rechterplaats, grid);
                     }
                 }
                 else if (linkerplaats is Carnivoor)
                 {
+                    Carnivoor carnLinks = (Carnivoor)linkerplaats;
                     if (rechterplaats is Herbivoor)
 	                {
-                        Eten((Herbivoor)rechterplaats, grid);
+                        CarnLinks.Eten((Herbivoor)rechterplaats, grid);
 	                }
                     else if (rechterplaats is Carnivoor)
 	                {
-		                Vechten((Carnivoor)linkerplaats,(Carnivoor)rechterplaats, grid);
+		                CarnLinks.Vechten((Carnivoor)linkerplaats,(Carnivoor)rechterplaats, grid);
 	                }
                 }
             }
             else
             {
-                Verplaatsen(grid);
+                Dier dierLinks = (Dier)linkerplaats;
+                dierLinks.Verplaatsen(grid);
             }
             linkerplaats.HeeftActieGedaan = true;
             return grid;
