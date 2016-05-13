@@ -64,7 +64,7 @@ namespace TerrariumScrum
         }
         public IOrganisme[,] Eten(Organisme organisme, IOrganisme[,] raster)      //Het dier moet het organisme dat die gaat opeten binnenkrijgen als parameter. 
         {
-            this.Levenskracht += organisme.Levenskracht;    //Het dier terug met de levenskracht van het organisme dat ie gaat opeten.
+            this.Levenskracht += organisme.Levenskracht;    //Het dier krijgt de levenskracht van het organisme dat die gaat opeten.
             raster[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);     //Het opgegeten organisme wordt vervangen door een GeenOrganisme.
             return raster;
         }
