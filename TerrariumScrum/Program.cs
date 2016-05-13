@@ -42,9 +42,7 @@ namespace TerrariumScrum
                                     {
                                         grid = ((Dier)grid[i, j]).Verplaatsen(grid, (Dier)grid[i, j]);
                                     }
-                                }
-                                    
-                                
+                                }                                                                
                             }
                         }
                     }

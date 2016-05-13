@@ -33,16 +33,21 @@ namespace TerrariumScrum
             int rij = dier.Rij;
             int kolom = dier.Kolom;
 
-            if (!dier.IsVerplaatst)
+            while (!dier.IsVerplaatst)//dier verplaatst niet als het in laatste kolom staat
             {
                 willGetal = random.Next(1, 5);
+                
+                
                 switch (willGetal)
                 {
                     case 1:
                         if (dier.Kolom < 5)
                         {
                             if (!(grid[rij, kolom + 1] is Organisme))
+                            {
                                 dier.Kolom += 1;
+                                dier.IsVerplaatst = true;
+                            }
                         }                    
                         break;
                     case 2:
@@ -51,8 +56,10 @@ namespace TerrariumScrum
                             if (!(grid[rij, kolom - 1] is Organisme))
                             {
                                 dier.Kolom -= 1;
+                                dier.IsVerplaatst = true;
                             }
                         }
+
                         break;
                     case 3:
                         if (dier.Rij < 5)
@@ -60,6 +67,7 @@ namespace TerrariumScrum
                             if (!(grid[rij + 1, kolom] is Organisme))
                             {
                                 dier.Rij += 1;
+                                dier.IsVerplaatst = true;
                             }
                         }
                         break;
@@ -69,6 +77,7 @@ namespace TerrariumScrum
                             if (!(grid[rij - 1, kolom] is Organisme))
                             {
                                 dier.Rij -= 1;
+                                dier.IsVerplaatst = true;
                             }
                         }
                         break;

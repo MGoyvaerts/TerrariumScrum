@@ -72,10 +72,10 @@ namespace TerrariumScrum
 
         public IOrganisme[,] VolgendeDag(IOrganisme[,] grid)
         {
-            foreach (Organisme organisme in grid)
-            {
-                organisme.DoeActie(grid);
-            }
+            //foreach (Organisme organisme in grid)
+            //{
+            //    organisme.DoeActie(grid);
+            //}
             return grid;
         }
         private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
