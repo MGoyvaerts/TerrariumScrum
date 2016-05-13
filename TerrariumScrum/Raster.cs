@@ -104,8 +104,8 @@ namespace TerrariumScrum
 
         public void VolgendeDag()
         {
-            //Random rnd = new Random();
-            //grid = NieuwOrganisme(grid, new Plant(0, 0), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            Random rnd = new Random();
+            grid = NieuwOrganisme(grid, new Plant(0, 0), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
 
 
             foreach (var org in this.grid)
