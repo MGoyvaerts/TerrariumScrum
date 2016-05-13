@@ -92,13 +92,13 @@ namespace TerrariumScrum
         //    }
         //}
 
-        public void Afbeelden()         //Het raster wordt hier afgebeeld
+        public void Afbeelden(IOrganisme[,] grid)         //Het raster wordt hier afgebeeld
         {
             for (int rij = 0; rij < 6; rij++)       
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    Console.Write(raster[rij, kolom].Tostring() + "  ");                  
+                    Console.Write(grid[rij, kolom].Tostring() + "  ");                  
                 }
                 Console.WriteLine();
             }
