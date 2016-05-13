@@ -104,49 +104,59 @@ namespace TerrariumScrum
 
         public void VolgendeDag()
         {
-            Random rnd = new Random();
-            NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            //Random rnd = new Random();
+            //NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             
 
+            foreach(var org in this.grid)
+            {
+                if (org is Organisme && org.HeeftActiegedaan == false)
+                {
+                    (Organisme)org.DoeActie();
+                    org.HeeftActieGedaan == true;
+                }
+                //if (HeeftActieGedaan == false)
+                //{
+                //    org.DoeActie();
+                //}
+            }
 
 
 
-
-            List<IOrganisme> organismeLijst = Program.organismenLijst;
             
-            List<Organisme> organismeVerplaatstlijst = new List<Organisme>();
+            //List<Organisme> organismeVerplaatstlijst = new List<Organisme>();
             
           //  ResetIsVerplaatstNaarFalse(organismeLijst);
-            foreach (var organisme in organismeLijst)
-            {
-                if (organisme is Dier)
-                {
-                    if (!((Dier)organisme).IsVerplaatst)
-                    {
-                    grid[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
+            //foreach (var organisme in organismeLijst)
+            //{
+            //    if (organisme is Dier)
+            //    {
+            //        if (!((Dier)organisme).IsVerplaatst)
+            //        {
+            //        grid[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
 
-                        ((Dier)organisme).Verplaatsen(organismeLijst);
-                        grid[organisme.Rij, organisme.Kolom] = organisme;
+            //            ((Dier)organisme).Verplaatsen(organismeLijst);
+            //            grid[organisme.Rij, organisme.Kolom] = organisme;
 
                         
-                    }
+            //        }
 
-                }
+            //    }
 
-            }
-            ResetIsVerplaatstNaarFalse(organismeLijst);
+            //}
+            //ResetIsVerplaatstNaarFalse(organismeLijst);
 
 
 
-            Herbivoor nieuweHerbivoor = new Herbivoor();
-            nieuweHerbivoor = nieuweHerbivoor.Vrijen(organismeLijst);
-            for (int i = 0; i < organismeLijst.Count(); i++)
-            {
-                if (organismeLijst[i].Rij == nieuweHerbivoor.Rij && organismeLijst[i].Kolom == nieuweHerbivoor.Kolom)
-                {
-                    organismeLijst[i] = nieuweHerbivoor;
-                }
-            }
+            //Herbivoor nieuweHerbivoor = new Herbivoor();
+            //nieuweHerbivoor = nieuweHerbivoor.Vrijen(organismeLijst);
+            //for (int i = 0; i < organismeLijst.Count(); i++)
+            //{
+            //    if (organismeLijst[i].Rij == nieuweHerbivoor.Rij && organismeLijst[i].Kolom == nieuweHerbivoor.Kolom)
+            //    {
+            //        organismeLijst[i] = nieuweHerbivoor;
+            //    }
+            //}
         }
         private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
         {
@@ -162,21 +172,21 @@ namespace TerrariumScrum
 
         private void NieuwOrganismeInvullenOpRandomPlaats(Organisme organisme, int aantal)
         {
-            Random rnd = new Random();
-            for (int i = 0; i < aantal; i++)
-            {
-                int r;
-                do
-                {
-                    r = rnd.Next(Program.organismenLijst.Count - 1);
-                }
-                while (Program.organismenLijst[r] is Organisme);
+            //Random rnd = new Random();
+            //for (int i = 0; i < aantal; i++)
+            //{
+            //    int r;
+            //    do
+            //    {
+            //        r = rnd.Next(Program.organismenLijst.Count - 1);
+            //    }
+            //    while (Program.organismenLijst[r] is Organisme);
 
-                Program.organismenLijst[r] = organisme;
-                organisme.Rij = Program.organismenLijst[r].Rij;
-                organisme.Kolom = Program.organismenLijst[r].Kolom;
-                grid[Program.organismenLijst[r].Rij, Program.organismenLijst[r].Kolom] = organisme;
-            }
+            //    Program.organismenLijst[r] = organisme;
+            //    organisme.Rij = Program.organismenLijst[r].Rij;
+            //    organisme.Kolom = Program.organismenLijst[r].Kolom;
+            //    grid[Program.organismenLijst[r].Rij, Program.organismenLijst[r].Kolom] = organisme;
+            //}
 
             //double rasterplaats = 0;
             //List<Double> rasterplaatsLijst = new List<double>();
