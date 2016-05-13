@@ -24,14 +24,16 @@ namespace TerrariumScrum
 
         public IOrganisme[,] DoeActie(IOrganisme[,] grid)
         {
-            IOrganisme rechterplaats = new IOrganisme();
-            Organisme linkerplaats; 
+            Organisme linkerplaats;
+            Organisme orgRechterplaats;
+            GeenOrganisme GeenOrgRechterplaats;
             linkerplaats = this;
-            rechterplaats.Rij = this.Rij;
-            rechterplaats.Kolom = this.Kolom + 1;
-            
-            if (rechterplaats is Organisme)
+            int rechterplaatsRij = this.Rij;
+            int rechterplaatsKolom = this.Kolom + 1;
+            if (grid[rechterplaatsRij,rechterplaatsKolom] is Organisme)
             {
+                orgRechterplaats.Rij = rechterplaatsRij;
+                orgRechterplaats.Kolom = rechterplaatsKolom;
                 if (linkerplaats is Plant ) 
                 {
                     
@@ -39,25 +41,25 @@ namespace TerrariumScrum
                 else if (linkerplaats is Herbivoor) 
                 {
                     Herbivoor herbLinks = (Herbivoor)linkerplaats;
-                    //if (rechterplaats is Herbivoor)
+                    //if (orgRechterplaats is Herbivoor)
                     //{
                     //    herbLinks.Vrijen(grid);
                     //}
-                    /*else*/ if (rechterplaats is Plant)
+                    /*else*/ if (orgRechterplaats is Plant)
                     {  
-                    herbLinks.Eten((Organisme)rechterplaats, grid);
+                    herbLinks.Eten((Organisme)orgRechterplaats, grid);
                     }
                 }
                 else if (linkerplaats is Carnivoor)
                 {
                     Carnivoor carnLinks = (Carnivoor)linkerplaats;
-                    if (rechterplaats is Herbivoor)
+                    if (orgRechterplaats is Herbivoor)
                     {
-                        carnLinks.Eten((Herbivoor)rechterplaats, grid);
+                        carnLinks.Eten((Herbivoor)orgRechterplaats, grid);
                     }
-                    //else if (rechterplaats is Carnivoor)
+                    //else if (orgRechterplaats is Carnivoor)
                     //{
-                    //    carnLinks.Vechten((Carnivoor)linkerplaats, (Carnivoor)rechterplaats, grid);
+                    //    carnLinks.Vechten((Carnivoor)linkerplaats, (Carnivoor)orgRechterplaats, grid);
                     //}
                 }
             }
