@@ -8,7 +8,6 @@ namespace TerrariumScrum
 {
     public class Raster
     {
-        IOrganisme[,] raster = new IOrganisme[6, 6];
         int aantalCarnivoren = 0;
         int aantalHerbivoren = 0;
         int aantalPlanten = 0;
@@ -42,22 +41,21 @@ namespace TerrariumScrum
                     switch (willekeurigNummer)
                     {
                         case 1:
-                            raster[rij, kolom] = new Plant(rij, kolom);
+                            grid[rij, kolom] = new Plant(rij, kolom);
                             aantalPlanten++;
                             break;
                         case 2:
-                            raster[rij, kolom] = new Herbivoor(rij, kolom);
+                            grid[rij, kolom] = new Herbivoor(rij, kolom);
                             aantalHerbivoren++;
                             break;
                         case 3:
-                            raster[rij, kolom] = new Carnivoor(rij, kolom);
+                            grid[rij, kolom] = new Carnivoor(rij, kolom);
                             aantalCarnivoren++;
                             break;
                         default:
-                            raster[rij, kolom] = new GeenOrganisme(rij, kolom);
+                            grid[rij, kolom] = new GeenOrganisme(rij, kolom);
                             break;
                     }
-                    Program.organismenLijst.Add(raster[rij, kolom]);
                 }
             }
             if (aantalCarnivoren == 0)
@@ -125,10 +123,10 @@ namespace TerrariumScrum
                 {
                     if (!((Dier)organisme).IsVerplaatst)
                     {
-                    raster[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
+                    grid[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
 
                         ((Dier)organisme).Verplaatsen(organismeLijst);
-                        raster[organisme.Rij, organisme.Kolom] = organisme;
+                        grid[organisme.Rij, organisme.Kolom] = organisme;
 
                         
                     }
@@ -177,7 +175,7 @@ namespace TerrariumScrum
                 Program.organismenLijst[r] = organisme;
                 organisme.Rij = Program.organismenLijst[r].Rij;
                 organisme.Kolom = Program.organismenLijst[r].Kolom;
-                raster[Program.organismenLijst[r].Rij, Program.organismenLijst[r].Kolom] = organisme;
+                grid[Program.organismenLijst[r].Rij, Program.organismenLijst[r].Kolom] = organisme;
             }
 
             //double rasterplaats = 0;
