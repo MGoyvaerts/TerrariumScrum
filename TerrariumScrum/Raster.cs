@@ -60,15 +60,15 @@ namespace TerrariumScrum
             }
             if (aantalCarnivoren == 0)
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Carnivoor(0, 0), 1);
+                grid = NieuwOrganisme(grid, new Carnivoor(0, 0), 1);
             }
             if (aantalHerbivoren == 0)
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Herbivoor(0, 0), 1);
+                grid = NieuwOrganisme(grid, new Herbivoor(0, 0), 1);
             }
             if (aantalPlanten == 0)
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), 1);
+                grid = NieuwOrganisme(grid, new Plant(0, 0), 1);
             }
         }
 
@@ -104,27 +104,22 @@ namespace TerrariumScrum
 
         public void VolgendeDag()
         {
-            //Random rnd = new Random();
-            //NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            Random rnd = new Random();
+            grid = NieuwOrganisme(grid, new Plant(0, 0), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             
 
-            foreach(var org in this.grid)
-            {
-                if (org is Organisme && org.HeeftActiegedaan == false)
-                {
-                    (Organisme)org.DoeActie();
-                    (Organisme)org.HeeftActieGedaan == true;
-                }
-                //if (HeeftActieGedaan == false)
-                //{
-                //    org.DoeActie();
-                //}
-            }
-            foreach(var org in this.grid)
-            {
-                if (org is Organisme)
-                    (Organisme)org.HeeftActieGedaan == false;
-            }
+            //foreach(var org in this.grid)
+            //{
+            //    if (org is Organisme && org.HeeftActiegedaan == false)
+            //    {
+            //        (Organisme)org.DoeActie();
+            //        org.HeeftActieGedaan == true;
+            //    }
+            //    //if (HeeftActieGedaan == false)
+            //    //{
+            //    //    org.DoeActie();
+            //    //}
+            //}
 
 
 
@@ -175,57 +170,43 @@ namespace TerrariumScrum
             }
         }
 
-        private void NieuwOrganismeInvullenOpRandomPlaats(Organisme organisme, int aantal)
+        private IOrganisme[,] NieuwOrganisme(IOrganisme[,] raster, Organisme organisme, int aantal)
         {
-            //Random rnd = new Random();
-            //for (int i = 0; i < aantal; i++)
-            //{
-            //    int r;
-            //    do
-            //    {
-            //        r = rnd.Next(Program.organismenLijst.Count - 1);
-            //    }
-            //    while (Program.organismenLijst[r] is Organisme);
+            double rasterplaats = 0;
+            List<Double> rasterplaatsLijst = new List<double>();        //Hier komen alle lege plaatsen in te staan waar we dan een willekeurige plaats uit kunnen kiezen.
+            Random rnd = new Random();
 
-            //    Program.organismenLijst[r] = organisme;
-            //    organisme.Rij = Program.organismenLijst[r].Rij;
-            //    organisme.Kolom = Program.organismenLijst[r].Kolom;
-            //    grid[Program.organismenLijst[r].Rij, Program.organismenLijst[r].Kolom] = organisme;
-            //}
+            for (int i = 0; i < aantal; i++)
+            {
+                for (double rij = 0; rij < 6; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in de lijst rasterplaatsLijst.
+                {
+                    for (double kolom = 0; kolom < 6; kolom++)
+                    {
+                        if (raster[(int)rij, (int)kolom] is GeenOrganisme)
+                        {
+                            rasterplaats = rij + (kolom / 10.0);        //De lege plaats wordt in een kommagetal omgezet (bv rij 4, kolom 3 wordt: 4,3).
+                            rasterplaatsLijst.Add(rasterplaats);
+                        }
+                    }
+                }
 
-            //double rasterplaats = 0;
-            //List<Double> rasterplaatsLijst = new List<double>();
-
-            //for (int i = 0; i < aantal; i++)
-            //{
-            //    for (double rij = 0; rij < 6; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in een lijst.
-            //    {
-            //        for (double kolom = 0; kolom < 6; kolom++)
-            //        {
-            //            if (raster[(int)rij, (int)kolom].GetType() == typeof(GeenOrganisme))
-            //            {
-            //                rasterplaats = rij + kolom / 10.0;
-            //                rasterplaatsLijst.Add(rasterplaats);
-            //            }
-            //        }
-            //    }
-
-            //    if (rasterplaatsLijst.Count > 0)
-            //    {
-            //        double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
-            //        int _rij = (int)(randomLegePlaats - randomLegePlaats % 1.0);
-            //        int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 10.0);
-            //        grid[_rij, _kolom] = organisme;
-            //        organisme.Rij = _rij;
-            //        organisme.Kolom = _kolom;
-            //        rasterplaatsLijst.Clear();
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("\nHET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD.");
-            //        break;
-            //    }
-            //}
+                if (rasterplaatsLijst.Count > 0)        //We controleren ofdat er nog lege plaatsen zijn.
+                {
+                    double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
+                    int _rij = (int)(randomLegePlaats - randomLegePlaats % 1.0);
+                    int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 10.0);      //Het getal moet hier afgerond worden want delen door een double geeft in sommige gevallen een zeer kleine precisiefout (bv 4 wordt 3.9999...)
+                    raster[_rij, _kolom] = organisme;
+                    organisme.Rij = _rij;
+                    organisme.Kolom = _kolom;
+                    rasterplaatsLijst.Clear();
+                }
+                else
+                {
+                    Console.WriteLine("\nHET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD.");
+                    break;
+                }
+            }
+            return raster;
         }
 
 
