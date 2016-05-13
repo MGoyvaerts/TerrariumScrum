@@ -11,33 +11,18 @@ namespace TerrariumScrum
         int aantalCarnivoren = 0;
         int aantalHerbivoren = 0;
         int aantalPlanten = 0;
-
-        // Zijn beide manieren mogelijk ???
-        //private IOrganisme[,] gridValue;
-        //public IOrganisme[,] grid
-        //{
-        //    get
-        //    {
-        //        return gridValue;
-        //    }
-        //    set
-        //    {
-        //        gridValue = new IOrganisme[6, 6];
-        //    }
-        //}
-
         public IOrganisme[,] grid = new IOrganisme[6, 6];
 
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
 
-            Random rnd = new Random();      
-            
+            Random rnd = new Random();
+
             for (int rij = 0; rij < 6; rij++)
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    int willekeurigNummer = rnd.Next(1,15); // Hiermee wordt de kans bepaald voor het invullen van een organisme
+                    int willekeurigNummer = rnd.Next(1, 15); // Hiermee wordt de kans bepaald voor het invullen van een organisme
                     switch (willekeurigNummer)
                     {
                         case 1:
@@ -58,7 +43,7 @@ namespace TerrariumScrum
                     }
                 }
             }
-            if (aantalCarnivoren == 0)
+            if (aantalCarnivoren == 0)          //Dit is een controle zodat elk organsisme minstens 1 maal wordt ingevuld.
             {
                 grid = NieuwOrganisme(grid, new Carnivoor(0, 0), 1);
             }
@@ -71,24 +56,6 @@ namespace TerrariumScrum
                 grid = NieuwOrganisme(grid, new Plant(0, 0), 1);
             }
         }
-
-        
-        
-        //public void ControleerRaster()      //Dit is een controle zodat elk organsisme minstens 1 maal wordt ingevuld.
-        //{   
-        //    if (aantalCarnivoren == 0)      
-        //    {
-        //        NieuwOrganismeInvullenOpRandomPlaats(raster, new Carnivoor(0, 0), 1);
-        //    }
-        //    if (aantalHerbivoren == 0)
-        //    {
-        //        NieuwOrganismeInvullenOpRandomPlaats(raster, new Herbivoor(0, 0), 1);
-        //    }
-        //    if (aantalPlanten == 0)
-        //    {
-        //        NieuwOrganismeInvullenOpRandomPlaats(raster, new Plant(0, 0), 1);
-        //    }
-        //}
 
         public void Afbeelden()         //Het raster wordt hier afgebeeld
         {
@@ -165,17 +132,6 @@ namespace TerrariumScrum
             //}
             //ResetIsVerplaatstNaarFalse(organismeLijst);
 
-
-
-            //Herbivoor nieuweHerbivoor = new Herbivoor();
-            //nieuweHerbivoor = nieuweHerbivoor.Vrijen(organismeLijst);
-            //for (int i = 0; i < organismeLijst.Count(); i++)
-            //{
-            //    if (organismeLijst[i].Rij == nieuweHerbivoor.Rij && organismeLijst[i].Kolom == nieuweHerbivoor.Kolom)
-            //    {
-            //        organismeLijst[i] = nieuweHerbivoor;
-            //    }
-            //}
         }
         private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
         {
