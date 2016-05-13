@@ -12,9 +12,26 @@ namespace TerrariumScrum
         int aantalCarnivoren = 0;
         int aantalHerbivoren = 0;
         int aantalPlanten = 0;
-        
+
+        // Zijn beide manieren mogelijk ???
+        private IOrganisme[,] gridValue;
+        public IOrganisme[,] grid
+        {
+            get
+            {
+                return gridValue;
+            }
+            set
+            {
+                gridValue = new IOrganisme[6, 6];
+            }
+        }
+
+        public IOrganisme[,] grid = new IOrganisme[6, 6];
+
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
+
             Random rnd = new Random();      
             
             for (int rij = 0; rij < 6; rij++)
