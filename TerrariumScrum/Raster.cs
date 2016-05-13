@@ -112,30 +112,30 @@ namespace TerrariumScrum
 
             List<IOrganisme> organismeLijst = Program.organismenLijst;
             
-            List<Organisme> organismeVerplaatstlijst = new List<Organisme>();
+          //  List<Organisme> organismeVerplaatstlijst = new List<Organisme>();
             
-          //  ResetIsVerplaatstNaarFalse(organismeLijst);
-            foreach (var organisme in organismeLijst)
-            {
-                if (organisme is Dier)
-                {
-                    if (!((Dier)organisme).IsVerplaatst)
-                    {
-                    raster[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
+          ////  ResetIsVerplaatstNaarFalse(organismeLijst);
+          //  foreach (var organisme in organismeLijst)
+          //  {
+          //      if (organisme is Dier)
+          //      {
+          //          if (!((Dier)organisme).IsVerplaatst)
+          //          {
+          //          raster[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
 
-                        ((Dier)organisme).Verplaatsen(organismeLijst);
-                        raster[organisme.Rij, organisme.Kolom] = organisme;
+          //              ((Dier)organisme).Verplaatsen(organismeLijst);
+          //              raster[organisme.Rij, organisme.Kolom] = organisme;
 
                         
-                    }
+          //          }
 
-                }
+          //      }
 
-            }
-            ResetIsVerplaatstNaarFalse(organismeLijst);
+          //  }
+          //  ResetIsVerplaatstNaarFalse(organismeLijst);
 
 
-
+            //als er 2 herbivoren langs elkaar staan dan paren ze
             Herbivoor nieuweHerbivoor = new Herbivoor();
             nieuweHerbivoor = nieuweHerbivoor.Vrijen(organismeLijst);
             for (int i = 0; i < organismeLijst.Count(); i++)
