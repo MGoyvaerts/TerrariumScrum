@@ -8,12 +8,11 @@ namespace TerrariumScrum
 {
     class Program
     {
-        
         static void Main(string[] args)
         {
             Raster raster = new Raster();
-            IOrganisme[,] grid = raster.CreeerRaster();
-            raster.Afbeelden(grid);
+            raster.CreeerRaster();
+            raster.Afbeelden();
 
             // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
             // Dit kan eventueel nog in een aparte method geschreven worden
@@ -26,9 +25,8 @@ namespace TerrariumScrum
             {
                 if (input == "v")
                 {
-                    grid = raster.VolgendeDag(grid);
-
-                    raster.Afbeelden(grid);
+                    raster.VolgendeDag();
+                    raster.Afbeelden();
                     //hier komt methode om de dagelijkse acties uit te voeren
                     Console.WriteLine();
                     Console.WriteLine();

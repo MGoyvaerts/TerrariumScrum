@@ -20,9 +20,50 @@ namespace TerrariumScrum
 
         public int Kolom { get; set; }
 
-        public int[,] DoeActie()
+        bool HeeftActieGedaan = false;
+
+        public Raster DoeActie(Raster grid)
         {
-            throw new NotImplementedException();
+            IOrganisme rechterplaats;
+            Organisme linkerplaats;
+            linkerplaats = this;
+            rechterplaats.Rij = this.Rij;
+            rechterplaats.Kolom = this.Kolom + 1;
+            
+            if (rechterplaats is Organisme)
+            {
+                if (linkerplaats is Plant ) // this is plant
+                {
+                    
+                }
+                else if (linkerplaats is Herbivoor) //this is Herbivoor
+                {
+                    if (rechterplaats is Herbivoor)
+                    {
+                        Vrijen();
+                    }
+                    else if (rechterplaats is Plant)
+                    {
+                        Eten();
+                    }
+                }
+                else if (linkerplaats is Carnivoor)
+                {
+                    if (rechterplaats is Herbivoor)
+	                {
+                        Eten(); 
+	                }
+                    else if (rechterplaats is Carnivoor)
+	                {
+		                Vechten();
+	                }
+                }
+            }
+            else
+            {
+                Verplaatsen();
+            }
+            return grid;
         }
 
         public virtual string Tostring()
