@@ -74,30 +74,13 @@ namespace TerrariumScrum
             Random rnd = new Random();
             grid = NieuwOrganisme(grid, new Plant(0, 0), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
 
-            for (int rij = 0; rij < 6; rij++)
+
+            foreach (Organisme org in this.grid)
             {
-                for (int kolom = 0; kolom < 6; kolom++)
-                { 
-                    if (this.grid[rij, kolom] is Organisme)
-                    {
-                        Organisme organisme = (Organisme)this.grid[rij, kolom];
-                        if (organisme.HeeftActieGedaan == false)
-                        {
-                            organisme.DoeActie(this.grid);
-                            organisme.HeeftActieGedaan = true;
-                        }
-                    }
-                }
-            }
-            for (int rij = 0; rij < 6; rij++)
-            {
-                for (int kolom = 0; kolom < 6; kolom++)
+                if (org.HeeftActieGedaan == false)
                 {
-                    if (this.grid[rij, kolom] is Organisme)
-                    {
-                        Organisme organisme = (Organisme)this.grid[rij, kolom];
-                        organisme.HeeftActieGedaan = false;
-                    }
+                    org.DoeActie(this.grid);
+                    org.HeeftActieGedaan = true;
                 }
             }
             
