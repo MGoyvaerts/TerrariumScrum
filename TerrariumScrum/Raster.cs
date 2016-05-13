@@ -174,26 +174,10 @@ namespace TerrariumScrum
                 }
             }
         }
-        public int[] WillekeurigeLegePlaatsZoeken(IOrganisme[,] grid)       //Hebben we deze method nog nodig?
-        {
-            Random rnd = new Random();
-            int rndRij = rnd.Next(0, 5);
-            int rndKolom = rnd.Next(0, 5);
-            while (grid[rndRij, rndKolom].GetType() != typeof(GeenOrganisme))
-            {
-                rndRij = rnd.Next(0, 5);
-                rndKolom = rnd.Next(0, 5);
-            }
-            int rij = rndRij;
-            int kolom = rndKolom;//Willekeurige rij en kolom kiezen om na te gaan of deze positie leeg (.) is
-            int[] waarden = { rij, kolom };
-            return waarden;
-        }
 
         private void NieuwOrganismeInvullenOpRandomPlaats(Organisme organisme, int aantal)
         {
             Random rnd = new Random();
-
             for (int i = 0; i < aantal; i++)
             {
                 int r;
