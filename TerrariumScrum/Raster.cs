@@ -44,15 +44,15 @@ namespace TerrariumScrum
             }
             if (aantalCarnivoren == 0)
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Carnivoor(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(new Carnivoor(0, 0,rnd.Next(1,10)), 1);
             }
             if (aantalHerbivoren == 0)
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Herbivoor(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(new Herbivoor(0, 0,rnd.Next(1,10)), 1);
             }
             if (aantalPlanten == 0)
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0,rnd.Next(1,10)), 1);
             }
             return grid;
         }
@@ -72,6 +72,10 @@ namespace TerrariumScrum
 
         public IOrganisme[,] VolgendeDag(IOrganisme[,] grid)
         {
+            foreach (Organisme organisme in grid)
+            {
+                organisme.DoeActie(grid);
+            }
             return grid;
         }
         private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
