@@ -24,7 +24,7 @@ namespace TerrariumScrum
 
         public Raster DoeActie(Raster grid)
         {
-            IOrganisme rechterplaats;
+            IOrganisme rechterplaats = null;
             Organisme linkerplaats;
             linkerplaats = this;
             rechterplaats.Rij = this.Rij;
@@ -40,28 +40,29 @@ namespace TerrariumScrum
                 {
                     if (rechterplaats is Herbivoor)
                     {
-                        Vrijen();
+                        //Vrijen();
                     }
                     else if (rechterplaats is Plant)
                     {
-                        Eten();
+                        //Eten();
                     }
                 }
                 else if (linkerplaats is Carnivoor)
                 {
                     if (rechterplaats is Herbivoor)
 	                {
-                        Eten(); 
+                        //Eten(); 
 	                }
                     else if (rechterplaats is Carnivoor)
 	                {
-		                Vechten();
+                        
+                        //Vechten();
 	                }
                 }
             }
             else
             {
-                Verplaatsen();
+                //Verplaatsen();
             }
             linkerplaats.HeeftActieGedaan = true;
             return grid;
