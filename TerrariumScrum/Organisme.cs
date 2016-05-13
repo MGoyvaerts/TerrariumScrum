@@ -22,7 +22,7 @@ namespace TerrariumScrum
 
         bool HeeftActieGedaan = false;
 
-        public Raster DoeActie(Raster grid)
+        public IOrganisme[,] DoeActie(IOrganisme[,] grid)
         {
             IOrganisme rechterplaats;
             Organisme linkerplaats;
@@ -45,7 +45,7 @@ namespace TerrariumScrum
                     }
                     else if (rechterplaats is Plant)
                     {  
-                        herbLinks.Eten((Plant)rechterplaats, grid);
+                        herbLinks.Eten((Organisme)rechterplaats, grid);
                     }
                 }
                 else if (linkerplaats is Carnivoor)
@@ -53,11 +53,11 @@ namespace TerrariumScrum
                     Carnivoor carnLinks = (Carnivoor)linkerplaats;
                     if (rechterplaats is Herbivoor)
 	                {
-                        CarnLinks.Eten((Herbivoor)rechterplaats, grid);
+                        carnLinks.Eten((Herbivoor)rechterplaats, grid);
 	                }
                     else if (rechterplaats is Carnivoor)
 	                {
-		                CarnLinks.Vechten((Carnivoor)linkerplaats,(Carnivoor)rechterplaats, grid);
+		                carnLinks.Vechten((Carnivoor)linkerplaats,(Carnivoor)rechterplaats, grid);
 	                }
                 }
             }
