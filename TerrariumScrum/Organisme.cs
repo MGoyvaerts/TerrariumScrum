@@ -22,9 +22,49 @@ namespace TerrariumScrum
 
         bool HeeftActieGedaan = false;
 
-        public int[,] DoeActie()
+        public Raster DoeActie(Raster grid)
         {
-            throw new NotImplementedException();
+            IOrganisme rechterplaats;
+            Organisme linkerplaats;
+            linkerplaats = this;
+            rechterplaats.Rij = this.Rij;
+            rechterplaats.Kolom = this.Kolom + 1;
+            
+            if (rechterplaats is Organisme)
+            {
+                if (linkerplaats is Plant ) // this is plant
+                {
+                    
+                }
+                else if (linkerplaats is Herbivoor) //this is Herbivoor
+                {
+                    if (rechterplaats is Herbivoor)
+                    {
+                        Vrijen(grid);
+                    }
+                    else if (rechterplaats is Plant)
+                    {  
+                        Eten((Plant)rechterplaats, grid);
+                    }
+                }
+                else if (linkerplaats is Carnivoor)
+                {
+                    if (rechterplaats is Herbivoor)
+	                {
+                        Eten((Herbivoor)rechterplaats, grid);
+	                }
+                    else if (rechterplaats is Carnivoor)
+	                {
+		                Vechten((Carnivoor)linkerplaats,(Carnivoor)rechterplaats, grid);
+	                }
+                }
+            }
+            else
+            {
+                Verplaatsen(grid);
+            }
+            linkerplaats.HeeftActieGedaan = true;
+            return grid;
         }
 
         public virtual string Tostring()
