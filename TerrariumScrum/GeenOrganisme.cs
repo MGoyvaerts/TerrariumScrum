@@ -13,6 +13,10 @@ namespace TerrariumScrum
             this.Rij = rij;
             this.Kolom = kolom;
         }
+        public GeenOrganisme()
+        {
+
+        }
         public int Rij{get; set;}
 
         public int Kolom{get; set;}

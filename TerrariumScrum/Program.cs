@@ -17,10 +17,20 @@ namespace TerrariumScrum
 
             grid = raster.CreeerRaster();
             raster.Afbeelden(grid);
-
-            // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
-            // Dit kan eventueel nog in een aparte method geschreven worden
-            Console.WriteLine();
+            for (int rij = 0; rij < 6; rij++)
+            {
+                for (int kolom = 0; kolom < 6; kolom++)
+                {
+                    if ((Organisme)grid[rij, kolom] is Carnivoor)
+                    {
+                        Carnivoor carnivoor = (Carnivoor)grid[rij, kolom];
+                        Console.WriteLine(carnivoor.Levenskracht);
+                    }
+                }
+            }
+                // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
+                // Dit kan eventueel nog in een aparte method geschreven worden
+                Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
             Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");

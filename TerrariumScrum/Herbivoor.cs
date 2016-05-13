@@ -8,8 +8,8 @@ namespace TerrariumScrum
 {
     public class Herbivoor : Dier
     {
-        public Herbivoor(int rij, int kolom)
-            : base(rij, kolom)
+        public Herbivoor(int rij, int kolom, int levenskracht)
+            : base(rij, kolom, levenskracht)
         {
 
         }
