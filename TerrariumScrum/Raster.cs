@@ -30,8 +30,8 @@ namespace TerrariumScrum
                             aantalPlanten++;
                             break;
                         case 2:
-                            //grid[rij, kolom] = new Herbivoor(rij, kolom);
-                            //aantalHerbivoren++;
+                            grid[rij, kolom] = new Herbivoor(rij, kolom);
+                            aantalHerbivoren++;
                             break;
                         case 3:
                             grid[rij, kolom] = new Carnivoor(rij, kolom);
