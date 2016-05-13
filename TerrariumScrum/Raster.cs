@@ -60,15 +60,15 @@ namespace TerrariumScrum
             }
             if (aantalCarnivoren == 0)
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Carnivoor(0, 0), 1);
+                grid = NieuwOrganisme(grid, new Carnivoor(0, 0), 1);
             }
             if (aantalHerbivoren == 0)
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Herbivoor(0, 0), 1);
+                grid = NieuwOrganisme(grid, new Herbivoor(0, 0), 1);
             }
             if (aantalPlanten == 0)
             {
-                NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), 1);
+                grid = NieuwOrganisme(grid, new Plant(0, 0), 1);
             }
         }
 
@@ -104,22 +104,22 @@ namespace TerrariumScrum
 
         public void VolgendeDag()
         {
-            //Random rnd = new Random();
-            //NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            Random rnd = new Random();
+            grid = NieuwOrganisme(grid, new Plant(0, 0), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             
 
-            foreach(var org in this.grid)
-            {
-                if (org is Organisme && org.HeeftActiegedaan == false)
-                {
-                    (Organisme)org.DoeActie();
-                    org.HeeftActieGedaan == true;
-                }
-                //if (HeeftActieGedaan == false)
-                //{
-                //    org.DoeActie();
-                //}
-            }
+            //foreach(var org in this.grid)
+            //{
+            //    if (org is Organisme && org.HeeftActiegedaan == false)
+            //    {
+            //        (Organisme)org.DoeActie();
+            //        org.HeeftActieGedaan == true;
+            //    }
+            //    //if (HeeftActieGedaan == false)
+            //    //{
+            //    //    org.DoeActie();
+            //    //}
+            //}
 
 
 
