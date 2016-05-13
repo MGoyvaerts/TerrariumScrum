@@ -20,12 +20,12 @@ namespace TerrariumScrum
 
         public int Kolom { get; set; }
 
-        bool HeeftActieGedaan = false;
+        public bool HeeftActieGedaan { get; set; }
 
         public IOrganisme[,] DoeActie(IOrganisme[,] grid)
         {
-            IOrganisme rechterplaats;
-            Organisme linkerplaats;
+            IOrganisme rechterplaats = new IOrganisme();
+            Organisme linkerplaats; 
             linkerplaats = this;
             rechterplaats.Rij = this.Rij;
             rechterplaats.Kolom = this.Kolom + 1;
@@ -39,33 +39,33 @@ namespace TerrariumScrum
                 else if (linkerplaats is Herbivoor) 
                 {
                     Herbivoor herbLinks = (Herbivoor)linkerplaats;
-                    if (rechterplaats is Herbivoor)
-                    {
-                        herbLinks.Vrijen(grid);
-                    }
-                    else if (rechterplaats is Plant)
+                    //if (rechterplaats is Herbivoor)
+                    //{
+                    //    herbLinks.Vrijen(grid);
+                    //}
+                    /*else*/ if (rechterplaats is Plant)
                     {  
-                        herbLinks.Eten((Organisme)rechterplaats, grid);
+                    herbLinks.Eten((Organisme)rechterplaats, grid);
                     }
                 }
                 else if (linkerplaats is Carnivoor)
                 {
                     Carnivoor carnLinks = (Carnivoor)linkerplaats;
                     if (rechterplaats is Herbivoor)
-	                {
+                    {
                         carnLinks.Eten((Herbivoor)rechterplaats, grid);
-	                }
-                    else if (rechterplaats is Carnivoor)
-	                {
-		                carnLinks.Vechten((Carnivoor)linkerplaats,(Carnivoor)rechterplaats, grid);
-	                }
+                    }
+                    //else if (rechterplaats is Carnivoor)
+                    //{
+                    //    carnLinks.Vechten((Carnivoor)linkerplaats, (Carnivoor)rechterplaats, grid);
+                    //}
                 }
             }
-            else
-            {
-                Dier dierLinks = (Dier)linkerplaats;
-                dierLinks.Verplaatsen(grid);
-            }
+            //else
+            //{
+            //    Dier dierLinks = (Dier)linkerplaats;
+            //    dierLinks.Verplaatsen(grid);
+            //}
             linkerplaats.HeeftActieGedaan = true;
             return grid;
         }
