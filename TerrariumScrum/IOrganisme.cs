@@ -11,7 +11,7 @@ namespace TerrariumScrum
         int Rij { get; set; }
         int Kolom { get; set; }
 
-        int[,] DoeActie();
+        //int[,] DoeActie();
         string Tostring();
     }
 }

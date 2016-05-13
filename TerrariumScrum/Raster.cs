@@ -8,24 +8,23 @@ namespace TerrariumScrum
 {
     public class Raster
     {
-        IOrganisme[,] raster = new IOrganisme[6, 6];
         int aantalCarnivoren = 0;
         int aantalHerbivoren = 0;
         int aantalPlanten = 0;
 
         // Zijn beide manieren mogelijk ???
-        private IOrganisme[,] gridValue;
-        public IOrganisme[,] Grid
-        {
-            get
-            {
-                return gridValue;
-            }
-            set
-            {
-                gridValue = new IOrganisme[6, 6];
-            }
-        }
+        //private IOrganisme[,] gridValue;
+        //public IOrganisme[,] grid
+        //{
+        //    get
+        //    {
+        //        return gridValue;
+        //    }
+        //    set
+        //    {
+        //        gridValue = new IOrganisme[6, 6];
+        //    }
+        //}
 
         public IOrganisme[,] grid = new IOrganisme[6, 6];
 
@@ -42,35 +41,34 @@ namespace TerrariumScrum
                     switch (willekeurigNummer)
                     {
                         case 1:
-                            raster[rij, kolom] = new Plant(rij, kolom);
+                            grid[rij, kolom] = new Plant(rij, kolom);
                             aantalPlanten++;
                             break;
                         case 2:
-                            raster[rij, kolom] = new Herbivoor(rij, kolom);
+                            grid[rij, kolom] = new Herbivoor(rij, kolom);
                             aantalHerbivoren++;
                             break;
                         case 3:
-                            raster[rij, kolom] = new Carnivoor(rij, kolom);
+                            grid[rij, kolom] = new Carnivoor(rij, kolom);
                             aantalCarnivoren++;
                             break;
                         default:
-                            raster[rij, kolom] = new GeenOrganisme(rij, kolom);
+                            grid[rij, kolom] = new GeenOrganisme(rij, kolom);
                             break;
                     }
-                    Program.organismenLijst.Add(raster[rij, kolom]);
                 }
             }
             if (aantalCarnivoren == 0)
             {
-                NieuwOrganisme(raster, new Carnivoor(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(new Carnivoor(0, 0), 1);
             }
             if (aantalHerbivoren == 0)
             {
-                NieuwOrganisme(raster, new Herbivoor(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(new Herbivoor(0, 0), 1);
             }
             if (aantalPlanten == 0)
             {
-                NieuwOrganisme(raster, new Plant(0, 0), 1);
+                NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), 1);
             }
         }
 
@@ -98,120 +96,131 @@ namespace TerrariumScrum
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    Console.Write(raster[rij, kolom].Tostring() + "  ");                  
+                    Console.Write(this.grid[rij, kolom].Tostring() + "  ");                  
                 }
                 Console.WriteLine();
-            }
-
-    
-            //List<IOrganisme> organismenLijst = new List<IOrganisme>(); 
-            //for (int rij = 0; rij < 6; rij++)       
-            //{
-            //    for (int kolom = 0; kolom < 6; kolom++)
-            //    {
-            //        organismenLijst.Add(raster[rij, kolom]);
-            //        Console.Write(raster[rij, kolom].Tostring() + "  ");                  
-            //    }
-            //    Console.WriteLine();
-            //}
-            //return organismenLijst;
+            }    
         }
 
         public void VolgendeDag()
         {
-            Random rnd = new Random();
-            NieuwOrganisme(raster, new Plant(0, 0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            //Random rnd = new Random();
+            //NieuwOrganismeInvullenOpRandomPlaats(new Plant(0, 0), rnd.Next(1,3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             
 
+            foreach(var org in this.grid)
+            {
+                if (org is Organisme && org.HeeftActiegedaan == false)
+                {
+                    (Organisme)org.DoeActie();
+                    org.HeeftActieGedaan == true;
+                }
+                //if (HeeftActieGedaan == false)
+                //{
+                //    org.DoeActie();
+                //}
+            }
 
 
 
-
-        //    List<IOrganisme> organismeLijst = Program.organismenLijst;
             
-        //    List<Organisme> organismeVerplaatstlijst = new List<Organisme>();
+            //List<Organisme> organismeVerplaatstlijst = new List<Organisme>();
             
-        //  //  ResetIsVerplaatstNaarFalse(organismeLijst);
-        //    foreach (var organisme in organismeLijst)
-        //    {
-        //        if (organisme is Dier)
-        //        {
-        //            if (!((Dier)organisme).IsVerplaatst)
-        //            {
-        //            raster[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
+          //  ResetIsVerplaatstNaarFalse(organismeLijst);
+            //foreach (var organisme in organismeLijst)
+            //{
+            //    if (organisme is Dier)
+            //    {
+            //        if (!((Dier)organisme).IsVerplaatst)
+            //        {
+            //        grid[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
 
-        //                ((Dier)organisme).Verplaatsen(organismeLijst);
-        //                raster[organisme.Rij, organisme.Kolom] = organisme;
+            //            ((Dier)organisme).Verplaatsen(organismeLijst);
+            //            grid[organisme.Rij, organisme.Kolom] = organisme;
 
                         
-        //            }
+            //        }
 
-        //        }
+            //    }
 
-        //    }
-        //    ResetIsVerplaatstNaarFalse(organismeLijst);
+            //}
+            //ResetIsVerplaatstNaarFalse(organismeLijst);
 
 
 
-        //    Herbivoor nieuweHerbivoor = new Herbivoor();
-        //    nieuweHerbivoor = nieuweHerbivoor.Vrijen(organismeLijst);
-        //    for (int i = 0; i < organismeLijst.Count(); i++)
-        //    {
-        //        if (organismeLijst[i].Rij == nieuweHerbivoor.Rij && organismeLijst[i].Kolom == nieuweHerbivoor.Kolom)
-        //        {
-        //            organismeLijst[i] = nieuweHerbivoor;
-        //        }
-        //    }
-        //}
-        //private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
-        //{
-            
-        //    foreach (var dier in organismenLijst)
-        //    {
-        //        if (dier is Dier)
-        //        {
-        //            ((Dier)dier).IsVerplaatst = false;
-        //        }
-        //    }
+            //Herbivoor nieuweHerbivoor = new Herbivoor();
+            //nieuweHerbivoor = nieuweHerbivoor.Vrijen(organismeLijst);
+            //for (int i = 0; i < organismeLijst.Count(); i++)
+            //{
+            //    if (organismeLijst[i].Rij == nieuweHerbivoor.Rij && organismeLijst[i].Kolom == nieuweHerbivoor.Kolom)
+            //    {
+            //        organismeLijst[i] = nieuweHerbivoor;
+            //    }
+            //}
         }
-
-        private IOrganisme[,] NieuwOrganisme(IOrganisme[,] raster, Organisme organisme, int aantal)
+        private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
         {
-            double rasterplaats = 0;
-            List<Double> rasterplaatsLijst = new List<double>();        //Hier komen alle lege plaatsen in te staan waar we dan een willekeurige plaats uit kunnen kiezen.
-            Random rnd = new Random();
-
-            for (int i = 0; i < aantal; i++)
+            
+            foreach (var dier in organismenLijst)
             {
-                for (double rij = 0; rij < 6; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in de lijst rasterplaatsLijst.
+                if (dier is Dier)
                 {
-                    for (double kolom = 0; kolom < 6; kolom++)
-                    {
-                        if (raster[(int)rij, (int)kolom] is GeenOrganisme)
-                        {
-                            rasterplaats = rij + (kolom / 10.0);        //De lege plaats wordt in een kommagetal omgezet (bv rij 4, kolom 3 wordt: 4,3).
-                            rasterplaatsLijst.Add(rasterplaats);
-                        }
-                    }
-                }
-
-                if (rasterplaatsLijst.Count > 0)        //We controleren ofdat er nog lege plaatsen zijn.
-                {
-                    double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
-                    int _rij = (int)(randomLegePlaats - randomLegePlaats % 1.0);
-                    int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 10.0);      //Het getal moet hier afgerond worden want delen door een double geeft in sommige gevallen een zeer kleine precisiefout (bv 4 wordt 3.9999...)
-                    raster[_rij, _kolom] = organisme;
-                    organisme.Rij = _rij;
-                    organisme.Kolom = _kolom;
-                    rasterplaatsLijst.Clear();
-                }
-                else
-                {
-                    Console.WriteLine("\nHET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD.");
-                    break;
+                    ((Dier)dier).IsVerplaatst = false;
                 }
             }
-            return raster;
+        }
+
+        private void NieuwOrganismeInvullenOpRandomPlaats(Organisme organisme, int aantal)
+        {
+            //Random rnd = new Random();
+            //for (int i = 0; i < aantal; i++)
+            //{
+            //    int r;
+            //    do
+            //    {
+            //        r = rnd.Next(Program.organismenLijst.Count - 1);
+            //    }
+            //    while (Program.organismenLijst[r] is Organisme);
+
+            //    Program.organismenLijst[r] = organisme;
+            //    organisme.Rij = Program.organismenLijst[r].Rij;
+            //    organisme.Kolom = Program.organismenLijst[r].Kolom;
+            //    grid[Program.organismenLijst[r].Rij, Program.organismenLijst[r].Kolom] = organisme;
+            //}
+
+            //double rasterplaats = 0;
+            //List<Double> rasterplaatsLijst = new List<double>();
+
+            //for (int i = 0; i < aantal; i++)
+            //{
+            //    for (double rij = 0; rij < 6; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in een lijst.
+            //    {
+            //        for (double kolom = 0; kolom < 6; kolom++)
+            //        {
+            //            if (raster[(int)rij, (int)kolom].GetType() == typeof(GeenOrganisme))
+            //            {
+            //                rasterplaats = rij + kolom / 10.0;
+            //                rasterplaatsLijst.Add(rasterplaats);
+            //            }
+            //        }
+            //    }
+
+            //    if (rasterplaatsLijst.Count > 0)
+            //    {
+            //        double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
+            //        int _rij = (int)(randomLegePlaats - randomLegePlaats % 1.0);
+            //        int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 10.0);
+            //        grid[_rij, _kolom] = organisme;
+            //        organisme.Rij = _rij;
+            //        organisme.Kolom = _kolom;
+            //        rasterplaatsLijst.Clear();
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("\nHET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD.");
+            //        break;
+            //    }
+            //}
         }
 
 
