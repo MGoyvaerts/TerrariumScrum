@@ -40,28 +40,28 @@ namespace TerrariumScrum
                 {
                     if (rechterplaats is Herbivoor)
                     {
-                        Vrijen();
+                        Vrijen(grid);
                     }
                     else if (rechterplaats is Plant)
-                    {
-                        Eten();
+                    {  
+                        Eten((Plant)rechterplaats, grid);
                     }
                 }
                 else if (linkerplaats is Carnivoor)
                 {
                     if (rechterplaats is Herbivoor)
 	                {
-                        Eten(); 
+                        Eten((Herbivoor)rechterplaats, grid);
 	                }
                     else if (rechterplaats is Carnivoor)
 	                {
-		                Vechten();
+		                Vechten((Carnivoor)linkerplaats,(Carnivoor)rechterplaats, grid);
 	                }
                 }
             }
             else
             {
-                Verplaatsen();
+                Verplaatsen(grid);
             }
             linkerplaats.HeeftActieGedaan = true;
             return grid;
