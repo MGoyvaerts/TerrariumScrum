@@ -62,11 +62,11 @@ namespace TerrariumScrum
             //Console.WriteLine(willGetal);
             //return this;
         }
-        public Dier Eten(Dier dier, Organisme organisme)
+        public IOrganisme[,] Eten(Organisme organisme, IOrganisme[,] raster)      //Het dier moet het organisme dat die gaat opeten binnenkrijgen als parameter. 
         {
-            //geeft het dier terug met de levenskracht van het organisme dat ie gaat opeten.
-            dier.Levenskracht += organisme.Levenskracht;
-            return dier;
+            this.Levenskracht += organisme.Levenskracht;    //Het dier terug met de levenskracht van het organisme dat ie gaat opeten.
+            raster[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);     //Het opgegeten organisme wordt vervangen door een GeenOrganisme.
+            return raster;
         }
     }
 }
