@@ -13,6 +13,8 @@ namespace TerrariumScrum
         {
             Raster raster = new Raster();
             IOrganisme[,] grid = new IOrganisme[6,6];
+            Dier dier = new Dier();
+
             grid = raster.CreeerRaster();
             raster.Afbeelden(grid);
 
@@ -28,8 +30,38 @@ namespace TerrariumScrum
                 if (input == "v")
                 {
                     grid = raster.VolgendeDag(grid);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        for (int j = 0; j < 6; j++)
+                        {
+                            if (grid[i, j] is Dier)
+                            {
+                                if (j < 5)
+                                {
+                                    if (grid[i, j + 1] is GeenOrganisme)
+                                    {
+                                        grid = ((Dier)grid[i, j]).Verplaatsen(grid, (Dier)grid[i, j]);
+                                    }
+                                }
+                                    
+                                
+                            }
+                        }
+                    }
 
-                    raster.Afbeelden(grid);
+                    //grid isverplaatst resetten
+                    for (int i = 0; i < 6; i++)
+                    {
+                        for (int j = 0; j < 6; j++)
+                        {
+                            if (grid[i, j] is Dier)
+                            {
+                                ((Dier)grid[i, j]).IsVerplaatst= false;
+                            }
+                        }
+                    }
+
+                        raster.Afbeelden(grid);
                     //hier komt methode om de dagelijkse acties uit te voeren
                     Console.WriteLine();
                     Console.WriteLine();
