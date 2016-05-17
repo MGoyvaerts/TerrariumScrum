@@ -44,6 +44,7 @@ namespace TerrariumScrum
                         if (grid[rechterplaatsRij, rechterplaatsKolom] is Herbivoor)
                         {
                             huidigeHerbivoor.Vrijen(grid);
+                            huidigeHerbivoor.HeeftActieGedaan = true;
                         }
                         else if (grid[rechterplaatsRij, rechterplaatsKolom] is Plant)
                         {
