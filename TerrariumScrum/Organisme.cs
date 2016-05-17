@@ -37,8 +37,6 @@ namespace TerrariumScrum
                     {
 
                     }
-
-
                     else if (grid[huidigeRij, huidigeKolom] is Herbivoor)
                     {
                         Herbivoor huidigeHerbivoor = (Herbivoor)grid[huidigeRij, huidigeKolom];
@@ -89,8 +87,6 @@ namespace TerrariumScrum
                                     grid[rechterplaatsRij, rechterplaatsKolom] = nieuweCarnivoor;
                                 }
                             }
-
-                            //huidigeCarnivoor.Vechten(huidigeCarnivoor, grid[rechterplaatsRij, rechterplaatsKolom], grid);
                         }
                     }
 
@@ -99,10 +95,9 @@ namespace TerrariumScrum
             }
             else
             {
-                if (!(grid[huidigeRij, huidigeKolom] is Plant))//|| !(grid[huidigeRij, huidigeKolom] is GeenOrganisme)))
+                if (!(grid[huidigeRij, huidigeKolom] is Plant))
                 {
                     Dier huidigDier = (Dier)grid[huidigeRij, huidigeKolom];
-                    //huidigDier.Verplaatsen(grid);
                 }
             }
             if (grid[huidigeRij, huidigeKolom] is Dier && ((Organisme)grid[huidigeRij, huidigeKolom]).HeeftActieGedaan == false)//controle in het grid of het object een dier is.
@@ -134,7 +129,6 @@ namespace TerrariumScrum
             }
             return grid;
         }
-
 
         public virtual string Tostring()
         {
