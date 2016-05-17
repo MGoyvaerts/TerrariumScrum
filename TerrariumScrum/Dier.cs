@@ -37,7 +37,6 @@ namespace TerrariumScrum
             {
                 willGetal = random.Next(1, 5);
                 
-                
                 switch (willGetal)
                 {
                     case 1:
