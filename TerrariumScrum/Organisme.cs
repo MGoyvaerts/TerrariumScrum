@@ -31,46 +31,47 @@ namespace TerrariumScrum
             linkerplaats = this;
             rechterplaats.Rij = this.Rij;
             rechterplaats.Kolom = this.Kolom + 1;
-            
+
             if (rechterplaats is Organisme)
             {
-                if (linkerplaats is Plant ) // this is plant
+                if (linkerplaats is Plant) // this is plant
                 {
                     if (grid[huidigeRij, huidigeKolom] is Plant)
                     {
-                    
-                }
+
+                    }
                     else if (grid[huidigeRij, huidigeKolom] is Herbivoor)
-                {
+                    {
                         Herbivoor huidigeHerbivoor = (Herbivoor)grid[huidigeRij, huidigeKolom];
                         if (grid[rechterplaatsRij, rechterplaatsKolom] is Herbivoor)
-                    {
-                        Vrijen();
-                    }
+                        {
+                            Vrijen();
+                        }
                         else if (grid[rechterplaatsRij, rechterplaatsKolom] is Plant)
-                    {
-                        Eten();
+                        {
+                            Eten();
+                        }
                     }
-                }
                     else if (grid[huidigeRij, huidigeKolom] is Carnivoor)
-                {
+                    {
                         Carnivoor huidigeCarnivoor = (Carnivoor)grid[huidigeRij, huidigeKolom];
                         if (grid[rechterplaatsRij, rechterplaatsKolom] is Herbivoor)
-	                {
-                        Eten(); 
-	                }
+                        {
+                            Eten();
+                        }
                         else if (grid[rechterplaatsRij, rechterplaatsKolom] is Carnivoor)
-	                {
-		                Vechten();
-	                }
+                        {
+                            Vechten();
+                        }
+                    }
                 }
+                else
+                {
+                    Verplaatsen();
+                }
+                linkerplaats.HeeftActieGedaan = true;
+                return grid;
             }
-            else
-            {
-                Verplaatsen();
-            }
-            linkerplaats.HeeftActieGedaan = true;
-            return grid;
         }
 
         public virtual string Tostring()
