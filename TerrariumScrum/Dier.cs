@@ -52,7 +52,9 @@ namespace TerrariumScrum
             //Hier wordt er nagegaan of het dier zich helemaal rechts bevind en er overal dieren rondom staan.
             //Als dit het geval is wordt het dier niet verplaatst maar wordt de IsVerplaatst wel op true gezet.
             //dit om te voorkomen dat de method niet in een onneindige lus terecht komt.
-            if (kolom == 5)
+            int lengteRij = grid.Length / grid.GetLength(0);
+            int lengteKolom = grid.GetLength(0);
+            if (kolom == lengteKolom-1)
             {
                 if (grid[rij, kolom - 1] is Organisme )
                 {
@@ -63,7 +65,7 @@ namespace TerrariumScrum
                             dier.IsVerplaatst = true;
                         }
                     }
-                    else if(rij == 5){//niet naar onder controlleren.
+                    else if(rij == lengteRij-1){//niet naar onder controlleren.
                         if (grid[rij - 1, kolom] is Organisme)
                         {
                             dier.IsVerplaatst = true;
@@ -98,7 +100,7 @@ namespace TerrariumScrum
                 //en wordt IsVerplaatst op true gezet.
                 {
                     case 1:// verplaatsen naar rechts
-                        if (dier.Kolom < 5)//controle of het dier op de rand rechts staat
+                        if (dier.Kolom < lengteKolom-1)//controle of het dier op de rand rechts staat
                         {
                             if (!(grid[rij, kolom + 1] is Organisme))// hier wordt gecontroleerd of er geen dier staat op de te verplaatsen plek.
                             {
@@ -118,7 +120,7 @@ namespace TerrariumScrum
                         }
                         break;
                     case 3://verplaatsen naar onder
-                        if (dier.Rij < 5)//controle of het dier op de rand onder staat
+                        if (dier.Rij < lengteRij-1)//controle of het dier op de rand onder staat
                         {
                             if (!(grid[rij + 1, kolom] is Organisme))// hier wordt gecontroleerd of er geen dier staat op de te verplaatsen plek.
                             {

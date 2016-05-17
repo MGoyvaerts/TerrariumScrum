@@ -11,9 +11,7 @@ namespace TerrariumScrum
         public static bool terrariumVolledigGevuld = false;
         static void Main(string[] args)
         {
-            Raster raster = new Raster();
-            IOrganisme[,] grid = new IOrganisme[6,6];
-            
+            Raster raster = new Raster();            
 
             raster.CreeerRaster();
             raster.Afbeelden();

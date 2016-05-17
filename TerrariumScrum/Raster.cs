@@ -16,9 +16,11 @@ namespace TerrariumScrum
 
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
-            for (int rij = 0; rij < 6; rij++)
+            int lengteRij = grid.Length / grid.GetLength(0);
+            int lengteKolom = grid.GetLength(0);
+            for (int rij = 0; rij < lengteRij; rij++)
             {
-                for (int kolom = 0; kolom < 6; kolom++)
+                for (int kolom = 0; kolom < lengteKolom; kolom++)
                 {
                     int levHerbivoor = rnd.Next(1, 11);
                     int levCarnivoor = rnd.Next(1, 11);
@@ -26,7 +28,7 @@ namespace TerrariumScrum
                     switch (willekeurigNummer)
                     {
                         case 1:
-                            grid[rij, kolom] = new Plant(rij, kolom,1);
+                            grid[rij, kolom] = new Plant(rij, kolom, 1);
                             aantalPlanten++;
                             break;
                         case 2:
@@ -56,61 +58,26 @@ namespace TerrariumScrum
                 grid = NieuwOrganisme(grid, new Plant(), 1);
             }
         }
-
         public void Afbeelden()         //Het raster wordt hier afgebeeld
         {
-            //Plant plant = new Plant();
-            //Herbivoor herbivoor = new Herbivoor();
-            //Carnivoor carnivoor = new Carnivoor();
-            //GeenOrganisme geenOrganisme = new GeenOrganisme();
-
-            for (int rij = 0; rij < 6; rij++)       
+            int lengteRij = grid.Length / grid.GetLength(0);
+            int lengteKolom = grid.GetLength(0);
+            for (int rij = 0; rij < lengteRij; rij++)       
             {
-                for (int kolom = 0; kolom < 6; kolom++)
+                for (int kolom = 0; kolom < lengteKolom; kolom++)
                 {
                     Console.Write(this.grid[rij, kolom].Tostring() + "  ");                  
                 }
                 Console.WriteLine();
             }
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //for (int rij = 0; rij < 6; rij++)
-            //{
-            //    for (int kolom = 0; kolom < 6; kolom++)
-            //    {
-            //        if (grid[rij, kolom].GetType() == geenOrganisme.GetType())
-            //        {
-            //            geenOrganisme = (GeenOrganisme)grid[rij, kolom];
-            //            Console.WriteLine(geenOrganisme.GetType());
-            //        }
-            //        else
-            //        {
-            //            if (grid[rij, kolom].GetType() == plant.GetType())
-            //            {
-            //                plant = (Plant)grid[rij, kolom];
-            //                Console.WriteLine(plant.GetType() + " " + plant.Levenskracht);
-            //            }
-            //            if (grid[rij, kolom].GetType() == herbivoor.GetType())
-            //            {
-            //                herbivoor = (Herbivoor)grid[rij, kolom];
-            //                Console.WriteLine(herbivoor.GetType() + " " + herbivoor.Levenskracht);
-            //            }
-            //            if (grid[rij, kolom].GetType() == carnivoor.GetType())
-            //            {
-            //                carnivoor = (Carnivoor)grid[rij, kolom];
-            //                Console.WriteLine(carnivoor.GetType() + " " + carnivoor.Levenskracht);
-            //            }
-            //        }
-            //    }
-            //}
-
         }
-
         public void VolgendeDag()
         {
-            for (int rij = 0; rij < 6; rij++)
+            int lengteRij = grid.Length / grid.GetLength(0);
+            int lengteKolom = grid.GetLength(0);
+            for (int rij = 0; rij < lengteRij; rij++)
             {
-                for (int kolom = 0; kolom < 6; kolom++)
+                for (int kolom = 0; kolom < lengteKolom; kolom++)
                 {
                     if (this.grid[rij, kolom] is Organisme)
                     {
@@ -124,9 +91,9 @@ namespace TerrariumScrum
                 }
             }
 
-            for (int rij = 0; rij < 6; rij++)
+            for (int rij = 0; rij < lengteRij; rij++)
             {
-                for (int kolom = 0; kolom < 6; kolom++)
+                for (int kolom = 0; kolom < lengteKolom; kolom++)
                 {
                     if (this.grid[rij, kolom] is Organisme)
                     {
@@ -138,38 +105,6 @@ namespace TerrariumScrum
 
             Random rnd = new Random();
             grid = NieuwOrganisme(grid, new Plant(), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
-            
-            //    //if (HeeftActieGedaan == false)
-            //    //{
-            //    //    org.DoeActie();
-            //    //}
-            //}
-
-
-
-            
-            //List<Organisme> organismeVerplaatstlijst = new List<Organisme>();
-            
-          //  ResetIsVerplaatstNaarFalse(organismeLijst);
-            //foreach (var organisme in organismeLijst)
-            //{
-            //    if (organisme is Dier)
-            //    {
-            //        if (!((Dier)organisme).IsVerplaatst)
-            //        {
-            //        grid[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
-
-            //            ((Dier)organisme).Verplaatsen(organismeLijst);
-            //            grid[organisme.Rij, organisme.Kolom] = organisme;
-
-                        
-            //        }
-
-            //    }
-
-            //}
-            //ResetIsVerplaatstNaarFalse(organismeLijst);
-
         }
         private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
         {
@@ -188,12 +123,13 @@ namespace TerrariumScrum
             double rasterplaats = 0;
             List<Double> rasterplaatsLijst = new List<double>();        //Hier komen alle lege plaatsen in te staan waar we dan een willekeurige plaats uit kunnen kiezen.
             Random rnd = new Random();
-
+            int lengteRij = grid.Length / grid.GetLength(0);
+            int lengteKolom = grid.GetLength(0);
             for (int i = 0; i < aantal; i++)
             {
-                for (double rij = 0; rij < 6; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in de lijst rasterplaatsLijst.
+                for (double rij = 0; rij < lengteRij; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in de lijst rasterplaatsLijst.
                 {
-                    for (double kolom = 0; kolom < 6; kolom++)
+                    for (double kolom = 0; kolom < lengteKolom; kolom++)
                     {
                         if (raster[(int)rij, (int)kolom] is GeenOrganisme)
                         {
@@ -223,8 +159,6 @@ namespace TerrariumScrum
             }
             return raster;
         }
-
-
         private IOrganisme Opgegeten(Organisme links, Organisme rechts)
         {
             if ((links is Carnivoor) && (rechts is Carnivoor))
