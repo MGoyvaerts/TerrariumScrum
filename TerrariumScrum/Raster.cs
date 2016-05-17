@@ -45,11 +45,11 @@ namespace TerrariumScrum
             }
             if (aantalCarnivoren == 0)          //Dit is een controle zodat elk organisme minstens 1 maal wordt ingevuld.
             {
-                grid = NieuwOrganisme(grid, new Carnivoor(), 6);
+                grid = NieuwOrganisme(grid, new Carnivoor(), 1);
             }
             if (aantalHerbivoren == 0)
             {
-                grid = NieuwOrganisme(grid, new Herbivoor(), 4);
+                grid = NieuwOrganisme(grid, new Herbivoor(), 1);
             }
             if (aantalPlanten == 0)
             {
