@@ -20,8 +20,11 @@ namespace TerrariumScrum
         {
 
         }
-        
         public bool IsVerplaatst = false;
+
+
+        Random random = new Random();// gebruikt voor Verplaatsen. Wordt buiten de method geschreven om zo de instantie te bewaren
+                                    //Als je dit niet doet krijg je teveel dezelfde waardes in de randomgetallen.
         public IOrganisme[,] Verplaatsen(IOrganisme[,] grid, Dier dier)
         {
             //voor dat deze method wordt opgeroepen moet er gecontrolleerd worden of het dier zich mag verplaatsen (geen organisme aan zijn rechterkant).
@@ -34,11 +37,10 @@ namespace TerrariumScrum
 
 
             //voorbereiding op het gebruik van random getallekes.
-            Random random = new Random();
             int willGetal;
 
 
-            //op de plaats waar het dier nu staat wordt alvast leeg gemaakt (er wordt GeenOrganisme geplaatst.
+            //De plaats waar het dier nu staat wordt alvast leeg gemaakt (er wordt GeenOrganisme geplaatst).
             grid[dier.Rij, dier.Kolom] = new GeenOrganisme(dier.Rij, dier.Kolom);
 
 
@@ -48,7 +50,36 @@ namespace TerrariumScrum
 
 
 
-            while (!dier.IsVerplaatst)//Eerst wordt gecontroleerd of het dier al verplaatst is of niet.
+            //Hier wordt er nagegaan of het dier zich helemaal rechts bevind en er overal dieren rondom staan.
+            //Als dit het geval is wordt het dier niet verplaatst maar wordt de IsVerplaatst wel op true gezet.
+            //dit om te voorkomen dat de method niet in een onneindige lus terecht komt.
+            if (kolom == 5)
+            {
+                if (grid[rij, kolom - 1] is Organisme )
+                {
+                    if (rij == 0)//niet naar boven controlleren
+                    {
+                        if (grid[rij + 1, kolom] is Organisme)
+                        {
+                            dier.IsVerplaatst = true;
+                        }
+                    }
+                    else if(rij == 5){//niet naar onder controlleren.
+                        if (grid[rij - 1, kolom] is Organisme)
+                        {
+                            dier.IsVerplaatst = true;
+                        }
+                    }
+                    else if (grid[rij + 1, kolom] is Organisme && grid[rij - 1, kolom] is Organisme)
+                    {
+                        dier.IsVerplaatst = true;
+                    }        
+                }           
+            }
+
+
+
+            while (!dier.IsVerplaatst)//Nu wordt gecontroleerd of het dier al verplaatst is of niet.
             //Deze while is er ook om te zorgen dat het dier zich sowieso verplaatst, 
             //als er al een dier op de te verplaatsen plek staat komt er een nieuw random getalleke en wordt de lus opnieuw doorlopen
             {
@@ -62,7 +93,7 @@ namespace TerrariumScrum
                 //in elke case wordt gecontrolleerd of het dier zich niet op de rand van het grid bevind
                 //en zich dan buiten het grid wil verplaatsen.
                 //bv: als het dier helemaal links staat en het random nummerke 2 (om naar links te gaan) wordt gegenereerd,
-                //gebeurd er niets en wordt de whilelus terug opnieuw doorlopen.
+                //gebeurd er niets en wordt de while-lus terug opnieuw doorlopen.
 
                 //Pas als aan alle voorwaarden voldaan zijn wordt de kolom en/of rij van het dier aangepast.
                 //en wordt IsVerplaatst op true gezet.
@@ -86,7 +117,6 @@ namespace TerrariumScrum
                                 dier.IsVerplaatst = true;
                             }
                         }
-
                         break;
                     case 3://verplaatsen naar onder
                         if (dier.Rij < 5)//controle of het dier op de rand onder staat
@@ -109,13 +139,14 @@ namespace TerrariumScrum
                         }
                         break;
                 }
+                Console.WriteLine(willGetal);
             }
 
 
             //het dier met aangepaste positie wordt in het grid gezet.
             grid[dier.Rij, dier.Kolom] = dier;
 
-
+            
             //en vervolgens wordt de aangepaste grid terug gestuurd.
             return grid;
         }
