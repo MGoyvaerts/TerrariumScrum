@@ -30,8 +30,8 @@ namespace TerrariumScrum
                             aantalPlanten++;
                             break;
                         case 2:
-                            //grid[rij, kolom] = new Herbivoor(rij, kolom);
-                            //aantalHerbivoren++;
+                            grid[rij, kolom] = new Herbivoor(rij, kolom);
+                            aantalHerbivoren++;
                             break;
                         case 3:
                             grid[rij, kolom] = new Carnivoor(rij, kolom);
@@ -49,7 +49,7 @@ namespace TerrariumScrum
             }
             if (aantalHerbivoren == 0)
             {
-                grid = NieuwOrganisme(grid, new Herbivoor(0, 0), 8);
+                grid = NieuwOrganisme(grid, new Herbivoor(0, 0), 1);
             }
             if (aantalPlanten == 0)
             {
@@ -72,7 +72,7 @@ namespace TerrariumScrum
         public void VolgendeDag()
         {
             Random rnd = new Random();
-            grid = NieuwOrganisme(grid, new Plant(0, 0), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            grid = NieuwOrganisme(grid, new Plant(0, 0), 3);//rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
 
 
             for (int rij = 0; rij < 6; rij++)
@@ -81,9 +81,12 @@ namespace TerrariumScrum
                 {
                     if (this.grid[rij, kolom] is Organisme)
                     {
-                        Organisme organisme = (Organisme)this.grid[rij, kolom];
-                        organisme.DoeActie(this.grid);
-                        organisme.HeeftActieGedaan = true;
+                        Organisme org = (Organisme)this.grid[rij, kolom];
+                        if (org.HeeftActieGedaan == false)
+                        {
+                            org.DoeActie(this.grid);
+                            org.HeeftActieGedaan = true;
+                        }
                     }
                 }
             }
@@ -169,9 +172,11 @@ namespace TerrariumScrum
                     double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
                     int _rij = (int)(randomLegePlaats - randomLegePlaats % 1.0);
                     int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 10.0);      //Het getal moet hier afgerond worden want delen door een double geeft in sommige gevallen een zeer kleine precisiefout (bv 4 wordt 3.9999...)
-                    raster[_rij, _kolom] = organisme;
-                    organisme.Rij = _rij;
-                    organisme.Kolom = _kolom;
+
+                    Organisme test = (Organisme)Activator.CreateInstance(organisme.GetType());
+                    raster[_rij, _kolom] = test; 
+                    test.Rij = _rij;
+                    test.Kolom = _kolom;
                     rasterplaatsLijst.Clear();
                 }
                 else
