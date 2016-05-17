@@ -45,11 +45,11 @@ namespace TerrariumScrum
             }
             if (aantalCarnivoren == 0)          //Dit is een controle zodat elk organisme minstens 1 maal wordt ingevuld.
             {
-                grid = NieuwOrganisme(grid, new Carnivoor(), 1);
+                grid = NieuwOrganisme(grid, new Carnivoor(), 2);
             }
             if (aantalHerbivoren == 0)
             {
-                grid = NieuwOrganisme(grid, new Herbivoor(), 1);
+                grid = NieuwOrganisme(grid, new Herbivoor(), 2);
             }
             if (aantalPlanten == 0)
             {
@@ -217,7 +217,7 @@ namespace TerrariumScrum
                 }
                 else
                 {
-                    Console.WriteLine("\nHET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD.");
+                    Program.terrariumVolledigGevuld = true;
                     break;
                 }
             }

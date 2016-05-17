@@ -8,12 +8,12 @@ namespace TerrariumScrum
 {
     class Program
     {
-        
+        public static bool terrariumVolledigGevuld = false;
         static void Main(string[] args)
         {
             Raster raster = new Raster();
             IOrganisme[,] grid = new IOrganisme[6,6];
-           
+            
 
             raster.CreeerRaster();
             raster.Afbeelden();
@@ -30,15 +30,24 @@ namespace TerrariumScrum
                 if (input == "v")
                 {
 
-                    raster.VolgendeDag();
+                    if (terrariumVolledigGevuld == false)
+                    {
+                        raster.VolgendeDag();
 
-                    raster.Afbeelden();
-                    
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
-                    Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
-                    input = Console.ReadLine();
+                        raster.Afbeelden();
+
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
+                        Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
+                        input = Console.ReadLine(); 
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n### HET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD. ###");
+                        Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
+                        input = Console.ReadLine();
+                    }
                 }
                 else
                 {
