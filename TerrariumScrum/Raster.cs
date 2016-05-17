@@ -22,7 +22,7 @@ namespace TerrariumScrum
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    int willekeurigNummer = rnd.Next(1, 15); // Hiermee wordt de kans bepaald voor het invullen van een organisme
+                    int willekeurigNummer = rnd.Next(1, 16); // Hiermee wordt de kans bepaald voor het invullen van een organisme
                     switch (willekeurigNummer)
                     {
                         case 1:
@@ -100,7 +100,7 @@ namespace TerrariumScrum
             }
 
             Random rnd = new Random();
-            grid = NieuwOrganisme(grid, new Plant(), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            grid = NieuwOrganisme(grid, new Plant(), 1);//rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             
             //    //if (HeeftActieGedaan == false)
             //    //{
