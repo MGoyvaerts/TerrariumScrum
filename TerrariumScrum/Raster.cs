@@ -173,10 +173,10 @@ namespace TerrariumScrum
                     int _rij = (int)(randomLegePlaats - randomLegePlaats % 1.0);
                     int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 10.0);      //Het getal moet hier afgerond worden want delen door een double geeft in sommige gevallen een zeer kleine precisiefout (bv 4 wordt 3.9999...)
 
-                    Organisme test = (Organisme)Activator.CreateInstance(organisme.GetType());
-                    raster[_rij, _kolom] = test; 
-                    test.Rij = _rij;
-                    test.Kolom = _kolom;
+                    Organisme nieuwOrganisme = (Organisme)Activator.CreateInstance(organisme.GetType());    //Er wordt een nieuwe instantie van het organisme gecreëerd.
+                    raster[_rij, _kolom] = nieuwOrganisme; 
+                    nieuwOrganisme.Rij = _rij;
+                    nieuwOrganisme.Kolom = _kolom;
                     rasterplaatsLijst.Clear();
                 }
                 else
