@@ -17,6 +17,11 @@ namespace TerrariumScrum
         {
             Levenskracht = 1;
         }
+        public override int Levenskracht
+        {
+            get;
+            set;
+        }
         public override string Tostring()
         {
             return "P";
