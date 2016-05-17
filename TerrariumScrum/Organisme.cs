@@ -61,14 +61,14 @@ namespace TerrariumScrum
                         }
                     }
                 }
-            }
-            else
-            {
-                if (!(grid[huidigeRij, huidigeKolom] is Plant || !(grid[huidigeRij, huidigeKolom] is GeenOrganisme)))
+                else
                 {
-                    Dier huidigDier = (Dier)grid[huidigeRij, huidigeKolom];
-                    //huidigDier.Verplaatsen(grid);
-                }  
+                    if (!(grid[huidigeRij, huidigeKolom] is Plant ))//|| !(grid[huidigeRij, huidigeKolom] is GeenOrganisme)))
+                    {
+                        Dier huidigDier = (Dier)grid[huidigeRij, huidigeKolom];
+                        //huidigDier.Verplaatsen(grid);
+                    }
+                }
             }
             
             return grid;
