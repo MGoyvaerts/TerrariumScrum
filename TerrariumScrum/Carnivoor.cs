@@ -9,11 +9,12 @@ namespace TerrariumScrum
     public class Carnivoor : Dier
     {
         public Carnivoor() { }
-        public Carnivoor(int rij, int kolom, int levenskracht)
-            : base(rij, kolom, levenskracht)
+        public Carnivoor(int rij, int kolom)
+            : base(rij, kolom)
         {
 
         }
+        public override int Levenskracht { get; set; }
         public Organisme Vechten(Organisme carnivoorLinks, Organisme carnivoorRechts)
         {
             //controleert welke de sterkste is 

@@ -26,7 +26,7 @@ namespace TerrariumScrum
                     switch (willekeurigNummer)
                     {
                         case 1:
-                            grid[rij, kolom] = new Plant(rij, kolom);
+                            grid[rij, kolom] = new Plant(rij, kolom,2);
                             aantalPlanten++;
                             break;
                         case 2:
@@ -100,7 +100,7 @@ namespace TerrariumScrum
             }
 
             Random rnd = new Random();
-            grid = NieuwOrganisme(grid, new Plant(), 1);//rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            grid = NieuwOrganisme(grid, new Plant(), 3);//rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             
             //    //if (HeeftActieGedaan == false)
             //    //{
