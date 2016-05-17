@@ -22,7 +22,7 @@ namespace TerrariumScrum
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    int willekeurigNummer = rnd.Next(1, 16); // Hiermee wordt de kans bepaald voor het invullen van een organisme
+                    int willekeurigNummer = rnd.Next(1, 160); // Hiermee wordt de kans bepaald voor het invullen van een organisme
                     switch (willekeurigNummer)
                     {
                         case 1:
@@ -49,7 +49,7 @@ namespace TerrariumScrum
             }
             if (aantalHerbivoren == 0)
             {
-                grid = NieuwOrganisme(grid, new Herbivoor(), 1);
+                grid = NieuwOrganisme(grid, new Herbivoor(), 10);
             }
             if (aantalPlanten == 0)
             {
@@ -145,45 +145,47 @@ namespace TerrariumScrum
                 }
             }
         }
-
+        
+        private Boolean rasterVolledigGevuld = false;
         public IOrganisme[,] NieuwOrganisme(IOrganisme[,] raster, Organisme organisme, int aantal)
         {
-            double rasterplaats = 0;
-            List<Double> rasterplaatsLijst = new List<double>();        //Hier komen alle lege plaatsen in te staan waar we dan een willekeurige plaats uit kunnen kiezen.
-            Random rnd = new Random();
+                double rasterplaats = 0;
+                List<Double> rasterplaatsLijst = new List<double>();        //Hier komen alle lege plaatsen in te staan waar we dan een willekeurige plaats uit kunnen kiezen.
+                Random rnd = new Random();
 
-            for (int i = 0; i < aantal; i++)
-            {
-                for (double rij = 0; rij < 6; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in de lijst rasterplaatsLijst.
+                for (int i = 0; i < aantal; i++)
                 {
-                    for (double kolom = 0; kolom < 6; kolom++)
+                    for (double rij = 0; rij < 6; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in de lijst rasterplaatsLijst.
                     {
-                        if (raster[(int)rij, (int)kolom] is GeenOrganisme)
+                        for (double kolom = 0; kolom < 6; kolom++)
                         {
-                            rasterplaats = rij + (kolom / 10.0);        //De lege plaats wordt in een kommagetal omgezet (bv rij 4, kolom 3 wordt: 4,3).
-                            rasterplaatsLijst.Add(rasterplaats);
+                            if (raster[(int)rij, (int)kolom] is GeenOrganisme)
+                            {
+                                rasterplaats = rij + (kolom / 10.0);        //De lege plaats wordt in een kommagetal omgezet (bv rij 4, kolom 3 wordt: 4,3).
+                                rasterplaatsLijst.Add(rasterplaats);
+                            }
                         }
                     }
-                }
 
-                if (rasterplaatsLijst.Count > 0)        //We controleren ofdat er nog lege plaatsen zijn.
-                {
-                    double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
-                    int _rij = (int)(randomLegePlaats - randomLegePlaats % 1.0);
-                    int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 10.0);      //Het getal moet hier afgerond worden want delen door een double geeft in sommige gevallen een zeer kleine precisiefout (bv 4 wordt 3.9999...)
+                    if (rasterplaatsLijst.Count > 0)        //We controleren ofdat er nog lege plaatsen zijn.
+                    {
+                        double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
+                        int _rij = (int)(randomLegePlaats - randomLegePlaats % 1.0);
+                        int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 10.0);      //Het getal moet hier afgerond worden want delen door een double geeft in sommige gevallen een zeer kleine precisiefout (bv 4 wordt 3.9999...)
 
-                    Organisme nieuwOrganisme = (Organisme)Activator.CreateInstance(organisme.GetType());    //Er wordt een nieuwe instantie van het organisme gecreëerd.
-                    raster[_rij, _kolom] = nieuwOrganisme; 
-                    nieuwOrganisme.Rij = _rij;
-                    nieuwOrganisme.Kolom = _kolom;
-                    rasterplaatsLijst.Clear();
-                }
-                else
-                {
-                    Console.WriteLine("\nHET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD.");
-                    break;
-                }
-            }
+                        Organisme nieuwOrganisme = (Organisme)Activator.CreateInstance(organisme.GetType());    //Er wordt een nieuwe instantie van het organisme gecreëerd.
+                        raster[_rij, _kolom] = nieuwOrganisme;
+                        nieuwOrganisme.Rij = _rij;
+                        nieuwOrganisme.Kolom = _kolom;
+                        rasterplaatsLijst.Clear();
+                    }
+                    else
+                    {
+                        //Console.WriteLine("\nHET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD.");
+                        Program.terrariumVolledigGevuld = true;
+                        break;
+                    }
+                } 
             return raster;
         }
 
