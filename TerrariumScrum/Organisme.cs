@@ -49,14 +49,16 @@ namespace TerrariumScrum
                         else if (grid[rechterplaatsRij, rechterplaatsKolom] is Plant)
                         {
                             huidigeHerbivoor.Eten((Organisme)grid[rechterplaatsRij, rechterplaatsKolom], grid);
+                            huidigeHerbivoor.HeeftActieGedaan = true;
                         }
-                    }
+                    } 
                     else if (grid[huidigeRij, huidigeKolom] is Carnivoor)
                     {
                         Carnivoor huidigeCarnivoor = (Carnivoor)grid[huidigeRij, huidigeKolom];
                         if (grid[rechterplaatsRij, rechterplaatsKolom] is Herbivoor)
                         {
                             huidigeCarnivoor.Eten((Herbivoor)grid[rechterplaatsRij, rechterplaatsKolom], grid);
+                            huidigeCarnivoor.HeeftActieGedaan = true;
                         }
                         else if (grid[rechterplaatsRij, rechterplaatsKolom] is Carnivoor)
                         {
