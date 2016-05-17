@@ -24,7 +24,7 @@ namespace TerrariumScrum
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
                     
-                    int willekeurigNummer = rnd.Next(1, 160); // Hiermee wordt de kans bepaald voor het invullen van een organisme
+                    int willekeurigNummer = rnd.Next(1, 16); // Hiermee wordt de kans bepaald voor het invullen van een organisme
                     switch (willekeurigNummer)
                     {
                         case 1:
@@ -47,11 +47,11 @@ namespace TerrariumScrum
             }
             if (aantalCarnivoren == 0)          //Dit is een controle zodat elk organisme minstens 1 maal wordt ingevuld.
             {
-                grid = NieuwOrganisme(grid, new Carnivoor(), 1);
+                grid = NieuwOrganisme(grid, new Carnivoor(), 2);
             }
             if (aantalHerbivoren == 0)
             {
-                grid = NieuwOrganisme(grid, new Herbivoor(), 6);
+                grid = NieuwOrganisme(grid, new Herbivoor(), 2);
             }
             if (aantalPlanten == 0)
             {
