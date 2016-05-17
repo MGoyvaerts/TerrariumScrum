@@ -12,8 +12,6 @@ namespace TerrariumScrum
         static void Main(string[] args)
         {
             Raster raster = new Raster();
-            IOrganisme[,] grid = new IOrganisme[6,6];
-            
 
             raster.CreeerRaster();
             raster.Afbeelden();
