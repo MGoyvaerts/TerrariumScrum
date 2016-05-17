@@ -8,8 +8,8 @@ namespace TerrariumScrum
 {
     public class Herbivoor : Dier
     {
-        public Herbivoor(int rij, int kolom, int levenskracht)
-            : base(rij, kolom, levenskracht)
+        public Herbivoor(int rij, int kolom)
+            : base(rij, kolom)
         {
 
         }
@@ -17,6 +17,9 @@ namespace TerrariumScrum
         {
 
         }
+
+        public override int Levenskracht { get; set; }
+
         public IOrganisme[,] Vrijen(IOrganisme[,] grid)
         {
             Herbivoor nieuweHerbivoor = new Herbivoor();
