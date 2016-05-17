@@ -26,7 +26,7 @@ namespace TerrariumScrum
                     switch (willekeurigNummer)
                     {
                         case 1:
-                            grid[rij, kolom] = new Plant(rij, kolom,2);
+                            grid[rij, kolom] = new Plant(rij, kolom);
                             aantalPlanten++;
                             break;
                         case 2:
