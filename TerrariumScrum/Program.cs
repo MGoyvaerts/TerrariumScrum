@@ -42,8 +42,12 @@ namespace TerrariumScrum
                     }
                     else
                     {
-                        Console.WriteLine("\n### HET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD. ###");
-                        Console.WriteLine("Druk op <ENTER> om het programma te sluiten");
+                        Console.WriteLine("\n######################################################");
+                        Console.WriteLine("###                                                ###");
+                        Console.WriteLine("### HET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD. ###");
+                        Console.WriteLine("###                                                ###");
+                        Console.WriteLine("######################################################");
+                        Console.WriteLine("\n     Druk op <ENTER> om het programma te sluiten");
                         Console.ReadLine();
                         break;
                     }
