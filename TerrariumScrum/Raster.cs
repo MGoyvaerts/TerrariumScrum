@@ -22,11 +22,11 @@ namespace TerrariumScrum
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    int willekeurigNummer = rnd.Next(1, 15); // Hiermee wordt de kans bepaald voor het invullen van een organisme
+                    int willekeurigNummer = rnd.Next(1, 16); // Hiermee wordt de kans bepaald voor het invullen van een organisme
                     switch (willekeurigNummer)
                     {
                         case 1:
-                            grid[rij, kolom] = new Plant(rij, kolom,2);
+                            grid[rij, kolom] = new Plant(rij, kolom);
                             aantalPlanten++;
                             break;
                         case 2:
@@ -45,11 +45,11 @@ namespace TerrariumScrum
             }
             if (aantalCarnivoren == 0)          //Dit is een controle zodat elk organisme minstens 1 maal wordt ingevuld.
             {
-                grid = NieuwOrganisme(grid, new Carnivoor(), 6);
+                grid = NieuwOrganisme(grid, new Carnivoor(), 1);
             }
             if (aantalHerbivoren == 0)
             {
-                grid = NieuwOrganisme(grid, new Herbivoor(), 4);
+                grid = NieuwOrganisme(grid, new Herbivoor(), 1);
             }
             if (aantalPlanten == 0)
             {
@@ -100,7 +100,7 @@ namespace TerrariumScrum
             }
 
             Random rnd = new Random();
-            grid = NieuwOrganisme(grid, new Plant(), 3);//rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            grid = NieuwOrganisme(grid, new Plant(), 1);//rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             
             //    //if (HeeftActieGedaan == false)
             //    //{
