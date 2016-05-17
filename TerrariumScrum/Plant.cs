@@ -8,12 +8,15 @@ namespace TerrariumScrum
 {
     public class Plant: Organisme
     {
-        Random rnd = new Random();
-        private int levenskrachtValue;
-        public override int Levenskracht { get; set; }
-        public Plant(int rij, int kolom, int levenskracht)
-            : base(rij, kolom, levenskracht) { }
-        public Plant(){}
+        public Plant(int rij, int kolom)
+            : base(rij, kolom) 
+        {
+            Levenskracht = 1;
+        }
+        public Plant()
+        {
+            Levenskracht = 1;
+        }
         public override string Tostring()
         {
             return "P";
