@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 namespace TerrariumScrum
 {
     public class Raster
-    {
-        int aantalCarnivoren = 0;
-        int aantalHerbivoren = 0;
-        int aantalPlanten = 0;
-        public IOrganisme[,] grid = new IOrganisme[6, 6];
+    {       
+        public IOrganisme[,] grid = new IOrganisme[10, 10];
         Random rnd = new Random();
 
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
+            int aantalCarnivoren = 0;
+            int aantalHerbivoren = 0;
+            int aantalPlanten = 0;
             int lengteRij = grid.Length / grid.GetLength(0);
             int lengteKolom = grid.GetLength(0);
             for (int rij = 0; rij < lengteRij; rij++)
