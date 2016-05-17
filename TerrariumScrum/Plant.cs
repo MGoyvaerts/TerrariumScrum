@@ -9,8 +9,14 @@ namespace TerrariumScrum
     public class Plant: Organisme
     {
         public Plant(int rij, int kolom)
-            : base(rij, kolom) { }
-        public Plant(){}
+            : base(rij, kolom) 
+        {
+            Levenskracht = 1;
+        }
+        public Plant()
+        {
+            Levenskracht = 1;
+        }
         public override string Tostring()
         {
             return "P";
