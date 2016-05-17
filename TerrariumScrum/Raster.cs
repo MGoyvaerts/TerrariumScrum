@@ -102,7 +102,7 @@ namespace TerrariumScrum
             }
 
             Random rnd = new Random();
-            grid = NieuwOrganisme(grid, new Plant(), 1);//rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            grid = NieuwOrganisme(grid, new Plant(), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             
             //    //if (HeeftActieGedaan == false)
             //    //{
@@ -162,7 +162,7 @@ namespace TerrariumScrum
                     {
                         if (raster[(int)rij, (int)kolom] is GeenOrganisme)
                         {
-                            rasterplaats = rij + (kolom / 10.0);        //De lege plaats wordt in een kommagetal omgezet (bv rij 4, kolom 3 wordt: 4,3).
+                            rasterplaats = rij + (kolom / 100.0);        //De lege plaats wordt in een kommagetal omgezet (bv rij 4, kolom 3 wordt: 4,03).
                             rasterplaatsLijst.Add(rasterplaats);
                         }
                     }
@@ -172,7 +172,7 @@ namespace TerrariumScrum
                 {
                     double randomLegePlaats = rasterplaatsLijst[rnd.Next(rasterplaatsLijst.Count() - 1)];   //We kiezen een willekeurige lege plaats uit de lijst.
                     int _rij = (int)(randomLegePlaats - randomLegePlaats % 1.0);
-                    int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 10.0);      //Het getal moet hier afgerond worden want delen door een double geeft in sommige gevallen een zeer kleine precisiefout (bv 4 wordt 3.9999...)
+                    int _kolom = (int)Math.Round((randomLegePlaats % 1.0) * 100.0);      //Het getal moet hier afgerond worden want delen door een double geeft in sommige gevallen een zeer kleine precisiefout (bv 4 wordt 3.9999...)
 
                     Organisme nieuwOrganisme = (Organisme)Activator.CreateInstance(organisme.GetType());    //Er wordt een nieuwe instantie van het organisme gecreëerd.
                     raster[_rij, _kolom] = nieuwOrganisme; 
