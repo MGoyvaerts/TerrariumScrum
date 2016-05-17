@@ -10,10 +10,11 @@ namespace TerrariumScrum
     {
         public abstract int Levenskracht { get; set; }
 
-        public Organisme(int rij, int kolom, int levenskracht = 0) // elk organisme ontstaat met levenskracht 0 tenzij specifiek anders vermeld
+        public Organisme(int rij, int kolom, int levenskracht) // elk organisme ontstaat met levenskracht 0 tenzij specifiek anders vermeld
         {
             Rij = rij;
             Kolom = kolom;
+            Levenskracht = levenskracht;
         }
 
         public int Rij { get; set; }
@@ -51,7 +52,7 @@ namespace TerrariumScrum
                             huidigeHerbivoor.Eten((Organisme)grid[rechterplaatsRij, rechterplaatsKolom], grid);
                             huidigeHerbivoor.HeeftActieGedaan = true;
                         }
-                    } 
+                    }
                     else if (grid[huidigeRij, huidigeKolom] is Carnivoor)
                     {
                         Carnivoor huidigeCarnivoor = (Carnivoor)grid[huidigeRij, huidigeKolom];
@@ -62,50 +63,77 @@ namespace TerrariumScrum
                         }
                         else if (grid[rechterplaatsRij, rechterplaatsKolom] is Carnivoor)
                         {
-                            //huidigeCarnivoor.Vechten(huidigeCarnivoor, grid[rechterplaatsRij, rechterplaatsKolom], grid);
+                            if (grid[rechterplaatsRij, rechterplaatsKolom] is Herbivoor)
+                            {
+                                huidigeCarnivoor.Eten((Herbivoor)grid[rechterplaatsRij, rechterplaatsKolom], grid);
+                            }
+                            else if (grid[rechterplaatsRij, rechterplaatsKolom] is Carnivoor)
+                            {
+                                Carnivoor nieuweCarnivoor = new Carnivoor();
+                                Carnivoor links = (Carnivoor)grid[huidigeRij, huidigeKolom];
+                                Carnivoor rechts = (Carnivoor)grid[rechterplaatsRij, rechterplaatsKolom];
+                                nieuweCarnivoor = (Carnivoor)nieuweCarnivoor.Vechten(links, rechts);
+                                if (nieuweCarnivoor == null)
+                                {
+                                    grid[huidigeRij, huidigeKolom] = links;
+                                    grid[rechterplaatsRij, rechterplaatsKolom] = rechts;
+                                }
+                                else if (nieuweCarnivoor.Kolom == links.Kolom)
+                                {
+                                    grid[huidigeRij, huidigeKolom] = nieuweCarnivoor;
+                                    grid[rechterplaatsRij, rechterplaatsKolom] = new GeenOrganisme();
+                                }
+                                else if (nieuweCarnivoor.Kolom == rechts.Kolom)
+                                {
+                                    grid[huidigeRij, huidigeKolom] = new GeenOrganisme();
+                                    grid[rechterplaatsRij, rechterplaatsKolom] = nieuweCarnivoor;
+                                }
+                            }
+
+                                //huidigeCarnivoor.Vechten(huidigeCarnivoor, grid[rechterplaatsRij, rechterplaatsKolom], grid);
+                            }
+                        }
+
+                        //****Verplaatsen****///
+                    }
+                }
+                else
+                {
+                    if (!(grid[huidigeRij, huidigeKolom] is Plant))//|| !(grid[huidigeRij, huidigeKolom] is GeenOrganisme)))
+                    {
+                        Dier huidigDier = (Dier)grid[huidigeRij, huidigeKolom];
+                        //huidigDier.Verplaatsen(grid);
+                    }
+                }
+                if (grid[huidigeRij, huidigeKolom] is Dier && ((Organisme)grid[huidigeRij, huidigeKolom]).HeeftActieGedaan == false)//controle in het grid of het object een dier is.
+                {
+                    if (huidigeKolom < 5)// hier worden dieren in de laatste kolom niet verplaatst. 
+                    //dit is nodig omdat de kolom naast de laatste kolom niet bestaat en ook niet gecontroleerd kan worden.
+                    //wordt hieronder wel opgelost.
+                    {
+                        if (grid[huidigeRij, huidigeKolom + 1] is GeenOrganisme)// hier wordt gecontroleerd of er rechts naast het dier iets staat.
+                        //staat er niets (GeenOrganisme) wordt het dier verplaatst anders niet.
+                        {
+                            grid = ((Dier)grid[huidigeRij, huidigeKolom]).Verplaatsen(grid, (Dier)grid[huidigeRij, huidigeKolom]);//verplaatsen op het object oproepen.
                         }
                     }
-
-                    //****Verplaatsen****///
-                }
-            }
-            else
-            {
-                if (!(grid[huidigeRij, huidigeKolom] is Plant))//|| !(grid[huidigeRij, huidigeKolom] is GeenOrganisme)))
-                {
-                    Dier huidigDier = (Dier)grid[huidigeRij, huidigeKolom];
-                    //huidigDier.Verplaatsen(grid);
-                }
-            }
-            if (grid[huidigeRij, huidigeKolom] is Dier && ((Organisme)grid[huidigeRij, huidigeKolom]).HeeftActieGedaan == false)//controle in het grid of het object een dier is.
-            {
-                if (huidigeKolom < 5)// hier worden dieren in de laatste kolom niet verplaatst. 
-                //dit is nodig omdat de kolom naast de laatste kolom niet bestaat en ook niet gecontroleerd kan worden.
-                //wordt hieronder wel opgelost.
-                {
-                    if (grid[huidigeRij, huidigeKolom + 1] is GeenOrganisme)// hier wordt gecontroleerd of er rechts naast het dier iets staat.
-                    //staat er niets (GeenOrganisme) wordt het dier verplaatst anders niet.
+                    if (huidigeKolom == 5)//om het dier in de laatste kolom te verplaatsen.
                     {
                         grid = ((Dier)grid[huidigeRij, huidigeKolom]).Verplaatsen(grid, (Dier)grid[huidigeRij, huidigeKolom]);//verplaatsen op het object oproepen.
                     }
                 }
-                if (huidigeKolom == 5)//om het dier in de laatste kolom te verplaatsen.
+                for (int i = 0; i < 6; i++)
                 {
-                    grid = ((Dier)grid[huidigeRij, huidigeKolom]).Verplaatsen(grid, (Dier)grid[huidigeRij, huidigeKolom]);//verplaatsen op het object oproepen.
-                }
-            }
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 6; j++)
-                {
-                    if (grid[i, j] is Dier)
+                    for (int j = 0; j < 6; j++)
                     {
-                        ((Dier)grid[i, j]).IsVerplaatst = false;
+                        if (grid[i, j] is Dier)
+                        {
+                            ((Dier)grid[i, j]).IsVerplaatst = false;
+                        }
                     }
                 }
+                return grid;
             }
-            return grid;
-        }
 
 
         public virtual string Tostring()

@@ -10,7 +10,7 @@ namespace TerrariumScrumTest
         [TestMethod]
         public void ToStringvanPlantGeeftPterug()
         {
-            var plant = new Plant(2,6);
+            var plant = new Plant(2,6,1);
             Assert.AreEqual("P", plant.Tostring());
         }
     }

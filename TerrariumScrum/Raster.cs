@@ -16,27 +16,25 @@ namespace TerrariumScrum
 
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
-
-            
-
             for (int rij = 0; rij < 6; rij++)
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
-                    
+                    int levHerbivoor = rnd.Next(1, 11);
+                    int levCarnivoor = rnd.Next(1, 11);
                     int willekeurigNummer = rnd.Next(1, 16); // Hiermee wordt de kans bepaald voor het invullen van een organisme
                     switch (willekeurigNummer)
                     {
                         case 1:
-                            grid[rij, kolom] = new Plant(rij, kolom);
+                            grid[rij, kolom] = new Plant(rij, kolom,1);
                             aantalPlanten++;
                             break;
                         case 2:
-                            grid[rij, kolom] = new Herbivoor(rij, kolom,rnd.Next(1,11));
+                            grid[rij, kolom] = new Herbivoor(rij, kolom, levHerbivoor);
                             aantalHerbivoren++;
                             break;
                         case 3:
-                            grid[rij, kolom] = new Carnivoor(rij, kolom, rnd.Next(1, 11));
+                            grid[rij, kolom] = new Carnivoor(rij, kolom, levCarnivoor);
                             aantalCarnivoren++;
                             break;
                         default:
@@ -61,6 +59,11 @@ namespace TerrariumScrum
 
         public void Afbeelden()         //Het raster wordt hier afgebeeld
         {
+            //Plant plant = new Plant();
+            //Herbivoor herbivoor = new Herbivoor();
+            //Carnivoor carnivoor = new Carnivoor();
+            //GeenOrganisme geenOrganisme = new GeenOrganisme();
+
             for (int rij = 0; rij < 6; rij++)       
             {
                 for (int kolom = 0; kolom < 6; kolom++)
@@ -68,7 +71,39 @@ namespace TerrariumScrum
                     Console.Write(this.grid[rij, kolom].Tostring() + "  ");                  
                 }
                 Console.WriteLine();
-            }    
+            }
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //for (int rij = 0; rij < 6; rij++)
+            //{
+            //    for (int kolom = 0; kolom < 6; kolom++)
+            //    {
+            //        if (grid[rij, kolom].GetType() == geenOrganisme.GetType())
+            //        {
+            //            geenOrganisme = (GeenOrganisme)grid[rij, kolom];
+            //            Console.WriteLine(geenOrganisme.GetType());
+            //        }
+            //        else
+            //        {
+            //            if (grid[rij, kolom].GetType() == plant.GetType())
+            //            {
+            //                plant = (Plant)grid[rij, kolom];
+            //                Console.WriteLine(plant.GetType() + " " + plant.Levenskracht);
+            //            }
+            //            if (grid[rij, kolom].GetType() == herbivoor.GetType())
+            //            {
+            //                herbivoor = (Herbivoor)grid[rij, kolom];
+            //                Console.WriteLine(herbivoor.GetType() + " " + herbivoor.Levenskracht);
+            //            }
+            //            if (grid[rij, kolom].GetType() == carnivoor.GetType())
+            //            {
+            //                carnivoor = (Carnivoor)grid[rij, kolom];
+            //                Console.WriteLine(carnivoor.GetType() + " " + carnivoor.Levenskracht);
+            //            }
+            //        }
+            //    }
+            //}
+
         }
 
         public void VolgendeDag()
