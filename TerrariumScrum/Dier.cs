@@ -64,7 +64,7 @@ namespace TerrariumScrum
                 //bv: als het dier helemaal links staat en het random nummerke 2 (om naar links te gaan) wordt gegenereerd,
                 //gebeurd er niets en wordt de whilelus terug opnieuw doorlopen.
 
-                        //Pas als aan alle voorwaarden voldaan zijn wordt de kolom en/of rij van het dier aangepast.
+                //Pas als aan alle voorwaarden voldaan zijn wordt de kolom en/of rij van het dier aangepast.
                 //en wordt IsVerplaatst op true gezet.
                 {
                     case 1:// verplaatsen naar rechts
