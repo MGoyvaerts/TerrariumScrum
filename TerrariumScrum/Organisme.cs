@@ -8,69 +8,68 @@ namespace TerrariumScrum
 {
     public abstract class Organisme : IOrganisme
     {
-        public int Levenskracht { get; set; }
 
-        public Organisme(int rij, int kolom, int levenskracht = 0) // elk organisme ontstaat met levenskracht 0 tenzij specifiek anders vermeld
+        abstract public int Levenskracht { get; set; }
+
+        public Organisme(int rij, int kolom, int levenskracht) // elk organisme ontstaat met levenskracht 0 tenzij specifiek anders vermeld
         {
             Rij = rij;
             Kolom = kolom;
+            Levenskracht = levenskracht;
         }
 
         public int Rij {get; set;}
 
         public int Kolom { get; set; }
 
-        public bool HeeftActieGedaan { get; set; }
+        bool HeeftActieGedaan = false;
 
         public IOrganisme[,] DoeActie(IOrganisme[,] grid)
         {
-            int huidigeRij = this.Rij;
-            int huidigeKolom = this.Kolom;
-            int rechterplaatsRij = this.Rij;
-            int rechterplaatsKolom = this.Kolom + 1;
-            if (rechterplaatsKolom < 6)
+            IOrganisme rechterplaats;
+            Organisme linkerplaats;
+            linkerplaats = this;
+            rechterplaats.Rij = this.Rij;
+            rechterplaats.Kolom = this.Kolom + 1;
+            
+            if (rechterplaats is Organisme)
             {
-                if (grid[huidigeRij, huidigeKolom] is Organisme)
+                if (linkerplaats is Plant ) // this is plant
                 {
                     if (grid[huidigeRij, huidigeKolom] is Plant)
                     {
-
-                    }
+                    
+                }
                     else if (grid[huidigeRij, huidigeKolom] is Herbivoor)
-                    {
+                {
                         Herbivoor huidigeHerbivoor = (Herbivoor)grid[huidigeRij, huidigeKolom];
                         if (grid[rechterplaatsRij, rechterplaatsKolom] is Herbivoor)
-                        {
-                            huidigeHerbivoor.Vrijen(grid);
-                        }
-                        else if (grid[rechterplaatsRij, rechterplaatsKolom] is Plant)
-                        {
-                            huidigeHerbivoor.Eten((Organisme)grid[rechterplaatsRij, rechterplaatsKolom], grid);
-                        }
-                    }
-                    else if (grid[huidigeRij, huidigeKolom] is Carnivoor)
                     {
+                        Vrijen();
+                    }
+                        else if (grid[rechterplaatsRij, rechterplaatsKolom] is Plant)
+                    {
+                        Eten();
+                    }
+                }
+                    else if (grid[huidigeRij, huidigeKolom] is Carnivoor)
+                {
                         Carnivoor huidigeCarnivoor = (Carnivoor)grid[huidigeRij, huidigeKolom];
                         if (grid[rechterplaatsRij, rechterplaatsKolom] is Herbivoor)
-                        {
-                            huidigeCarnivoor.Eten((Herbivoor)grid[rechterplaatsRij, rechterplaatsKolom], grid);
-                        }
+	                {
+                        Eten(); 
+	                }
                         else if (grid[rechterplaatsRij, rechterplaatsKolom] is Carnivoor)
-                        {
-                            //huidigeCarnivoor.Vechten(huidigeCarnivoor, grid[rechterplaatsRij, rechterplaatsKolom], grid);
-                        }
-                    }
-                }
-                else
-                {
-                    if (!(grid[huidigeRij, huidigeKolom] is Plant ))//|| !(grid[huidigeRij, huidigeKolom] is GeenOrganisme)))
-                    {
-                        Dier huidigDier = (Dier)grid[huidigeRij, huidigeKolom];
-                        //huidigDier.Verplaatsen(grid);
-                    }
+	                {
+		                Vechten();
+	                }
                 }
             }
-            
+            else
+            {
+                Verplaatsen();
+            }
+            linkerplaats.HeeftActieGedaan = true;
             return grid;
         }
 
