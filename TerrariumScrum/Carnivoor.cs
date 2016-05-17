@@ -9,8 +9,8 @@ namespace TerrariumScrum
     public class Carnivoor : Dier
     {
         public Carnivoor() { }
-        public Carnivoor(int rij, int kolom)
-            : base(rij, kolom)
+        public Carnivoor(int rij, int kolom, int levenskracht)
+            : base(rij, kolom,levenskracht)
         {
 
         }

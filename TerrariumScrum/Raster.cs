@@ -12,16 +12,18 @@ namespace TerrariumScrum
         int aantalHerbivoren = 0;
         int aantalPlanten = 0;
         public IOrganisme[,] grid = new IOrganisme[6, 6];
+        Random rnd = new Random();
 
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
 
-            Random rnd = new Random();
+            
 
             for (int rij = 0; rij < 6; rij++)
             {
                 for (int kolom = 0; kolom < 6; kolom++)
                 {
+                    
                     int willekeurigNummer = rnd.Next(1, 16); // Hiermee wordt de kans bepaald voor het invullen van een organisme
                     switch (willekeurigNummer)
                     {
@@ -30,11 +32,11 @@ namespace TerrariumScrum
                             aantalPlanten++;
                             break;
                         case 2:
-                            grid[rij, kolom] = new Herbivoor(rij, kolom);
+                            grid[rij, kolom] = new Herbivoor(rij, kolom,rnd.Next(1,11));
                             aantalHerbivoren++;
                             break;
                         case 3:
-                            grid[rij, kolom] = new Carnivoor(rij, kolom);
+                            grid[rij, kolom] = new Carnivoor(rij, kolom, rnd.Next(1, 11));
                             aantalCarnivoren++;
                             break;
                         default:
