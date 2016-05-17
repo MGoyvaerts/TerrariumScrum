@@ -8,14 +8,14 @@ namespace TerrariumScrum
 {
     public class Raster
     {
-        int aantalCarnivoren = 0;
-        int aantalHerbivoren = 0;
-        int aantalPlanten = 0;
         public IOrganisme[,] grid = new IOrganisme[6, 6];
         Random rnd = new Random();
 
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
+            int aantalCarnivoren = 0;
+            int aantalHerbivoren = 0;
+            int aantalPlanten = 0;
             for (int rij = 0; rij < 6; rij++)
             {
                 for (int kolom = 0; kolom < 6; kolom++)
@@ -58,12 +58,7 @@ namespace TerrariumScrum
         }
 
         public void Afbeelden()         //Het raster wordt hier afgebeeld
-        {
-            //Plant plant = new Plant();
-            //Herbivoor herbivoor = new Herbivoor();
-            //Carnivoor carnivoor = new Carnivoor();
-            //GeenOrganisme geenOrganisme = new GeenOrganisme();
-
+        { 
             for (int rij = 0; rij < 6; rij++)       
             {
                 for (int kolom = 0; kolom < 6; kolom++)
@@ -72,38 +67,6 @@ namespace TerrariumScrum
                 }
                 Console.WriteLine();
             }
-            //Console.WriteLine();
-            //Console.WriteLine();
-            //for (int rij = 0; rij < 6; rij++)
-            //{
-            //    for (int kolom = 0; kolom < 6; kolom++)
-            //    {
-            //        if (grid[rij, kolom].GetType() == geenOrganisme.GetType())
-            //        {
-            //            geenOrganisme = (GeenOrganisme)grid[rij, kolom];
-            //            Console.WriteLine(geenOrganisme.GetType());
-            //        }
-            //        else
-            //        {
-            //            if (grid[rij, kolom].GetType() == plant.GetType())
-            //            {
-            //                plant = (Plant)grid[rij, kolom];
-            //                Console.WriteLine(plant.GetType() + " " + plant.Levenskracht);
-            //            }
-            //            if (grid[rij, kolom].GetType() == herbivoor.GetType())
-            //            {
-            //                herbivoor = (Herbivoor)grid[rij, kolom];
-            //                Console.WriteLine(herbivoor.GetType() + " " + herbivoor.Levenskracht);
-            //            }
-            //            if (grid[rij, kolom].GetType() == carnivoor.GetType())
-            //            {
-            //                carnivoor = (Carnivoor)grid[rij, kolom];
-            //                Console.WriteLine(carnivoor.GetType() + " " + carnivoor.Levenskracht);
-            //            }
-            //        }
-            //    }
-            //}
-
         }
 
         public void VolgendeDag()
@@ -138,42 +101,10 @@ namespace TerrariumScrum
 
             Random rnd = new Random();
             grid = NieuwOrganisme(grid, new Plant(), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
-            
-            //    //if (HeeftActieGedaan == false)
-            //    //{
-            //    //    org.DoeActie();
-            //    //}
-            //}
-
-
-
-            
-            //List<Organisme> organismeVerplaatstlijst = new List<Organisme>();
-            
-          //  ResetIsVerplaatstNaarFalse(organismeLijst);
-            //foreach (var organisme in organismeLijst)
-            //{
-            //    if (organisme is Dier)
-            //    {
-            //        if (!((Dier)organisme).IsVerplaatst)
-            //        {
-            //        grid[organisme.Rij, organisme.Kolom] = new GeenOrganisme(organisme.Rij, organisme.Kolom);
-
-            //            ((Dier)organisme).Verplaatsen(organismeLijst);
-            //            grid[organisme.Rij, organisme.Kolom] = organisme;
-
-                        
-            //        }
-
-            //    }
-
-            //}
-            //ResetIsVerplaatstNaarFalse(organismeLijst);
-
         }
+        
         private void ResetIsVerplaatstNaarFalse(List<IOrganisme> organismenLijst)
         {
-            
             foreach (var dier in organismenLijst)
             {
                 if (dier is Dier)
@@ -223,7 +154,6 @@ namespace TerrariumScrum
             }
             return raster;
         }
-
 
         private IOrganisme Opgegeten(Organisme links, Organisme rechts)
         {

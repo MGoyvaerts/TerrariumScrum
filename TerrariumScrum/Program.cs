@@ -16,9 +16,9 @@ namespace TerrariumScrum
             raster.CreeerRaster();
             raster.Afbeelden();
          
-                // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
-                // Dit kan eventueel nog in een aparte method geschreven worden
-                Console.WriteLine();
+            // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
+            // Dit kan eventueel nog in een aparte method geschreven worden
+            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
             Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
@@ -43,8 +43,9 @@ namespace TerrariumScrum
                     else
                     {
                         Console.WriteLine("\n### HET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD. ###");
-                        Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
-                        input = Console.ReadLine();
+                        Console.WriteLine("Druk op <ENTER> om het programma te sluiten");
+                        Console.ReadLine();
+                        break;
                     }
                 }
                 else

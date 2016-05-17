@@ -90,50 +90,50 @@ namespace TerrariumScrum
                                 }
                             }
 
-                                //huidigeCarnivoor.Vechten(huidigeCarnivoor, grid[rechterplaatsRij, rechterplaatsKolom], grid);
-                            }
+                            //huidigeCarnivoor.Vechten(huidigeCarnivoor, grid[rechterplaatsRij, rechterplaatsKolom], grid);
                         }
+                    }
 
-                        //****Verplaatsen****///
-                    }
+                    //****Verplaatsen****///
                 }
-                else
+            }
+            else
+            {
+                if (!(grid[huidigeRij, huidigeKolom] is Plant))//|| !(grid[huidigeRij, huidigeKolom] is GeenOrganisme)))
                 {
-                    if (!(grid[huidigeRij, huidigeKolom] is Plant))//|| !(grid[huidigeRij, huidigeKolom] is GeenOrganisme)))
-                    {
-                        Dier huidigDier = (Dier)grid[huidigeRij, huidigeKolom];
-                        //huidigDier.Verplaatsen(grid);
-                    }
+                    Dier huidigDier = (Dier)grid[huidigeRij, huidigeKolom];
+                    //huidigDier.Verplaatsen(grid);
                 }
-                if (grid[huidigeRij, huidigeKolom] is Dier && ((Organisme)grid[huidigeRij, huidigeKolom]).HeeftActieGedaan == false)//controle in het grid of het object een dier is.
+            }
+            if (grid[huidigeRij, huidigeKolom] is Dier && ((Organisme)grid[huidigeRij, huidigeKolom]).HeeftActieGedaan == false)//controle in het grid of het object een dier is.
+            {
+                if (huidigeKolom < 5)// hier worden dieren in de laatste kolom niet verplaatst. 
+                //dit is nodig omdat de kolom naast de laatste kolom niet bestaat en ook niet gecontroleerd kan worden.
+                //wordt hieronder wel opgelost.
                 {
-                    if (huidigeKolom < 5)// hier worden dieren in de laatste kolom niet verplaatst. 
-                    //dit is nodig omdat de kolom naast de laatste kolom niet bestaat en ook niet gecontroleerd kan worden.
-                    //wordt hieronder wel opgelost.
-                    {
-                        if (grid[huidigeRij, huidigeKolom + 1] is GeenOrganisme)// hier wordt gecontroleerd of er rechts naast het dier iets staat.
-                        //staat er niets (GeenOrganisme) wordt het dier verplaatst anders niet.
-                        {
-                            grid = ((Dier)grid[huidigeRij, huidigeKolom]).Verplaatsen(grid, (Dier)grid[huidigeRij, huidigeKolom]);//verplaatsen op het object oproepen.
-                        }
-                    }
-                    if (huidigeKolom == 5)//om het dier in de laatste kolom te verplaatsen.
+                    if (grid[huidigeRij, huidigeKolom + 1] is GeenOrganisme)// hier wordt gecontroleerd of er rechts naast het dier iets staat.
+                    //staat er niets (GeenOrganisme) wordt het dier verplaatst anders niet.
                     {
                         grid = ((Dier)grid[huidigeRij, huidigeKolom]).Verplaatsen(grid, (Dier)grid[huidigeRij, huidigeKolom]);//verplaatsen op het object oproepen.
                     }
                 }
-                for (int i = 0; i < 6; i++)
+                if (huidigeKolom == 5)//om het dier in de laatste kolom te verplaatsen.
                 {
-                    for (int j = 0; j < 6; j++)
+                    grid = ((Dier)grid[huidigeRij, huidigeKolom]).Verplaatsen(grid, (Dier)grid[huidigeRij, huidigeKolom]);//verplaatsen op het object oproepen.
+                }
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    if (grid[i, j] is Dier)
                     {
-                        if (grid[i, j] is Dier)
-                        {
-                            ((Dier)grid[i, j]).IsVerplaatst = false;
-                        }
+                        ((Dier)grid[i, j]).IsVerplaatst = false;
                     }
                 }
-                return grid;
             }
+            return grid;
+        }
 
 
         public virtual string Tostring()
