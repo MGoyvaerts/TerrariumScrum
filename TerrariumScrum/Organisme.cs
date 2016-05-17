@@ -64,7 +64,7 @@ namespace TerrariumScrum
             }
             else
             {
-                if (grid[huidigeRij, huidigeKolom] is Organisme && !(grid[huidigeRij, huidigeKolom] is Plant))
+                if (!(grid[huidigeRij, huidigeKolom] is Plant || !(grid[huidigeRij, huidigeKolom] is GeenOrganisme)))
                 {
                     Dier huidigDier = (Dier)grid[huidigeRij, huidigeKolom];
                     //huidigDier.Verplaatsen(grid);
