@@ -139,7 +139,6 @@ namespace TerrariumScrum
                         }
                         break;
                 }
-                Console.WriteLine(willGetal);
             }
 
 
