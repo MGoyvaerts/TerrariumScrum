@@ -100,7 +100,7 @@ namespace TerrariumScrum
             }
 
             Random rnd = new Random();
-            grid = NieuwOrganisme(grid, new Plant(), 3);//rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
+            grid = NieuwOrganisme(grid, new Plant(), rnd.Next(1, 3));      //Bij elke volgende dag komen er 1-2 nieuwe planten bij.
             
             //    //if (HeeftActieGedaan == false)
             //    //{

@@ -9,7 +9,6 @@ namespace TerrariumScrum
     public abstract class Dier:Organisme
     {
         Random rnd = new Random();
-        private int levenskrachtValue;
         public override int Levenskracht { get; set; }
         public Dier(int rij, int kolom)
             : base(rij, kolom)
