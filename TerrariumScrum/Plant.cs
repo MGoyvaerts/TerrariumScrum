@@ -15,7 +15,7 @@ namespace TerrariumScrum
         }
         public Plant()
         {
-            
+            Levenskracht = 1;
         }
         public override int Levenskracht
         {

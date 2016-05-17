@@ -11,14 +11,14 @@ namespace TerrariumScrum
         public static bool terrariumVolledigGevuld = false;
         static void Main(string[] args)
         {
-            Raster raster = new Raster();            
+            Raster raster = new Raster();
 
             raster.CreeerRaster();
             raster.Afbeelden();
          
-                // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
-                // Dit kan eventueel nog in een aparte method geschreven worden
-                Console.WriteLine();
+            // Hier komt de fase waarbij de gebruiker de keuze krijgt om naar de volgende dag te gaan of om te stoppen
+            // Dit kan eventueel nog in een aparte method geschreven worden
+            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Druk v en <ENTER> om naar de volgende dag te gaan");
             Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
@@ -42,9 +42,14 @@ namespace TerrariumScrum
                     }
                     else
                     {
-                        Console.WriteLine("\n### HET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD. ###");
-                        Console.WriteLine("Druk s en <ENTER> om het programma te sluiten");
-                        input = Console.ReadLine();
+                        Console.WriteLine("\n######################################################");
+                        Console.WriteLine("###                                                ###");
+                        Console.WriteLine("### HET TERRARIUM KAN NIET VERDER WORDEN OPGEVULD. ###");
+                        Console.WriteLine("###                                                ###");
+                        Console.WriteLine("######################################################");
+                        Console.WriteLine("\n     Druk op <ENTER> om het programma te sluiten");
+                        Console.ReadLine();
+                        break;
                     }
                 }
                 else
