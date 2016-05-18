@@ -12,7 +12,8 @@ namespace TerrariumScrum
         static void Main(string[] args)
         {
             Raster raster = new Raster();
-
+            Console.WindowWidth = 200;
+            Console.WindowHeight = 94;
             raster.CreeerRaster();
             raster.Afbeelden();
          

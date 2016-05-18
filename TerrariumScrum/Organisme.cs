@@ -25,8 +25,8 @@ namespace TerrariumScrum
 
         public IOrganisme[,] DoeActie(IOrganisme[,] grid)
         {
-            int lengteKolom = grid.GetLength(0);
-            int lengteRij = grid.Length / grid.GetLength(0);
+            int lengteRij = grid.GetLength(0);
+            int lengteKolom = grid.Length / grid.GetLength(0);
             int huidigeRij = this.Rij;
             int huidigeKolom = this.Kolom;
             int rechterplaatsRij = this.Rij;

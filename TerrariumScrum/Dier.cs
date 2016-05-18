@@ -52,8 +52,8 @@ namespace TerrariumScrum
             //Hier wordt er nagegaan of het dier zich helemaal rechts bevind en er overal dieren rondom staan.
             //Als dit het geval is wordt het dier niet verplaatst maar wordt de IsVerplaatst wel op true gezet.
             //dit om te voorkomen dat de method niet in een onneindige lus terecht komt.
-            int lengteRij = grid.Length / grid.GetLength(0);
-            int lengteKolom = grid.GetLength(0);
+            int lengteRij = grid.GetLength(0);
+            int lengteKolom = grid.Length / grid.GetLength(0);
             if (kolom == lengteKolom-1)
             {
                 if (grid[rij, kolom - 1] is Organisme )

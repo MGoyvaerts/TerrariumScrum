@@ -13,11 +13,12 @@ namespace TerrariumScrum
         int aantalPlanten = 0;
         public IOrganisme[,] grid = new IOrganisme[6, 6];
         Random rnd = new Random();
+        
 
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
-            int lengteRij = grid.Length / grid.GetLength(0);
-            int lengteKolom = grid.GetLength(0);
+            int lengteRij = grid.GetLength(0);
+            int lengteKolom = grid.Length / grid.GetLength(0);
             for (int rij = 0; rij < lengteRij; rij++)
             {
                 for (int kolom = 0; kolom < lengteKolom; kolom++)
@@ -47,21 +48,21 @@ namespace TerrariumScrum
             }
             if (aantalCarnivoren == 0)          //Dit is een controle zodat elk organisme minstens 1 maal wordt ingevuld.
             {
-                grid = NieuwOrganisme(grid, new Carnivoor(), 2);
+                grid = NieuwOrganisme(grid, new Carnivoor(), 30);
             }
             if (aantalHerbivoren == 0)
             {
-                grid = NieuwOrganisme(grid, new Herbivoor(), 2);
+                grid = NieuwOrganisme(grid, new Herbivoor(), 30);
             }
             if (aantalPlanten == 0)
             {
-                grid = NieuwOrganisme(grid, new Plant(), 1);
+                grid = NieuwOrganisme(grid, new Plant(), 30);
             }
         }
         public void Afbeelden()         //Het raster wordt hier afgebeeld
         {
-            int lengteRij = grid.Length / grid.GetLength(0);
-            int lengteKolom = grid.GetLength(0);
+            int lengteRij = grid.GetLength(0);
+            int lengteKolom = grid.Length / grid.GetLength(0); 
             for (int rij = 0; rij < lengteRij; rij++)       
             {
                 for (int kolom = 0; kolom < lengteKolom; kolom++)
@@ -73,8 +74,8 @@ namespace TerrariumScrum
         }
         public void VolgendeDag()
         {
-            int lengteRij = grid.Length / grid.GetLength(0);
-            int lengteKolom = grid.GetLength(0);
+            int lengteRij = grid.GetLength(0);
+            int lengteKolom = grid.Length / grid.GetLength(0);
             for (int rij = 0; rij < lengteRij; rij++)
             {
                 for (int kolom = 0; kolom < lengteKolom; kolom++)
@@ -123,8 +124,8 @@ namespace TerrariumScrum
             double rasterplaats = 0;
             List<Double> rasterplaatsLijst = new List<double>();        //Hier komen alle lege plaatsen in te staan waar we dan een willekeurige plaats uit kunnen kiezen.
             Random rnd = new Random();
-            int lengteRij = grid.Length / grid.GetLength(0);
-            int lengteKolom = grid.GetLength(0);
+            int lengteRij = grid.GetLength(0);
+            int lengteKolom = grid.Length / grid.GetLength(0);
             for (int i = 0; i < aantal; i++)
             {
                 for (double rij = 0; rij < lengteRij; rij++)       //We gaan alle lege plaatsen in het raster (GeenOrganisme) opslaan in de lijst rasterplaatsLijst.
