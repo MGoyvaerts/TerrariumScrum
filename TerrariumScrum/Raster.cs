@@ -8,15 +8,14 @@ namespace TerrariumScrum
 {
     public class Raster
     {
-        int aantalCarnivoren = 0;
-        int aantalHerbivoren = 0;
-        int aantalPlanten = 0;
         public IOrganisme[,] grid = new IOrganisme[6, 6];
         Random rnd = new Random();
         
-
         public void CreeerRaster()      //Een nieuwe raster wordt gecreeerd maar nog niet afgebeeld.
         {
+            int aantalCarnivoren = 0;
+            int aantalHerbivoren = 0;
+            int aantalPlanten = 0;
             int lengteRij = grid.GetLength(0);
             int lengteKolom = grid.Length / grid.GetLength(0);
             for (int rij = 0; rij < lengteRij; rij++)
@@ -48,15 +47,15 @@ namespace TerrariumScrum
             }
             if (aantalCarnivoren == 0)          //Dit is een controle zodat elk organisme minstens 1 maal wordt ingevuld.
             {
-                grid = NieuwOrganisme(grid, new Carnivoor(), 30);
+                grid = NieuwOrganisme(grid, new Carnivoor(), 2);
             }
             if (aantalHerbivoren == 0)
             {
-                grid = NieuwOrganisme(grid, new Herbivoor(), 30);
+                grid = NieuwOrganisme(grid, new Herbivoor(), 2);
             }
             if (aantalPlanten == 0)
             {
-                grid = NieuwOrganisme(grid, new Plant(), 30);
+                grid = NieuwOrganisme(grid, new Plant(), 1);
             }
         }
         public void Afbeelden()         //Het raster wordt hier afgebeeld
